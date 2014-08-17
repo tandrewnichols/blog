@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "Dealing with a stubborn child process and other programming stories: a blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tandrewnichols/blog.git"
+  },
+  "author": "Andrew Nichols <tandrewnichols@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tandrewnichols/blog/issues"
+  },
+  "homepage": "https://github.com/tandrewnichols/blog"
+}

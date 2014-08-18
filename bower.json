@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tandrewnichols/blog",
+  "authors": [
+    "Andrew Nichols <tandrewnichols@gmail.com>"
+  ],
+  "description": "\"Dealing with a stubborn child process and other programming stories: a blog\"",
+  "main": "app.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}

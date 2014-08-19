@@ -1,21 +1,29 @@
-var cp = require('child_process');
 var path = require('path');
+var server;
 
 module.exports = function(grunt) {
   grunt.registerTask('server', 'Start the express server', function() {
-    var done = this.async();
-    var server = cp.spawn('node', ['app'], { cwd: path.resolve(__dirname + '/..') });
-    server.on('close', function(code) {
-      console.log('Stopping express server');  
+    if (server) {
+      console.log('Restarting the express server');
+      server.kill();
+    } else {
+      console.log('Starting the express server');
+    }
+    server = grunt.util.spawn({
+      cmd: 'node',
+      args: ['app'],
+      opts: {
+        stdio: 'inherit',
+        cwd: path.resolve(__dirname + '/..')
+      }
+    }, function() {
+      console.log.apply(console, [].slice.call(arguments).filter( function(arg) {
+        !!arg; 
+      }));
     });
     process.on('exit', function() {
+      console.log('Stopping express server');  
       server.kill();
-    });
-    server.stdout.on('data', function(data) {
-      data = data.toString();
-      if (~data.indexOf('Express server listening')) {
-        done();
-      }
     });
   });
 };

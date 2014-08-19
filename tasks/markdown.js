@@ -1,16 +1,28 @@
 module.exports = {
   posts: {
-    src: ['posts/**/*.md'],
-    dest: 'views/posts/',
+    files: [
+      {
+        expand: true,
+        src: 'posts/**/*.md',
+        dest: 'views/posts',
+        ext: '.html'
+      }
+    ],
     options: {
-      template: 'app/templates/post.html'
+      template: 'views/post.html'
     }
   },
   pages: {
-    src: ['pages/**/*.md'],
-    dest: 'views/pages/',
+    files: [
+      {
+        expand: true,
+        src: 'pages/**/*.md',
+        dest: 'views/pages/',
+        ext: '.html'
+      }
+    ],
     options: {
-      template: 'app/templates/page.html'
+      template: 'views/page.html'
     }
   }
 };

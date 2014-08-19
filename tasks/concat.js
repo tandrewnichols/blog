@@ -1,8 +1,8 @@
 module.exports = {
   files: [
-    'jquery/dist/jquery.js',
-    'bootstrap/dist/js/bootstrap.js',
-    'angular/angular.js',
+    'bower_components/jquery/dist/jquery.js',
+    'bower_components/bootstrap/dist/js/bootstrap.js',
+    'bower_components/angular/angular.js',
     'app/js/app.js',
     'app/js/**/*.js'
   ],
@@ -13,23 +13,11 @@ module.exports = {
     options: {
       sourceMap: true
     },
-    files: [
-      {
-        expand: true,
-        cwd: 'bower_compoentents',
-        src: ['<%= concat.files %>'],
-        dest: 'generated/app.js'
-      },
-    ]
+    src: ['<%= concat.files %>'],
+    dest: 'generated/app.js'
   },
   dev: {
-    files: [
-      {
-        expand: true,
-        cwd: 'bower_compoentents',
-        src: ['<%= concat.files %>'],
-        dest: 'generated/app.js'
-      }
-    ]
+    src: ['<%= concat.files %>'],
+    dest: 'generated/app.js'
   }
 };

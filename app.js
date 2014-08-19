@@ -9,11 +9,14 @@ var nconf = require('nconf')
 
 app.set('port', nconf.get('PORT'));
 app.set('views', __dirname + '/views');
-app.set('view engine', 'html');
-app.use('assets', express.static(__dirname + '/public'));
+app.get('*', function(req, res, next) {
+  console.log(req.originalUrl);
+  next();
+});
+app.use('/assets', express.static(__dirname + nconf.get('STATIC_FILE_PATH')));
 
-app.get('/', function() {
-
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/views/home.html');
 });
 
 var server = http.createServer(app);

@@ -1,5 +1,5 @@
 module.exports = {
-  files: ['bower_components/bootstrap/less/bootstrap.less', 'app/css/main.css'],
+  files: ['app/css/main.less'],
   dist: {
     options: {
       cleancss: true,
@@ -11,7 +11,7 @@ module.exports = {
   },
   dev: {
     files: {
-      'dev/app.css': ['<%= less.files %>']
+      'generated/app.css': ['<%= less.files %>']
     }
   }
 };

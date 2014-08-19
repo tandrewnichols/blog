@@ -4,8 +4,9 @@
   "description": "Dealing with a stubborn child process and other programming stories: a blog",
   "main": "app.js",
   "scripts": {
+    "start": "node app",
     "test": "grunt",
-    "postinstall": "./node_modules/bower/bin/bower install && npm install -g grunt-cli"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -17,12 +18,10 @@
     "url": "https://github.com/tandrewnichols/blog/issues"
   },
   "homepage": "https://github.com/tandrewnichols/blog",
-  "devDependencies": {},
-  "dependencies": {
-    "express": "^4.8.4",
-    "nconf": "^0.6.9",
+  "devDependencies": {
     "bower": "^1.3.9",
     "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-less": "^0.11.4",
@@ -32,8 +31,9 @@
     "grunt-watch-nospawn": "0.0.8",
     "task-master": "^1.0.3"
   },
-  "engines": {
-    "node": ">=0.10.20"
+  "dependencies": {
+    "express": "^4.8.4",
+    "nconf": "^0.6.9"
   },
   "private": true
 }

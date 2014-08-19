@@ -1,6 +1,6 @@
 module.exports = {
   files: ['bower_components/bootstrap/less/bootstrap.less', 'app/css/main.css'],
-  prod: {
+  dist: {
     options: {
       cleancss: true,
       sourceMap: true

@@ -9,6 +9,10 @@ module.exports = function(grunt) {
     } else {
       console.log('Starting the express server');
     }
+    process.on('exit', function() {
+      console.log('Stopping express server');  
+      server.kill();
+    });
     server = grunt.util.spawn({
       cmd: 'node',
       args: ['app'],
@@ -20,10 +24,6 @@ module.exports = function(grunt) {
       console.log.apply(console, [].slice.call(arguments).filter( function(arg) {
         !!arg; 
       }));
-    });
-    process.on('exit', function() {
-      console.log('Stopping express server');  
-      server.kill();
     });
   });
 };

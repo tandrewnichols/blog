@@ -4,3 +4,5 @@ public
 dev
 bower_components
 fonts
+views/pages
+views/posts

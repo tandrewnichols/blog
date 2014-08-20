@@ -1,55 +1,11 @@
-<html>
-  <head>
-    <style>
-      body {
-        padding-top: 70px;
-      }
-    </style>
-    <link rel="stylesheet" type="text/css" href="/assets/app.css" media="all" />
-  </head>
-  <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="mlx" style="margin-right: 90px;">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="circular pull-left" style="margin-top: 11px; background-image: url(https://secure.gravatar.com/avatar/89e046d45bc6aa524a2164a952ba9860?s=40)"></span>
-          <a href="/" class="navbar-brand ">Andrew Nichols</a>
-        </div>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/blog">Blog</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header">tandrewnichols</li>
-                <li><a href="https://github.com/tandrewnichols/varity">varity</a></li>
-                <li><a href="https://github.com/tandrewnichols/indeed">indeed</a></li>
-                <li><a href="https://github.com/tandrewnichols/tinder-cli">tinder-cli</a></li>
-                <li><a href="https://github.com/tandrewnichols/task-master">task-master</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">mantacode</li>
-                <li><a href="https://github.com/mantacode/kindly">kindly</a></li>
-                <li><a href="https://github.com/mantacode/pedestrian">pedestrian</a></li>
-                <li><a href="https://github.com/mantacode/file-manifest">file-manifest</a></li>
-                <li><a href="https://github.com/mantacode/cookie-domain">cookie-domain</a></li>
-                <li><a href="https://github.com/mantacode/safe-obj">safe-obj</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="jumbotron">
-        <h1><span class="glyphicon glyphicon-wrench"></span> Under Construction</h1>
-        <p>There's not much to do here now, but you can find me on:</p>
-        <p><a href="https://github.com/tandrewnichols" class="mrm btn btn-primary btn-lg">Github</a><a href="https://www.npmjs.org/~tandrewnichols" class="mrm btn btn-primary btn-lg">npm</a><a href="https://twitter.com/tandrewnichols" class="btn btn-primary btn-lg">Twitter</a></p>
-      </div>
-    </div>
-    <script type="text/javascript" src="/assets/app.js"></script>
-  </body>
-</html>
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h1><span class="glyphicon glyphicon-wrench"></span> Under Construction</h1>
+    <p>There's not much to do here now, but you can find me on:</p>
+    <p><a href="https://github.com/tandrewnichols" class="mrm btn btn-primary btn-lg">Github</a><a href="https://www.npmjs.org/~tandrewnichols" class="mrm btn btn-primary btn-lg">npm</a><a href="https://twitter.com/tandrewnichols" class="btn btn-primary btn-lg">Twitter</a></p>
+  </div>
+</div>
+{% endblock %}

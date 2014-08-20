@@ -1,6 +1,6 @@
 module.exports = {
   'public': 'public',
   generated: 'generated',
-  pages: 'views/pages/*.html',
-  posts: 'views/posts/*.html'
+  pages: 'views/pages',
+  posts: 'views/posts'
 };

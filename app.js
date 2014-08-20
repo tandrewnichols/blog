@@ -8,11 +8,19 @@ var nconf = require('nconf')
   .file({ file: './config/' + (process.env.NODE_ENV || 'development') + '.json' });
 
 app.set('port', nconf.get('PORT'));
+app.engine('html', require('swig').renderFile);
+app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
+app.set('layout', 'layout');
+
 app.use('/assets', express.static(__dirname + nconf.get('STATIC_FILE_PATH')));
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/views/home.html');
+  res.render('home', {});
+});
+
+app.get('/:module', function(req, res) {
+  res.render('pages/' + req.params.module);
 });
 
 var server = http.createServer(app);

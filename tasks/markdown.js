@@ -4,7 +4,7 @@ module.exports = {
       {
         expand: true,
         src: 'posts/**/*.md',
-        dest: 'views/posts',
+        dest: 'views',
         ext: '.html'
       }
     ],
@@ -17,7 +17,7 @@ module.exports = {
       {
         expand: true,
         src: 'pages/**/*.md',
-        dest: 'views/pages/',
+        dest: 'views',
         ext: '.html'
       }
     ],

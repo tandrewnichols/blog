@@ -7,7 +7,7 @@ module.exports = {
     files: ['app.js'],
     tasks: ['server']
   },
-  views: {
+  templates: {
     files: ['views/*.html'],
     tasks: ['server']
   }

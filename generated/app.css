@@ -6633,12 +6633,14 @@ textarea:focus {
 /*
 Monokai style - ported by Luigi Maselli - http://grigio.org
 */
+.lang-no-highlight,
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #272822;
+  background: #464545;
   -webkit-text-size-adjust: none;
+  color: #ddd;
 }
 .hljs-tag,
 .hljs-tag .hljs-title,
@@ -6652,14 +6654,11 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .clojure .hljs-built_in,
 .nginx .hljs-title,
 .tex .hljs-special {
-  color: #f92672;
-}
-.hljs {
-  color: #ddd;
+  color: #527497;
 }
 .hljs .hljs-constant,
 .asciidoc .hljs-code {
-  color: #66d9ef;
+  color: #3498db;
 }
 .hljs-code,
 .hljs-class .hljs-title,
@@ -6672,7 +6671,7 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .hljs-symbol .hljs-string,
 .hljs-value,
 .hljs-regexp {
-  color: #bf79db;
+  color: #f39c12;
 }
 .hljs-link_url,
 .hljs-tag .hljs-value,
@@ -6702,7 +6701,7 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .apache .hljs-cbracket,
 .tex .hljs-command,
 .hljs-prompt {
-  color: #a6e22e;
+  color: #00bc8c;
 }
 .hljs-comment,
 .hljs-annotation,
@@ -6750,5 +6749,5 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
   opacity: 0.5;
 }
 pre {
-  padding: 0 !important;
+  padding: 0;
 }

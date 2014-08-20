@@ -9,7 +9,11 @@ module.exports = {
       }
     ],
     options: {
-      template: 'views/post.html'
+      template: 'views/post.html',
+      markdownOptions: {
+        gfm: true,
+        highlight: 'manual'
+      }
     }
   },
   pages: {
@@ -22,7 +26,11 @@ module.exports = {
       }
     ],
     options: {
-      template: 'views/page.html'
+      template: 'views/page.html',
+      markdownOptions: {
+        gfm: true,
+        highlight: 'manual'
+      }
     }
   }
 };

@@ -3,6 +3,7 @@ module.exports = {
     'bower_components/jquery/dist/jquery.js',
     'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/angular/angular.js',
+    'vendor/js/**/*.js',
     'app/js/app.js',
     'app/js/**/*.js'
   ],

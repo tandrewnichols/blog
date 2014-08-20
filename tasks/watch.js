@@ -10,5 +10,13 @@ module.exports = {
   templates: {
     files: ['views/*.html'],
     tasks: ['server']
+  },
+  posts: {
+    files: ['posts/**/*.md'],
+    tasks: ['clean:posts', 'markdown:posts', 'server']
+  },
+  pages: {
+    files: ['pages/**/*.md'],
+    tasks: ['clean:pages', 'markdown:pages', 'server']
   }
 };

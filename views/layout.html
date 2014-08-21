@@ -29,17 +29,14 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header">tandrewnichols</li>
-                  <li><a href="/varity">varity</a></li>
-                  <li><a href="/indeed">indeed</a></li>
-                  <li><a href="/tinder-cli">tinder-cli</a></li>
-                  <li><a href="/task-master">task-master</a></li>
+                  {% for module in modules.me %}
+                  <li><a href="/{{ module }}">{{ module }}</a></li>
+                  {% endfor %}
                   <li class="divider"></li>
                   <li class="dropdown-header">mantacode</li>
-                  <li><a href="/kindly">kindly</a></li>
-                  <li><a href="/pedestrian">pedestrian</a></li>
-                  <li><a href="/file-manifest">file-manifest</a></li>
-                  <li><a href="/cookie-domain">cookie-domain</a></li>
-                  <li><a href="/safe-obj">safe-obj</a></li>
+                  {% for module in modules.mantacode %}
+                  <li><a href="/{{ module }}">{{ module }}</a></li>
+                  {% endfor %}
                 </ul>
               </li>
             </ul>

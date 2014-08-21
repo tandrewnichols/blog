@@ -12,7 +12,7 @@ Require all the files in a directory into a single object
 
 File-manifest recursively requires everything in a given directory (optionally filtered with globstar patterns) and packages it into a single object where the keys are camel-cased file names. Thus if you had a directory called `foo`, whose structure looked like this:
 
-```
+```no-highlight
 bar
 baz
   quux

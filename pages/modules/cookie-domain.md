@@ -39,25 +39,35 @@ Install node.js (See download and install instructions here: http://nodejs.org/)
 
 Clone this repository
 
-    > git clone git@github.com:mantacode/node-cookie-domain.git
+```no-highlight
+> git clone git@github.com:mantacode/node-cookie-domain.git
+```
 
 cd into the directory and install the dependencies
 
-    > cd cookie-domain
-    > npm install && npm shrinkwrap --dev
+```no-highlight
+> cd cookie-domain
+> npm install && npm shrinkwrap --dev
+```
 
 # Running Tests
 
 Install coffee-script
 
-    > npm install coffee-script -g
+```no-highlight
+> npm install coffee-script -g
+```
 
 Tests are run using grunt.  You must first globally install the grunt-cli with npm.
 
-    > sudo npm install -g grunt-cli
+```no-highlight
+> sudo npm install -g grunt-cli
+```
 
 ## Unit Tests
 
 To run the tests, just run grunt
 
-    > grunt spec
+```no-highlight
+> grunt spec
+```

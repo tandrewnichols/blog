@@ -18,7 +18,7 @@ A helper to make Grunt task declaration and organization cleaner.
 
 Step 1: Define your tasks and configuration in separate files where the name of the file corresponds to the name of the task.
 
-```
+```no-highlight
 tasks
   jshint.js
   watch.js

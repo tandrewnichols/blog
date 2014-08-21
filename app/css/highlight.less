@@ -14,7 +14,6 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .hljs-tag,
 .hljs-tag .hljs-title,
 .hljs-keyword,
-.hljs-literal,
 .hljs-strong,
 .hljs-change,
 .hljs-winutils,
@@ -26,9 +25,13 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
   color: @link-color;
 }
 
+.hljs-literal {
+  color: lighten(@brand-danger, 10%);
+}
+
 .hljs .hljs-constant,
 .asciidoc .hljs-code {
-	color: @brand-info;
+	color: @brand-warning;
 }
 
 .hljs-code,
@@ -57,7 +60,6 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .hljs-preprocessor,
 .hljs-pragma,
 .ruby .hljs-class .hljs-parent,
-.hljs-built_in,
 .django .hljs-template_tag,
 .django .hljs-variable,
 .smalltalk .hljs-class,

@@ -7,3 +7,4 @@ fonts
 views/pages
 views/posts
 generated
+.DS_Store

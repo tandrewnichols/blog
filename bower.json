@@ -21,6 +21,7 @@
   "dependencies": {
     "bootstrap": "~3.2.0",
     "jquery": "~2.1.1",
-    "angular": "~1.2.22"
+    "angular": "~1.2.22",
+    "font-awesome": "~4.1.0"
   }
 }

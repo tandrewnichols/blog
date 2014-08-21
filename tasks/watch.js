@@ -18,5 +18,9 @@ module.exports = {
   pages: {
     files: ['pages/**/*.md'],
     tasks: ['clean:pages', 'markdown:pages', 'server']
+  },
+  tasks: {
+    files: ['tasks/**/*.js'],
+    tasks: ['clean', 'symlink:dev', 'concat:dev', 'less:dev', 'markdown', 'server']
   }
 };

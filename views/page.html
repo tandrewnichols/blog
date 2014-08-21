@@ -1,7 +1,14 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container">
-  <%= content %>
-</div>
+  <div class="container content">
+    {% if moduleName %}
+      <div class="pull-right btn-row">
+        <a href="https://github.com/{{ author }}/{{ moduleName }}" target="_blank" class="btn btn-primary"><span class="fa fa-github"></span> View it on Github</a>
+        <a href="https://www.npmjs.org/package/{{ moduleName }}" target="_blank" class="btn btn-primary">View it on npm</a>
+        <a href="http://twitter.com/share" tweet='Check out "{{ moduleName }}" at' tweet-tags="nodejs" class="btn btn-info"><span class="fa fa-twitter"></span> Tweet about it</a>
+      </div>
+    {% endif %}
+    <%= content %>
+  </div>
 {% endblock %}

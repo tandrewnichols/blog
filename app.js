@@ -42,10 +42,12 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:module', function(req, res, next) {
-  fs.exists(__dirname + '/views/pages/modules/' + req.params.module + '.html', function(yes) {
-    if (yes) res.render('pages/modules/' + req.params.module);
-    else next();
-  });
+  var author;
+  if (_(modules.me).contains(req.params.module)) author = 'tandrewnichols';
+  else if ( _(modules.mantacode).contains(req.params.module)) author = 'mantacode';
+
+  if (author) res.render('pages/modules/' + req.params.module, { moduleName: req.params.module, author: author });
+  else next();
 });
 
 var server = http.createServer(app);

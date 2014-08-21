@@ -24,7 +24,7 @@ var modules = fm.generate(__dirname + '/views/pages/modules', function(memo, fil
   return memo;
 });
 
-app.set('port', nconf.get('port'));
+app.set('port', nconf.get('PORT'));
 app.engine('html', require('swig').renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');

@@ -24,16 +24,22 @@ var modules = fm.generate(__dirname + '/views/pages/modules', function(memo, fil
   return memo;
 });
 
-app.set('port', nconf.get('PORT'));
+app.set('port', nconf.get('port'));
 app.engine('html', require('swig').renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.set('layout', 'layout');
+app.set('ua', nconf.get('uaAccountId'));
 swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/views') });
 
-app.use('/assets', express.static(__dirname + nconf.get('STATIC_FILE_PATH')));
+app.use('/assets', express.static(__dirname + nconf.get('staticFilePath')));
 app.use(function(req, res, next) {
   res.locals.modules = modules;
+  next();
+});
+
+app.use(function(req, res, next) {
+  res.locals.page = req.path;
   next();
 });
 

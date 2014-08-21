@@ -1,3 +1,4 @@
 {
-  "STATIC_FILE_PATH": "/public"
+  "staticFilePath": "/public",
+  "uaAcountId": "UA-54037723-1"
 }

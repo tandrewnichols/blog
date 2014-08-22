@@ -21,6 +21,7 @@
   "devDependencies": {},
   "dependencies": {
     "bower": "^1.3.9",
+    "config-extend": "0.0.7",
     "express": "^4.8.4",
     "file-manifest": "0.0.7",
     "grunt": "^0.4.5",

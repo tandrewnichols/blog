@@ -6,6 +6,7 @@ var swig = require('swig');
 var fs = require('fs');
 var fm = require('file-manifest');
 var _ = require('underscore');
+var extend = require('config-extend');
 var nconf = require('nconf')
   .argv()
   .env()
@@ -34,12 +35,11 @@ swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/views') });
 
 app.use('/assets', express.static(__dirname + nconf.get('staticFilePath')));
 app.use(function(req, res, next) {
-  res.locals.modules = modules;
-  next();
-});
-
-app.use(function(req, res, next) {
-  res.locals.page = req.path;
+  extend(res.locals, {
+    modules: modules,
+    page: req.path,
+    url: req.originalUrl.split('?')[0]
+  });
   next();
 });
 
@@ -52,7 +52,13 @@ app.get('/:module', function(req, res, next) {
   if (_(modules.me).contains(req.params.module)) author = 'tandrewnichols';
   else if ( _(modules.mantacode).contains(req.params.module)) author = 'mantacode';
 
-  if (author) res.render('pages/modules/' + req.params.module, { moduleName: req.params.module, author: author });
+  if (author) {
+    res.render('pages/modules/' + req.params.module, {
+      moduleName: req.params.module,
+      author: author,
+      title: req.params.module
+    });
+  }
   else next();
 });
 

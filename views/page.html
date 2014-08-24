@@ -12,16 +12,3 @@
     <%= content %>
   </div>
 {% endblock %}
-
-{% block scripts %}
-  <script type="text/javascript">
-    $(function() {
-      var elems = $('.container.content').find('h1, h2, h3, h4, h5, h6').map(function(i, elem) {
-        return '#' + elem.id;
-      });
-      $.scrollDepth({
-        elements: $.makeArray(elems)
-      });
-    });
-  </script>
-{% endblock %}

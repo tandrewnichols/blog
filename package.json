@@ -34,10 +34,10 @@
     "grunt-markdown": "^0.6.1",
     "grunt-ng-annotate": "^0.3.2",
     "grunt-watch-nospawn": "0.0.8",
+    "lodash": "^2.4.1",
     "nconf": "^0.6.9",
     "swig": "^1.4.2",
-    "task-master": "^1.0.4",
-    "underscore": "^1.6.0"
+    "task-master": "^1.0.4"
   },
   "private": true
 }

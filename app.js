@@ -5,7 +5,7 @@ var app = express();
 var swig = require('swig');
 var fs = require('fs');
 var fm = require('file-manifest');
-var _ = require('underscore');
+var _ = require('lodash');
 var extend = require('config-extend');
 var nconf = require('nconf')
   .argv()
@@ -30,7 +30,7 @@ app.engine('html', require('swig').renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.set('layout', 'layout');
-app.set('ua', nconf.get('uaAccountId'));
+app.set('analytics', nconf.get('analytics'));
 swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/views') });
 
 app.use('/assets', express.static(__dirname + nconf.get('staticFilePath')));

@@ -1,4 +1,7 @@
 {
   "staticFilePath": "/public",
-  "uaAccountId": "UA-54037723-1"
+  "analytics": {
+    "ua": "UA-54037723-1",
+    "mixpanel": "5be4a7b973c85ef30a230b0f3ca6ea09"
+  }
 }

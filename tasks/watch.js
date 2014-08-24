@@ -1,6 +1,6 @@
 module.exports = {
   less: {
-    files: ['app/css/*.less'],
+    files: ['app/css/**/*.less'],
     tasks: ['less:dev', 'server']
   },
   server: {

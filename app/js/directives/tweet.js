@@ -10,6 +10,7 @@ angular.module('app').directive('tweet', function() {
         var query = ['?via=tandrewnichols', text, tags].filter(function(param) {
           return !!param;
         }).join('&');
+        mixpanel.track('Tweet', { topic: $attributes.tweetTopic });
         window.open($attributes.href + query, 'Twitter', 'status=1,width=575,height=400,top=' + top + ',left=' + left);
       });
     }

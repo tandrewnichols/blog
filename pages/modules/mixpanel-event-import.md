@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/mantacode/mixpanel-event-import.png)](https://travis-ci.org/mantacode/mixpanel-event-import) [![downloads](http://img.shields.io/npm/dm/mixpanel-event-import.svg)](https://npmjs.org/package/mixpanel-event-import) [![npm](http://img.shields.io/npm/v/mixpanel-event-import.svg)](https://npmjs.org/package/mixpanel-event-import)
-
 # Mixpanel Event Import
 
 Import historical events from a CSV into mixpanel.
@@ -14,7 +12,7 @@ Import historical events from a CSV into mixpanel.
 
 Options:
 
-```no-highlight
+```
 -t, --token <token>   Mixpanel project token
 -k, --api-key <key>   Mixpanel API key
 --dry-run             Log, but don't fire, events

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mantacode/file-manifest.png)](https://travis-ci.org/mantacode/file-manifest) [![downloads](http://img.shields.io/npm/dm/file-manifest.svg)](https://npmjs.org/package/file-manifest) [![npm](http://img.shields.io/npm/v/file-manifest.svg)](https://npmjs.org/package/file-manifest)
+[![Build Status](https://travis-ci.org/tandrewnichols/file-manifest.png)](https://travis-ci.org/tandrewnichols/file-manifest)
 
 # File-Manifest
 
@@ -12,7 +12,7 @@ Require all the files in a directory into a single object
 
 File-manifest recursively requires everything in a given directory (optionally filtered with globstar patterns) and packages it into a single object where the keys are camel-cased file names. Thus if you had a directory called `foo`, whose structure looked like this:
 
-```no-highlight
+```
 bar
 baz
   quux

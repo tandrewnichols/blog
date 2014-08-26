@@ -28,7 +28,7 @@ Both the template name and the description are optional and can be passed via op
 
 Options:
 
-```no-highlight
+```
   -u --user <username>:[password]   Github username
   -p --pass <password>              Github password
   -d --description <description>    Description of the project
@@ -59,7 +59,7 @@ Options:
 
 Imagine a template (let's call it Steve) with this directory structure:
 
-```no-highlight
+```
 README.md
 template
   README.md
@@ -70,7 +70,7 @@ When you run tinder using this template, your new repository will have a README.
 
 If README.md looked like this:
 
-```markdown
+```
 # <%= repoName %>
 
 <%= description %>
@@ -82,7 +82,7 @@ and you created the repo like this:
 
 the resulting README.md in your Steve repo would look like this:
 
-```markdown
+```
 # Steve
 
 The best app in the world

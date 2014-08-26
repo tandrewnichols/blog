@@ -15,6 +15,7 @@ module.exports = function(grunt) {
       if (options[key] !== true) {
         memo.push(options[key]);
       }
+      return memo;
     }, []).value();
     
     // Allow multiple tasks that run the same git command

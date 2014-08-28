@@ -69,12 +69,12 @@
                 <ul class="dropdown-menu">
                   <li class="dropdown-header">tandrewnichols</li>
                   {% for module in modules.me %}
-                  <li><a id="{{ module }}" href="/{{ module }}" ng-init="mixpanel.track_links('#{{ module }}', 'Click', { target: '{{ module }}' })">{{ module }}</a></li>
+                  <li><a id="{{ module }}" href="/modules/{{ module }}" ng-init="mixpanel.track_links('#{{ module }}', 'Click', { target: '{{ module }}' })">{{ module }}</a></li>
                   {% endfor %}
                   <li class="divider"></li>
                   <li class="dropdown-header">mantacode</li>
                   {% for module in modules.mantacode %}
-                  <li><a id="{{ module }}" href="/{{ module }}" ng-init="mixpanel.track_links('#{{ module }}', 'Click', { target: '{{ module }}' })">{{ module }}</a></li>
+                  <li><a id="{{ module }}" href="/modules/{{ module }}" ng-init="mixpanel.track_links('#{{ module }}', 'Click', { target: '{{ module }}' })">{{ module }}</a></li>
                   {% endfor %}
                 </ul>
               </li>

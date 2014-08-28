@@ -12,18 +12,13 @@ var nconf = require('nconf')
   .env()
   .file({ file: './config/' + (process.env.NODE_ENV || 'development') + '.json' });
 
-var modules = fm.generate(__dirname + '/views/pages/modules', function(memo, file) {
-  var content = fs.readFileSync(file, 'utf8');
-  var basename = path.basename(file, '.html');
-  if (content.indexOf('mantacode') > -1) {
-    memo.mantacode = memo.mantacode || [];
-    memo.mantacode.push(basename);
-  } else if (content.indexOf('tandrewnichols') > -1) {
-    memo.me = memo.me || [];
-    memo.me.push(basename);
-  }
+var modules = fm.generate(__dirname + '/views/pages/modules/tandrewnichols', function(memo, file) {
+  memo.me = memo.me || [];
+  memo.mantacode = memo.mantacode || [];
+  if (~file.indexOf('tandrewnichols')) memo.me.push(path.basename(file, '.html'));
+  else if (~file.indexOf('mantacode')) memo.mantacode.push(path.basename(file, '.html'));
   return memo;
-});
+}, []);
 
 app.set('port', nconf.get('PORT'));
 app.engine('html', require('swig').renderFile);
@@ -47,13 +42,13 @@ app.get('/', function(req, res) {
   res.render('home', {});
 });
 
-app.get('/:module', function(req, res, next) {
+app.get('/modules/:module', function(req, res, next) {
   var author;
-  if (_(modules.me).contains(req.params.module)) author = 'tandrewnichols';
-  else if ( _(modules.mantacode).contains(req.params.module)) author = 'mantacode';
+  if (_.contains(modules.me, req.params.module)) author = 'tandrewnichols';
+  else if (_.contains(modules.mantacode, req.params.module)) author = 'mantacode';
 
   if (author) {
-    res.render('pages/modules/' + req.params.module, {
+    res.render('pages/modules/' + author + '/' + req.params.module, {
       moduleName: req.params.module,
       author: author,
       title: req.params.module

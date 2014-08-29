@@ -2,7 +2,7 @@
 
 {% block content %}
   {% if moduleName %}
-    <div class="mrm row pull-right btn-row">
+    <div class="mrm pull-right btn-row">
       <div class="col-xs-12">
         <a id="github-{{ moduleName }}" ng-init="mixpanel.track_links('#github-{{ moduleName }}', 'Click', { target: 'github', page: '{{ moduleName }}' })" href="https://github.com/{{ author }}/{{ moduleName }}" target="_blank" class="btn btn-primary"><span class="fa fa-github"></span>&nbsp;&nbsp;View it on Github</a>
         <a id="npm-{{ moduleName }}" ng-init="mixpanel.track_links('#npm-{{ moduleName }}', 'Click', { target: 'npm', page: '{{ moduleName }}' })" href="https://www.npmjs.org/package/{{ moduleName }}" target="_blank" class="btn btn-primary"><span class="ta ta-npm"></span>&nbsp;&nbsp;View it on npm</a>
@@ -11,10 +11,6 @@
     </div>
   {% endif %}
   <div class="container content">
-    <div class="row">
-      <div class="col-xs-12">
-        <%= content %>
-      </div>
-    </div>
+    <%= content %>
   </div>
 {% endblock %}

@@ -43,18 +43,20 @@ app.get('/', function(req, res) {
 });
 
 app.get('/modules/:module', function(req, res, next) {
-  var author;
-  if (_.contains(modules.me, req.params.module)) author = 'tandrewnichols';
-  else if (_.contains(modules.mantacode, req.params.module)) author = 'mantacode';
+  var author = _.contains(modules.me, req.params.module) ? 'tandrewnichols' : 'mantacode';
 
-  if (author) {
-    res.render('pages/modules/' + author + '/' + req.params.module, {
-      moduleName: req.params.module,
-      author: author,
-      title: req.params.module
-    });
-  }
-  else next();
+  res.render('pages/modules/' + author + '/' + req.params.module, {
+    moduleName: req.params.module,
+    author: author,
+    title: req.params.module
+  });
+});
+
+app.get('/coverage/:module', function(req, res, next) {
+  res.render('pages/coverage/' + req.params.module, {
+    moduleName: req.params.module,
+    title: req.params.module
+  });
 });
 
 var server = http.createServer(app);

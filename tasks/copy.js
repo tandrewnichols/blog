@@ -4,8 +4,8 @@ module.exports = {
       {
         expand: true,
         flatten: true,
-        src: ['pages/coverage/**/*.html'],
-        dest: 'views/pages/coverage/'
+        src: ['coverage/**/*.html'],
+        dest: 'views/coverage/'
       }
     ]
   }

@@ -5,5 +5,7 @@ dev
 bower_components
 views/pages
 views/posts
+views/modules
+views/coverage
 generated
 .DS_Store

@@ -32,5 +32,22 @@ module.exports = {
         highlight: 'manual'
       }
     }
+  },
+  modules: {
+    files: [
+      {
+        expand: true,
+        src: 'modules/**/*.md',
+        dest: 'views',
+        ext: '.html'
+      }
+    ],
+    options: {
+      template: 'views/module.html',
+      markdownOptions: {
+        gfm: true,
+        highlight: 'manual'
+      }
+    }
   }
 };

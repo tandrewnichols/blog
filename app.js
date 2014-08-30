@@ -12,7 +12,7 @@ var nconf = require('nconf')
   .env()
   .file({ file: './config/' + (process.env.NODE_ENV || 'development') + '.json' });
 
-var modules = fm.generate(__dirname + '/views/pages/modules/tandrewnichols', function(memo, file) {
+var modules = fm.generate(__dirname + '/views/modules/tandrewnichols', function(memo, file) {
   memo.me = memo.me || [];
   memo.mantacode = memo.mantacode || [];
   if (~file.indexOf('tandrewnichols')) memo.me.push(path.basename(file, '.html'));
@@ -45,7 +45,7 @@ app.get('/', function(req, res) {
 app.get('/modules/:module', function(req, res, next) {
   var author = _.contains(modules.me, req.params.module) ? 'tandrewnichols' : 'mantacode';
 
-  res.render('pages/modules/' + author + '/' + req.params.module, {
+  res.render('modules/' + author + '/' + req.params.module, {
     moduleName: req.params.module,
     author: author,
     title: req.params.module
@@ -53,7 +53,7 @@ app.get('/modules/:module', function(req, res, next) {
 });
 
 app.get('/coverage/:module', function(req, res, next) {
-  res.render('pages/coverage/' + req.params.module, {
+  res.render('coverage/' + req.params.module, {
     moduleName: req.params.module,
     title: req.params.module
   });

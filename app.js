@@ -53,10 +53,7 @@ app.get('/modules/:module', function(req, res, next) {
 });
 
 app.get('/coverage/:module', function(req, res, next) {
-  res.render('coverage/' + req.params.module, {
-    moduleName: req.params.module,
-    title: req.params.module
-  });
+  res.sendFile(__dirname + '/views/coverage/' + req.params.module + '.html');
 });
 
 var server = http.createServer(app);

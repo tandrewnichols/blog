@@ -12,7 +12,7 @@ var nconf = require('nconf')
   .env()
   .file({ file: './config/' + (process.env.NODE_ENV || 'development') + '.json' });
 
-var modules = fm.generate(__dirname + '/views/modules/tandrewnichols', function(memo, file) {
+var modules = fm.generate(__dirname + '/views/modules', function(memo, file) {
   memo.me = memo.me || [];
   memo.mantacode = memo.mantacode || [];
   if (~file.indexOf('tandrewnichols')) memo.me.push(path.basename(file, '.html'));

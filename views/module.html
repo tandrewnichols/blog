@@ -1,41 +1,18 @@
 {% extends 'layout.html' %}
 
-{% block styles %}
-<style>
-  #sidebar.affix-top {
-    opacity: 1;
-    transition: all 1s;
-  }
-  #sidebar.affix {
-    opacity: 0;
-  }
-  #sidebar-buttons, #sidebar-buttons.affix-top {
-    opacity: 0;
-    left: -10px;
-  }
-  #sidebar-buttons.affix {
-    opacity: 1;
-    left: 15px;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-  }
-</style>
-{% endblock %}
-
 {% block content %}
   <div class="row">
     <div class="col-xs-12">
       <div class="row">
         <div class="mlm plm col-xs-2">
-          <div id="sidebar" class="list-group" data-spy="affix" data-offset-top="1">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
             <a id="github-{{ moduleName }}" ng-init="mixpanel.track_links('#github-{{ moduleName }}', 'Click', { target: 'github', module: '{{ moduleName }}', action: 'view' })" href="https://github.com/{{ author }}/{{ moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
             <a id="fork-{{ moduleName }}" ng-init="mixpanel.track_links('#fork-{{ moduleName }}', 'Click', { target: 'github', module: '{{ moduleName }}', action: 'fork' })" href="https://github.com/{{ author }}/{{ moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
             <a id="npm-{{ moduleName }}" ng-init="mixpanel.track_links('#npm-{{ moduleName }}', 'Click', { target: 'npm', module: '{{ moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{ moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
             <a href="http://twitter.com/share" tweet='Check out "{{ moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{ moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
             <a href="/coverage/{{ moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{ moduleName }}', 'Click', { target: 'coverage', module: '{{ moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
           </div>
-          <div id="sidebar-buttons" class="list-group text-center" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
             <a id="btn-github-{{ moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{ moduleName }}', 'Click', { target: 'github', page: '{{ moduleName }}' })" href="https://github.com/{{ author }}/{{ moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span></a>
             <a id="btn-fork-{{ moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{ moduleName }}', 'Click', { target: 'github', page: 'fork {{ moduleName }}' })" href="https://github.com/{{ author }}/{{ moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span></a>
             <a id="btn-npm-{{ moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{ moduleName }}', 'Click', { target: 'npm', page: '{{ moduleName }}' })" href="https://www.npmjs.org/package/{{ moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span></a>

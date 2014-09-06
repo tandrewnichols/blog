@@ -24,7 +24,7 @@
     "chalk": "^0.5.1",
     "config-extend": "0.0.7",
     "express": "^4.8.4",
-    "file-manifest": "0.0.7",
+    "file-manifest": "^1.0.0",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",

@@ -1,55 +1,55 @@
 <!doctype html>
 <html ng-app="app">
   <head>
-    {% block head %}
+    {%= block head %}
       <meta http-equiv="content-type" content="text/html; charset=utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta http-equiv="content-language" content="en">
       <meta name="language" content="english">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="canonical" href="{{ url }}" />
+      <link rel="canonical" href="{{= url }}" />
       <meta property="og:site_name" content="tandrewnichols.me">
       <meta property="og:type" content="website">
-      <meta property="og:url" content="{{ url }}">
+      <meta property="og:url" content="{{= url }}">
       <!--<meta property="og:title" content="">-->
       <!--<meta property="og:description" content="">-->
       <!--<meta property="og:image" content="">-->
       <!--<link rel="publisher" href="https://plus.google.com/116991505962569250048/">-->
       <link rel="icon" href="https://secure.gravatar.com/avatar/89e046d45bc6aa524a2164a952ba9860?s=40" type="image/png" />
-    {% endblock %}
-    <title>{% block title %}{% endblock %}</title>
-    <meta name="description" content="{% block description %}{% endblock %}" />
-    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    {%= endblock %}
+    <title>{%= block title %}{%= endblock %}</title>
+    <meta name="description" content="{%= block description %}{%= endblock %}" />
+    <meta name="keywords" content="{%= block keywords %}{%= endblock %}" />
     <style>
       body {
         padding-top: 85px;
       }
     </style>
     <link rel="stylesheet" type="text/css" href="/assets/app.css" media="all" />
-    {% block styles %}{% endblock %}
-    {% block analytics %}
+    {%= block styles %}{%= endblock %}
+    {%= block analytics %}
       <script type="text/javascript">
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', '{{ settings.analytics.ua }}', 'auto');
-        ga('send', 'pageview', '{{ page }}');
+        ga('create', '{{= settings.analytics.ua }}', 'auto');
+        ga('send', 'pageview', '{{= page }}');
       </script>
 
       <!-- start Mixpanel -->
       <script type="text/javascript">
         (function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
         for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-        mixpanel.init("{{ settings.analytics.mixpanel }}");
+        mixpanel.init("{{= settings.analytics.mixpanel }}");
       </script>
       <!-- end Mixpanel -->
-    {% endblock %}
+    {%= endblock %}
   </head>
   <body>
-    <div ng-init="page='{{page}}'"></div>
-    {% block header %}
+    <div ng-init="page='{{=page}}'"></div>
+    {%= block header %}
       <div class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationCtrl">
         <div class="mlx" style="margin-right: 90px;">
           <div class="navbar-header">
@@ -68,24 +68,24 @@
                 <a href="#" dropdown-show="mixpanel.track('Open', { target: 'module dropdown' })" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li class="dropdown-header">tandrewnichols</li>
-                  {% for module in modules.me %}
-                  <li><a id="{{ module }}" href="/modules/{{ module }}" ng-init="mixpanel.track_links('#{{ module }}', 'Click', { target: '{{ module }}' })">{{ module }}</a></li>
-                  {% endfor %}
+                  {%= for module in modules.tandrewnichols %}
+                  <li><a id="{{= module }}" href="/modules/{{= module }}" ng-init="mixpanel.track_links('#{{= module }}', 'Click', { target: '{{= module }}' })">{{= module }}</a></li>
+                  {%= endfor %}
                   <li class="divider"></li>
                   <li class="dropdown-header">mantacode</li>
-                  {% for module in modules.mantacode %}
-                  <li><a id="{{ module }}" href="/modules/{{ module }}" ng-init="mixpanel.track_links('#{{ module }}', 'Click', { target: '{{ module }}' })">{{ module }}</a></li>
-                  {% endfor %}
+                  {%= for module in modules.mantacode %}
+                  <li><a id="{{= module }}" href="/modules/{{= module }}" ng-init="mixpanel.track_links('#{{= module }}', 'Click', { target: '{{= module }}' })">{{= module }}</a></li>
+                  {%= endfor %}
                 </ul>
               </li>
             </ul>
           </div>
         </div>
       </div>
-    {% endblock %}
-    {% block content %}{% endblock %}
+    {%= endblock %}
+    {%= block content %}{%= endblock %}
     <script type="text/javascript" src="/assets/app.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    {% block scripts %}{% endblock %}
+    {%= block scripts %}{%= endblock %}
   </body>
 </html>

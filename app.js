@@ -16,7 +16,11 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.set('layout', 'layout');
 app.set('analytics', nconf.get('analytics'));
-swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/views') });
+swig.setDefaults({
+  loader: swig.loaders.fs(__dirname + '/views'),
+  varControls: ['{{=', '}}'],
+  tagControls: ['{%=', '%}']
+});
 
 app.use('/assets', express.static(__dirname + nconf.get('staticFilePath')));
 app.use(function(req, res, next) {

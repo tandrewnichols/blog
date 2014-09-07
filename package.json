@@ -40,7 +40,7 @@
     "lodash": "^2.4.1",
     "nconf": "^0.6.9",
     "swig": "^1.4.2",
-    "task-master": "^1.0.4",
+    "task-master": "^2.0.1",
     "underscore.string": "^2.3.3"
   },
   "private": true

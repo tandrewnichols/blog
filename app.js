@@ -7,7 +7,9 @@ var fs = require('fs');
 var loader = require('./lib/mod-loader');
 var _ = require('lodash');
 var extend = require('config-extend');
-var nconf = require('nconf').argv().env().file({ file: './config/' + (process.env.NODE_ENV || 'development') + '.json' });
+var env = process.env.NODE_ENV || 'development';
+var nconf = require('nconf').argv().env().file({ file: './config/' + env + '.json' });
+nconf.set('env', env);
 var modules = loader({ mantacode: [], tandrewnichols: [] }).load('tandrewnichols').load('mantacode').val();
 
 app.set('port', nconf.get('PORT'));
@@ -27,13 +29,14 @@ app.use(function(req, res, next) {
   extend(res.locals, {
     modules: modules,
     page: req.path,
-    url: req.originalUrl.split('?')[0]
+    url: req.originalUrl.split('?')[0],
+    env: nconf.get('env')
   });
   next();
 });
 
 app.get('/', function(req, res) {
-  res.render('home', {});
+  res.render('home', { hideNav: nconf.get('env') === 'development' });
 });
 
 app.get('/modules/:module', function(req, res, next) {

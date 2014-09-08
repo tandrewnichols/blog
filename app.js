@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
     modules: modules,
     page: req.path,
     url: req.originalUrl.split('?')[0],
-    env: nconf.get('env'),
+    dev: nconf.get('env') === 'development',
     recent: recentPosts
   });
   next();

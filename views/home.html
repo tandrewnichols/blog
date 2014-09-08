@@ -1,10 +1,10 @@
 {%= extends 'layout.html' %}
 
 {%= block styles %}
-  {%= if env === 'development' %}
+  {%= if dev %}
     <style>
       body {
-        background-image: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSOdX0UqFv7691PLA7-EIL5aCHldv77CDrgINFk_ENPDWCfPsAlwQ');
+        background-image: url('/assets/img/backgrounds/blue-gears.jpg');
         background-size: cover;
         background-repeat: no-repeat;
       }
@@ -14,18 +14,7 @@
 
 {%= block content %}
 <div class="container" ng-controller="HomeCtrl">
-  {%= if env === 'production' %}
-    <div class="jumbotron">
-      <h1><span class="glyphicon glyphicon-wrench"></span> Under Construction</h1>
-      <p>There's not much to do here now, but you can find me on:</p>
-      <p class="btn-row">
-        <a id="github-main" ng-init="mixpanel.track_links('#github-main', 'Click', { target: 'github', page: 'profile' })" href="https://github.com/tandrewnichols" class="btn btn-primary btn-lg"><span class="fa fa-github"></span>&nbsp;&nbsp;Github</a>
-        <a id="npm-main" ng-init="mixpanel.track_links('#npm-main', 'Click', { target: 'npm', page: 'profile' })" href="https://www.npmjs.org/~tandrewnichols" class="btn btn-primary btn-lg"><span class="ta ta-npm"></span>&nbsp;&nbsp;Npm</a>
-        <a id="twitter-main" ng-init="mixpanel.track_links('#twitter-main', 'Click', { target: 'twitter', page: 'profile' })" href="https://twitter.com/tandrewnichols" class="btn btn-primary btn-lg"><span class="fa fa-twitter"></span>&nbsp;&nbsp;Twitter</a>
-        <a id="stack-overflow-main" ng-init="mixpanel.track_links('#stack-overflow-main', 'Click', { target: 'stack overflow', page: 'profile' })" href="http://stackoverflow.com/users/1437845/tandrewnichols" class="btn btn-primary btn-lg"><span class="fa fa-stack-overflow"></span>&nbsp;&nbsp;Stack Overflow</a>
-      </p>
-    </div>
-  {%= else %}
+  {%= if dev %}
     <h1>
       <span class="circular pull-left mrl" style="background-image: url(https://secure.gravatar.com/avatar/89e046d45bc6aa524a2164a952ba9860?s=40)"></span>
       <span class="text-grey">Andrew Nichols</span>
@@ -76,6 +65,17 @@
           <a id="stack-overflow-main" ng-init="mixpanel.track_links('#stack-overflow-main', 'Click', { target: 'stack overflow', page: 'profile' })" href="http://stackoverflow.com/users/1437845/tandrewnichols" class="list-group-item"><span class="fa fa-stack-overflow"></span>&nbsp;&nbsp;Stack Overflow</a>
         </div>
       </div>
+    </div>
+  {%= else %}
+    <div class="jumbotron">
+      <h1><span class="glyphicon glyphicon-wrench"></span> Under Construction</h1>
+      <p>There's not much to do here now, but you can find me on:</p>
+      <p class="btn-row">
+        <a id="github-main" ng-init="mixpanel.track_links('#github-main', 'Click', { target: 'github', page: 'profile' })" href="https://github.com/tandrewnichols" class="btn btn-primary btn-lg"><span class="fa fa-github"></span>&nbsp;&nbsp;Github</a>
+        <a id="npm-main" ng-init="mixpanel.track_links('#npm-main', 'Click', { target: 'npm', page: 'profile' })" href="https://www.npmjs.org/~tandrewnichols" class="btn btn-primary btn-lg"><span class="ta ta-npm"></span>&nbsp;&nbsp;Npm</a>
+        <a id="twitter-main" ng-init="mixpanel.track_links('#twitter-main', 'Click', { target: 'twitter', page: 'profile' })" href="https://twitter.com/tandrewnichols" class="btn btn-primary btn-lg"><span class="fa fa-twitter"></span>&nbsp;&nbsp;Twitter</a>
+        <a id="stack-overflow-main" ng-init="mixpanel.track_links('#stack-overflow-main', 'Click', { target: 'stack overflow', page: 'profile' })" href="http://stackoverflow.com/users/1437845/tandrewnichols" class="btn btn-primary btn-lg"><span class="fa fa-stack-overflow"></span>&nbsp;&nbsp;Stack Overflow</a>
+      </p>
     </div>
   {%= endif %}
 </div>

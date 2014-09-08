@@ -50,3 +50,20 @@
     position: absolute !important;
   }
 }
+
+.fade {
+  opacity: 1;
+  &.ng-hide-remove {
+    transition: all 1s ease-out;
+  }
+  &.ng-hide-add {
+    transition: all 0s;
+  }
+  &.ng-hide {
+    opacity: 0;
+  }
+}
+
+.text-gray, .text-grey {
+  color: #555;
+}

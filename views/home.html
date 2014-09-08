@@ -1,7 +1,19 @@
 {%= extends 'layout.html' %}
 
+{%= block styles %}
+  {%= if env === 'development' %}
+    <style>
+      body {
+        background-image: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSOdX0UqFv7691PLA7-EIL5aCHldv77CDrgINFk_ENPDWCfPsAlwQ');
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    </style>
+  {%= endif %}
+{%= endblock %}
+
 {%= block content %}
-<div class="container">
+<div class="container" ng-controller="HomeCtrl">
   {%= if env === 'production' %}
     <div class="jumbotron">
       <h1><span class="glyphicon glyphicon-wrench"></span> Under Construction</h1>
@@ -14,19 +26,56 @@
       </p>
     </div>
   {%= else %}
-    <div class="list-group">
-      <a href="/modules" class="list-group-item">
-        <h4 class="list-group-item-heading"><strong>Open Source Contributions</strong></h4>
-        <p>Readmes and test coverage reports for node modules published on npm.</p>
-      </a>
-      <a href="/stubborn-child-process" class="list-group-item">
-        <h4 class="list-group-item-heading"><strong>Stubborn Child Process</strong></h4>
-        <p>My blog on (primarily) node.js-related topics</p>
-      </a>
-      <a href="/social" class="list-group-item">
-        <h4 class="list-group-item-heading"><strong>On the Web</strong></h4>
-        <p>Find me on twitter, stack overflow, npm, etc.</p>
-      </a>
+    <h1>
+      <span class="circular pull-left mrl" style="background-image: url(https://secure.gravatar.com/avatar/89e046d45bc6aa524a2164a952ba9860?s=40)"></span>
+      <span class="text-grey">Andrew Nichols</span>
+    </h1>
+    <hr>
+    <div class="row">
+      <div class="col-xs-7">
+        <div class="list-group" surrogate="#module-list" surrogate-event="mouseenter,mouseleave">
+          <a href="/modules" class="list-group-item">
+            <span class="fa fa-github-square pull-left" style="font-size: 30pt;"></span>
+            <h4 class="list-group-item-heading"><strong>Open Source Contributions</strong></h4>
+            <span>Readmes and test coverage reports for node modules published on npm.</span>
+          </a>
+        </div>
+        <div class="list-group" ng-mouseenter="blog=true" ng-mouseleave="blog=false">
+          <a href="/stubborn-child-process" class="list-group-item">
+            <span class="glyphicon glyphicon-pencil pull-left mrm" style="font-size: 30pt;"></span>
+            <h4 class="list-group-item-heading"><strong>Stubborn Child Process</strong></h4>
+            <span>My blog on (primarily) node.js-related topics</span>
+          </a>
+        </div>
+        <div class="list-group" ng-mouseenter="social=true" ng-mouseleave="social=false">
+          <a href="/social" class="list-group-item">
+            <span class="glyphicon glyphicon-user pull-left mrm" style="font-size: 30pt;"></span>
+            <h4 class="list-group-item-heading"><strong>On the Web</strong></h4>
+            <span>Find me on twitter, stack overflow, npm, etc.</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-xs-5">
+        <div id="module-list" class="list-group fade" ng-show="modules" ng-mouseenter="modules=true" ng-mouseleave="modules=false">
+          {%= for module in modules.tandrewnichols %}
+            <a id="home-{{= module }}" href="/modules/{{= module }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= module }}', 'Click', { target: 'modules', page: '{{= module }}' }">{{= module }}</a>
+          {%= endfor %}
+          {%= for module in modules.mantacode %}
+            <a id="home-{{= module }}" href="/modules/{{= module }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= module }}', 'Click', { target: 'modules', page: '{{= module }}' }">{{= module }}</a>
+          {%= endfor %}
+        </div>
+        <div class="list-group fade" ng-show="blog">
+          {%= for post in recent %}
+            <a id="home-{{= post.id }}" href="{{= post.url }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= post.id }}', 'Click', { target: 'blog', page: '{{= post.title}}'}">{{= post.title }}</a>
+          {%= endfor %}
+        </div>
+        <div class="list-group fade" ng-show="social">
+          <a id="github-main" ng-init="mixpanel.track_links('#github-main', 'Click', { target: 'github', page: 'profile' })" href="https://github.com/tandrewnichols" class="list-group-item"><span class="fa fa-github"></span>&nbsp;&nbsp;Github</a>
+          <a id="npm-main" ng-init="mixpanel.track_links('#npm-main', 'Click', { target: 'npm', page: 'profile' })" href="https://www.npmjs.org/~tandrewnichols" class="list-group-item"><span class="ta ta-npm"></span>&nbsp;&nbsp;Npm</a>
+          <a id="twitter-main" ng-init="mixpanel.track_links('#twitter-main', 'Click', { target: 'twitter', page: 'profile' })" href="https://twitter.com/tandrewnichols" class="list-group-item"><span class="fa fa-twitter"></span>&nbsp;&nbsp;Twitter</a>
+          <a id="stack-overflow-main" ng-init="mixpanel.track_links('#stack-overflow-main', 'Click', { target: 'stack overflow', page: 'profile })" href="http://stackoverflow.com/users/1437845/tandrewnichols" class="list-group-item"><span class="fa fa-stack-overflow"></span>&nbsp;&nbsp;Stack Overflow</a>
+        </div>
+      </div>
     </div>
   {%= endif %}
 </div>

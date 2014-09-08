@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Foo is neat",
+    "id": "foo",
+    "url": "/blog/foo",
+    "pubDate": "Sept 1, 2014",
+    "editDate": "Sept 1, 2014",
+    "description": "Have you ever wanted to know more about foo? Now you can!"
+  },
+  {
+    "title": "Bar is neat",
+    "id": "bar",
+    "url": "/blog/bar",
+    "pubDate": "Sept 1, 2014",
+    "editDate": "Sept 1, 2014",
+    "description": "Have you ever wanted to know more about bar? Now you can!"
+  },
+  {
+    "title": "Baz is neat",
+    "id": "baz",
+    "url": "/blog/baz",
+    "pubDate": "Sept 1, 2014",
+    "editDate": "Sept 1, 2014",
+    "description": "Have you ever wanted to know more about baz? Now you can!"
+  }
+]

@@ -1,4 +1,4 @@
-angular.module('app', ['angular-lodash']).run(function($rootScope, $window) {
+angular.module('app', ['ngAnimate', 'angular-lodash']).run(function($rootScope, $window) {
   $rootScope.log = function() {
     console.log.apply(console, arguments); 
   };

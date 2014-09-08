@@ -11,6 +11,7 @@ var env = process.env.NODE_ENV || 'development';
 var nconf = require('nconf').argv().env().file({ file: './config/' + env + '.json' });
 nconf.set('env', env);
 var modules = loader({ mantacode: [], tandrewnichols: [] }).load('tandrewnichols').load('mantacode').val();
+var recentPosts = require('./feed');
 
 app.set('port', nconf.get('PORT'));
 app.engine('html', require('swig').renderFile);
@@ -30,7 +31,8 @@ app.use(function(req, res, next) {
     modules: modules,
     page: req.path,
     url: req.originalUrl.split('?')[0],
-    env: nconf.get('env')
+    env: nconf.get('env'),
+    recent: recentPosts
   });
   next();
 });

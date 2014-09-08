@@ -24,7 +24,7 @@ module.exports = {
       {
         expand: true,
         cwd: 'app/img',
-        src: 'app/img/**/*.{jpg,png,gif}',
+        src: '**/*.{jpg,png,gif}',
         dest: 'public/img/'
       }
     ]

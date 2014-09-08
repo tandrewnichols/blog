@@ -33,21 +33,21 @@
     <hr>
     <div class="row">
       <div class="col-xs-7">
-        <div class="list-group" surrogate="#module-list" surrogate-event="mouseenter">
+        <div class="list-group" sub-menu="modules">
           <a href="/modules" class="list-group-item">
             <span class="fa fa-github-square pull-left" style="font-size: 30pt;"></span>
             <h4 class="list-group-item-heading"><strong>Open Source Contributions</strong></h4>
             <span>Readmes and test coverage reports for node modules published on npm.</span>
           </a>
         </div>
-        <div class="list-group" surrogate="#post-list" surrogate-event="mouseenter">
+        <div class="list-group" sub-menu="blog">
           <a href="/stubborn-child-process" class="list-group-item">
             <span class="glyphicon glyphicon-pencil pull-left mrm" style="font-size: 30pt;"></span>
             <h4 class="list-group-item-heading"><strong>Stubborn Child Process</strong></h4>
             <span>My blog on (primarily) node.js-related topics</span>
           </a>
         </div>
-        <div class="list-group" surrogate="#social-list" surrogate-event="mouseenter">
+        <div class="list-group" sub-menu="social">
           <a href="/social" class="list-group-item">
             <span class="glyphicon glyphicon-user pull-left mrm" style="font-size: 30pt;"></span>
             <h4 class="list-group-item-heading"><strong>On the Web</strong></h4>
@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="col-xs-5">
-        <div id="module-list" class="list-group fade" ng-show="modules" ng-mouseenter="modules=true" ng-mouseleave="modules=false">
+        <div id="module-list" class="list-group fade" ng-show="modules">
           {%= for module in modules.tandrewnichols %}
             <a id="home-{{= module }}" href="/modules/{{= module }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= module }}', 'Click', { target: 'modules', page: '{{= module }}' })">{{= module }}</a>
           {%= endfor %}
@@ -64,12 +64,12 @@
             <a id="home-{{= module }}" href="/modules/{{= module }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= module }}', 'Click', { target: 'modules', page: '{{= module }}' })">{{= module }}</a>
           {%= endfor %}
         </div>
-        <div id="post-list" class="list-group fade" ng-show="blog" ng-mouseenter="blog=true" ng-mouseleave="blog=false">
+        <div id="post-list" class="list-group fade" ng-show="blog">
           {%= for post in recent %}
             <a id="home-{{= post.id }}" href="{{= post.url }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= post.id }}', 'Click', { target: 'blog', page: '{{= post.title}}'})">{{= post.title }}</a>
           {%= endfor %}
         </div>
-        <div id="social-list" class="list-group fade" ng-show="social" ng-mouseenter="social=true" ng-mouseleave="social=false">
+        <div id="social-list" class="list-group fade" ng-show="social">
           <a id="github-main" ng-init="mixpanel.track_links('#github-main', 'Click', { target: 'github', page: 'profile' })" href="https://github.com/tandrewnichols" class="list-group-item"><span class="fa fa-github"></span>&nbsp;&nbsp;Github</a>
           <a id="npm-main" ng-init="mixpanel.track_links('#npm-main', 'Click', { target: 'npm', page: 'profile' })" href="https://www.npmjs.org/~tandrewnichols" class="list-group-item"><span class="ta ta-npm"></span>&nbsp;&nbsp;Npm</a>
           <a id="twitter-main" ng-init="mixpanel.track_links('#twitter-main', 'Click', { target: 'twitter', page: 'profile' })" href="https://twitter.com/tandrewnichols" class="list-group-item"><span class="fa fa-twitter"></span>&nbsp;&nbsp;Twitter</a>

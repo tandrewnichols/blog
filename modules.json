@@ -42,7 +42,7 @@
       "name": "file-manifest",
       "description": "Require all the files in a directory into a single object",
       "version": "v1.0.0",
-      "coverage": "0%"
+      "coverage": "100%"
     },
     {
       "name": "kindly",

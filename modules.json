@@ -11,6 +11,12 @@
       "description": "A simple API for using npm via grunt",
       "version": "v0.1.0",
       "coverage": "100%"
+    },
+    {
+      "name": "grunt-travis-matrix",
+      "description": "Run matrix-specific scripts during travis builds",
+      "version": "v0.0.3",
+      "coverage": "100%"
     }
   ]
 }

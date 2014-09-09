@@ -62,10 +62,16 @@
         </div>
         <div class="list-group fade" ng-show="modules">
           {%= for module in modules.tandrewnichols %}
-            <a id="home-{{= module }}" href="/modules/{{= module }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= module }}', 'Click', { target: 'modules', page: '{{= module }}' })">{{= module }}</a>
+            <a id="home-{{= module.name }}" href="/modules/{{= module.name }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= module.name }}', 'Click', { target: 'modules', page: '{{= module.name }}' })">
+              <p><span class="list-group-item-heading h4">{{= module.name }}</span><small class="pull-right text-success">{{= module.version }}</small></p>
+              <span>{{= module.description }}</span>
+            </a>
           {%= endfor %}
           {%= for module in modules.mantacode %}
-            <a id="home-{{= module }}" href="/modules/{{= module }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= module }}', 'Click', { target: 'modules', page: '{{= module }}' })">{{= module }}</a>
+            <a id="home-{{= module.name }}" href="/modules/{{= module.name }}" class="list-group-item" ng-init="mixpanel.track_links('#home-{{= module.name }}', 'Click', { target: 'modules', page: '{{= module.name }}' })">
+              <p><span class="list-group-item-heading h4">{{= module.name }}</span><small class="pull-right text-success">{{= module.version }}</small></p>
+              <span>{{= module.description }}</span>
+            </a>
           {%= endfor %}
         </div>
       </div>

@@ -4,13 +4,12 @@ var express = require('express');
 var app = express();
 var swig = require('swig');
 var fs = require('fs');
-var loader = require('./lib/mod-loader');
 var _ = require('lodash');
 var extend = require('config-extend');
 var env = process.env.NODE_ENV || 'development';
 var nconf = require('nconf').argv().env().file({ file: './config/' + env + '.json' });
 nconf.set('env', env);
-var modules = loader({ mantacode: [], tandrewnichols: [] }).load('tandrewnichols').load('mantacode').val();
+var modules = require('./modules.json');
 var recentPosts = require('./feed');
 
 app.set('port', nconf.get('PORT'));

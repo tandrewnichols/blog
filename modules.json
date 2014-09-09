@@ -29,6 +29,12 @@
       "description": "A simple wrapper for grunt implementations of command line APIs",
       "version": "v0.1.0",
       "coverage": "100%"
+    },
+    {
+      "name": "task-master",
+      "description": "A helper to make Grunt task declaration and organization cleaner.",
+      "version": "v2.0.0",
+      "coverage": "100%"
     }
   ]
 }

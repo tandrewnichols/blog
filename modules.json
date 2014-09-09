@@ -5,6 +5,12 @@
       "description": "A simple API for using git via grunt",
       "version": "v0.1.0",
       "coverage": "100%"
+    },
+    {
+      "name": "grunt-simple-npm",
+      "description": "A simple API for using npm via grunt",
+      "version": "v0.1.0",
+      "coverage": "100%"
     }
   ]
 }

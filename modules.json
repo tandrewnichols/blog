@@ -45,6 +45,12 @@
       "coverage": "0%"
     },
     {
+      "name": "kindly",
+      "description": "A thin wrapper for fs to group files by type",
+      "version": "v0.0.7",
+      "coverage": "100%"
+    },
+    {
       "name": "pedestrian",
       "description": "Recursive directory walker for node",
       "version": "v0.0.6",

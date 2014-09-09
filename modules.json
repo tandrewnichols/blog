@@ -1,1 +1,10 @@
-[object Object]
+{
+  "tandrewnichols": [
+    {
+      "name": "grunt-simple-git",
+      "description": "A simple API for using git via grunt",
+      "version": "v0.1.0",
+      "coverage": "100%"
+    }
+  ]
+}

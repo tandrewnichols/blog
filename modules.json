@@ -1,6 +1,12 @@
 {
   "tandrewnichols": [
     {
+      "name": "expressive",
+      "description": "Adds environment-specific hooks to express apps",
+      "version": "v0.0.1",
+      "coverage": "100%"
+    },
+    {
       "name": "grunt-simple-git",
       "description": "A simple API for using git via grunt",
       "version": "v0.1.0",

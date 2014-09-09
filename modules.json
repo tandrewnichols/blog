@@ -17,6 +17,12 @@
       "description": "Run matrix-specific scripts during travis builds",
       "version": "v0.0.3",
       "coverage": "100%"
+    },
+    {
+      "name": "key-list",
+      "description": "Get the list of keys used in a string with interpolation",
+      "version": "v0.1.1",
+      "coverage": "100%"
     }
   ]
 }

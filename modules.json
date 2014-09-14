@@ -33,7 +33,7 @@
     {
       "name": "task-master",
       "description": "A helper to make Grunt task declaration and organization cleaner.",
-      "version": "v2.0.0",
+      "version": "v2.0.2",
       "coverage": "100%"
     }
   ],

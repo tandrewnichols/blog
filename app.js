@@ -41,7 +41,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/modules/:module', function(req, res, next) {
-  var author = _.contains(modules.tandrewnichols, req.params.module) ? 'tandrewnichols' : 'mantacode';
+  var author = _(modules.tandrewnichols).pluck('name').contains(req.params.module) ? 'tandrewnichols' : 'mantacode';
 
   res.render('modules/' + author + '/' + req.params.module, {
     moduleName: req.params.module,

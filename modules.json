@@ -47,7 +47,7 @@
     {
       "name": "file-manifest",
       "description": "Require all the files in a directory into a single object",
-      "version": "v1.0.0",
+      "version": "v1.0.2",
       "coverage": "100%"
     },
     {

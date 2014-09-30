@@ -59,7 +59,7 @@
     {
       "name": "pedestrian",
       "description": "Recursive directory walker for node",
-      "version": "v0.0.8",
+      "version": "v0.0.9",
       "coverage": "100%"
     }
   ]

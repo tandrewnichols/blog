@@ -27,7 +27,7 @@
     {
       "name": "simple-cli",
       "description": "A simple wrapper for grunt implementations of command line APIs",
-      "version": "v0.1.0",
+      "version": "v0.1.1",
       "coverage": "100%"
     },
     {

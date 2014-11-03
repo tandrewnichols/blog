@@ -1,6 +1,15 @@
 {
   "tandrewnichols": [
     {
+      "name": "grunt-simple-istanbul"
+    },
+    {
+      "name": "indeed"
+    },
+    {
+      "name": "varity"
+    },
+    {
       "name": "grunt-simple-git",
       "description": "A simple API for using git via grunt",
       "version": "v0.1.0",
@@ -61,6 +70,15 @@
       "description": "Recursive directory walker for node",
       "version": "v0.0.9",
       "coverage": "100%"
+    },
+    {
+      "name": "mixpanel-event-import"
+    },
+    {
+      "name": "cookie-domain"
+    },
+    {
+      "name": "safe-obj"
     }
   ]
 }

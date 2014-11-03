@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         cwd: path.resolve(__dirname + '/..')
       }
     }, function(err, result, code) {
-      if (code && code > 0) {
+      if (code) {
         console.log(err, result, code);
       }
     });

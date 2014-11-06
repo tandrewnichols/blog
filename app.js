@@ -44,7 +44,7 @@ app.get('/docs/:module', function(req, res, next) {
   var author = _(modules.tandrewnichols).pluck('name').contains(req.params.module) ? 'tandrewnichols' : 'mantacode';
 
   res.render('docs/' + author + '/' + req.params.module, {
-    moduleName: req.params.module,
+    module: _.find(modules[author], { name: req.params.module }),
     author: author,
     title: req.params.module
   });

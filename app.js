@@ -40,10 +40,10 @@ app.get('/', function(req, res) {
   res.render('home', { hideNav: nconf.get('env') === 'development' });
 });
 
-app.get('/modules/:module', function(req, res, next) {
+app.get('/docs/:module', function(req, res, next) {
   var author = _(modules.tandrewnichols).pluck('name').contains(req.params.module) ? 'tandrewnichols' : 'mantacode';
 
-  res.render('modules/' + author + '/' + req.params.module, {
+  res.render('docs/' + author + '/' + req.params.module, {
     moduleName: req.params.module,
     author: author,
     title: req.params.module

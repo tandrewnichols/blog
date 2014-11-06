@@ -1,0 +1,136 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/tandrewnichols/grunt-simple-npm"><img src="https://travis-ci.org/tandrewnichols/grunt-simple-npm.png" alt="Build Status"></a> <a href="https://npmjs.org/package/grunt-simple-npm"><img src="http://img.shields.io/npm/dm/grunt-simple-npm.svg" alt="downloads"></a> <a href="https://npmjs.org/package/grunt-simple-npm"><img src="http://img.shields.io/npm/v/grunt-simple-npm.svg" alt="npm"></a> <a href="https://codeclimate.com/github/tandrewnichols/grunt-simple-npm"><img src="https://codeclimate.com/github/tandrewnichols/grunt-simple-npm/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/tandrewnichols/grunt-simple-npm"><img src="https://codeclimate.com/github/tandrewnichols/grunt-simple-npm/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://david-dm.org/tandrewnichols/grunt-simple-npm"><img src="https://david-dm.org/tandrewnichols/grunt-simple-npm.png" alt="dependencies"></a></p>
+<p><a href="https://nodei.co/npm/grunt-simple-npm.png?downloads=true"><img src="https://nodei.co/npm/grunt-simple-npm.png?downloads=true" alt="NPM info"></a></p>
+<h1 id="grunt-simple-npm">grunt-simple-npm</h1>
+<p>A simple API for using npm via grunt</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>If you haven&#39;t used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you&#39;re familiar with that process, you may install this plugin with this command:</p>
+<pre><code class="lang-bash">npm install grunt-simple-npm --save-dev</code></pre>
+<p>Once the plugin has been installed, it may be enabled inside your Gruntfile with:</p>
+<pre><code class="lang-javascript">grunt.loadNpmTasks(&#39;grunt-simple-npm&#39;);</code></pre>
+<p>Alternatively, install and use <a href="https://github.com/tandrewnichols/task-master">task-master</a>, and it will handle this for you.</p>
+<h2 id="the-npm-task">The &quot;npm&quot; task</h2>
+<p>After writing the <code>grunt-simple-git</code> plugin, I realized it would be handy to have the same functionality for npm. They&#39;re so similar I probably could&#39;ve made them one thing, and maybe someday I will. For now, though, I kind of appreciate the semantic separation. You know what you&#39;re getting when you install <code>grunt-simple-npm</code> or <code>grunt-simple-git</code>, whereas with something like <code>grunt-simple-cli</code> you might not.</p>
+<h3 id="overview">Overview</h3>
+<p>The <code>npm</code> task is a multiTask, where the target is (usually) the npm command to run. You can configure as many npm commands as are useful to you either in your <code>grunt.initConfig</code> call or, as mentioned above, by using <a href="https://github.com/tandrewnichols/task-master">task-master</a>. I strongly recommend using task-master . . . not just because I wrote it. I wrote it because grunt configuration is messy and annoying and sometimes, at least with <code>loadNpmTasks</code>, redundant (I was shocked to learn that you can&#39;t pass more than one string to <code>loadNpmTasks</code> - it&#39;s plural . . . doesn&#39;t that mean I should be able to do <code>grunt.loadNpmTasks(&#39;grunt-foo&#39;, &#39;grunt-bar&#39;, &#39;grunt-baz&#39;)</code>? . . . apparently not). I&#39;ve been using task-master for everything I write now for a few months, and it just makes grunt more pleasurable to use. Things are nicely separated . . . but I digress. Here&#39;s a sample configuration:</p>
+<pre><code class="lang-javascript">grunt.initConfig({
+  npm: {
+    version: {
+      cmd: &#39;version patch&#39;
+    },
+    publish: {}
+  },
+});</code></pre>
+<p>Then add an alias task to bundle them into one thing. For instance, I use something like this:</p>
+<pre><code class="lang-javascript">grunt.registerTask(&#39;publish&#39;, [&#39;npm:version&#39;, &#39;git:push&#39;, /* other house keeping tasks . . . */ &#39;npm:publish&#39;]);</code></pre>
+<p>Now I simply run <code>grunt publish</code> to handle versioning, publishing, and all my other publish-oriented tasks.</p>
+<h3 id="options">Options</h3>
+<p>Any npm option can be specified, though there are some variations. Any long or short option can be specified using camelCase notation (it will be converted to dash notation):</p>
+<pre><code class="lang-javascript">grunt.initConfig({
+  npm: {
+    // Short option - Runs &#39;npm install -S&#39;
+    install: {
+      options: {
+        q: true,
+        saveDev: true
+      }
+    },
+    // Long option - Runs &#39;npm publish --tag 0.1.2&#39;
+    publish: {
+      options: {
+        tag: &#39;0.1.2&#39;
+      }
+    }
+  }
+});</code></pre>
+<p>Options that are just flags (i.e. they have no value after them) are specified with <code>true</code>, as above.</p>
+<p>Sub-commands that aren&#39;t options (e.g. &quot;npm config set email myEmail@emial.com&quot;, &quot;npm version patch&quot;, &quot;npm ls grunt&quot;, etc.) can be specified using the <code>cmd</code> key.</p>
+<pre><code class="lang-javascript">grunt.initConfig({
+  npm: {
+    // &#39;npm version patch --message &quot;New version 0.1.2&quot;&#39;
+    version: {
+      options: {
+        message: &#39;New version %s&#39;
+      },
+      cmd: &#39;version patch&#39;
+    }
+  }
+});</code></pre>
+<p>It might seem redundant specifying <code>version</code> as part of the <code>cmd</code> when it&#39;s the name of the target, but that&#39;s because the <code>cmd</code> option doubles as a way to run the same npm command with different arguments:</p>
+<pre><code class="lang-javascript">grunt.initConfig({
+  npm: {
+    // &#39;npm version patch&#39;
+    patch: {
+      cmd: &#39;version patch&#39;
+    },
+    // &#39;npm version minor&#39;
+    minor: {
+      cmd: &#39;version minor&#39;
+    },
+    // &#39;npm version major&#39;
+    major: {
+      cmd: &#39;version major&#39;
+    }
+  }
+});</code></pre>
+<p>Additionally, if <code>cmd</code> is the configuration you need, you can pass that as the entirety of the task body:</p>
+<pre><code class="lang-javascript">grunt.initConfig({
+  npm: {
+    owner: &#39;owner ls grunt-simple-npm&#39;
+  }
+});</code></pre>
+<p>Finally, if your usage doesn&#39;t fit these formats, you can specify raw arguments to pass to npm using the <code>rawArgs</code> option:</p>
+<pre><code class="lang-javascript">grunt.initConfig({
+  npm: {
+    // &#39;npm explor grunt -- cat package.json&#39;
+    explor: {
+      cmd: &#39;explore grunt&#39;,
+      rawArgs: &#39;-- cat package.json&#39;
+    }
+  }
+});</code></pre>
+<p>There are also a few non-npm related options: <code>stdio</code> and <code>cwd</code>, which are passed as is to <code>child_process.spawn</code> (defaults are <code>inherit</code> and <code>process.cwd()</code> respectivly) and <code>force</code>, which you can use for non-critical git commands that should not halt the grunt task chain (like <code>--force</code> but on a per task basis). These are under <code>options</code> so that they can be specified for all tasks if desired. If you want to turn off <code>stdio</code> altogether (which you probably shouldn&#39;t do), you can pass <code>stdio: false</code>.</p>
+<pre><code class="lang-javascript">grunt.initConfig({
+  npm: {
+    options: {
+      cwd: &#39;..&#39;,
+      stdio: false
+    },
+    ls: {
+      options: {
+        depth: 1
+      }
+    }
+  }
+});</code></pre>
+<h2 id="coming-soon">Coming soon</h2>
+<p>Filling in options after the fact via prompt (perfect for <code>npm install --save</code> for example).</p>
+<p>Ideally, you wouldn&#39;t have to do <code>cmd: &#39;version patch&#39;</code> if the name of the target was <code>version</code>. There&#39;s no easy way to handle this immediately, but I&#39;d like to improve that eventually.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

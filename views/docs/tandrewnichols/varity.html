@@ -1,0 +1,344 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/tandrewnichols/varity"><img src="https://travis-ci.org/tandrewnichols/varity.png" alt="Build Status"></a> <a href="https://npmjs.org/package/varity"><img src="http://img.shields.io/npm/dm/varity.svg" alt="downloads"></a> <a href="https://npmjs.org/package/varity"><img src="http://img.shields.io/npm/v/varity.svg" alt="npm"></a></p>
+<h1 id="varity">Varity</h1>
+<p>Javascript arity simplified.</p>
+<h2 id="why-">Why?</h2>
+<p>The ability to pass a variable number of parameters to functions is a nice feature of javascript, but it can sometimes lead to boilerplate code at the top of a method to determine which parameters you&#39;re actually working with. Something like</p>
+<pre><code class="lang-javascript">function (url, params, options, callback) {
+  if (typeof params === &#39;function&#39;) {
+    callback = params, params = {}, options = {};
+  } else if (typeof options === &#39;function&#39;) {
+    callback = options, options = {};
+  }
+  // . . . now for actual function logic
+}</code></pre>
+<p>Varity (&quot;variable-arity&quot;) handles this for you. And it can do some other handy things to.</p>
+<h2 id="install">Install</h2>
+<p><code>npm install varity --save</code></p>
+<h2 id="basic-use">Basic Use</h2>
+<p>When you <code>require(&#39;varity&#39;)</code>, you&#39;ll get a wrapper function back. This wrapper accepts a set of expectations and the function to wrap, then handles boilerplate arity shenanigans for you. If you tell varity you&#39;re expecting a string and a number, but only pass it a number, varity will fill in the string argument with <code>undefined</code>. No need to test <code>if (typeof options === &#39;function&#39;)</code>. There are several ways to tell varity what you&#39;re expecting.</p>
+<h3 id="with-types">With types</h3>
+<pre><code class="lang-javascript">var $ = require(&#39;varity&#39;);
+var wrapped = $(Array, Function, function(list, callback) {
+  // list is guaranteed to be an array or undefined
+  // callback will always be a function or undefined
+});
+
+// For example
+wrapped([1, 2, 3]); // the function will be called with [1, 2, 3] and undefined
+
+// or
+wrapped(function() {}); // undefined, function() {}
+
+// any additional params will also be passed on
+wrapped([1, 2, 3], function() {}, { foo: &#39;bar&#39; }) // [1, 2, 3], function() {}, { foo: &#39;bar&#39; }
+
+// in fact, varity is smart enough to handle this:
+wrapped([1, 2, 3], { foo: &#39;bar&#39; }) // [1, 2, 3], undefined, { foo: &#39;bar&#39; }
+
+// and even
+wrapped({ foo: &#39;bar&#39;}) // undefined, undefined, { foo: &#39;bar&#39;}</code></pre>
+<p>You can pass any object type (use <code>null</code> for Null and <code>undefined</code> for Undefined - though there&#39;s not much value in expecting these in functions). You can also pass custom types.</p>
+<pre><code class="lang-javascript">function Foo () {}
+var wrapped = $(Foo, function(foo) {
+  // We have a foo!
+});</code></pre>
+<h3 id="with-an-array">With an array</h3>
+<pre><code class="lang-javascript">var wrapped = $([&#39;String&#39;, &#39;Function&#39;], function(name, callback) {
+  // . . .
+});</code></pre>
+<p>This let&#39;s you compile argument lists on the fly if necessary.</p>
+<pre><code class="lang-javascript">var args = [&#39;String&#39;];
+if (opts.async) {
+  args.push(&#39;Function&#39;);
+}
+
+var wrapped = $.apply($, [args, function(path, cb){
+  // Do neat stuff
+}]);</code></pre>
+<h3 id="with-a-string">With a string</h3>
+<p>The first two methods are useful, but also lengthy. The real value in varity is in string abbreviations. To keep calls to varity short, all built in types have one character analogs that can be passed collectively as a single string:</p>
+<pre><code class="lang-javascript">var wrapped = $(&#39;ssf&#39;, function(fname, lname, callback) {
+  // . . . 
+});</code></pre>
+<p>The following abbreviations are currently recognized by varity:</p>
+<ul>
+<li>s: String</li>
+<li>f: Function</li>
+<li>o: Object</li>
+<li>a: Array</li>
+<li>1: Number</li>
+<li>b: Boolean</li>
+<li>r: RegExp</li>
+<li>d: Date</li>
+<li>N: NaN</li>
+<li>n: Null</li>
+<li>u: Undefined</li>
+<li>A: Arguments</li>
+<li>i: Infinity</li>
+<li>e: Error</li>
+<li>E: Element</li>
+<li>$: jQuery</li>
+</ul>
+<p>Additionally, strings can have array wrappers (<code>[s]</code>) and ors (<code>|</code>). Any letter wrapped in <code>[]</code> tells varity to wrap the arg (if it matches that type) in an array. <code>|</code> says that either of two types are acceptable. These can also be combined.</p>
+<pre><code class="lang-javascript">var wrapped = $(&#39;[s]&#39;, function(list) {
+  // When called with a string, arguments will be an array with that string as the first and only item
+});
+
+var wrapped = $(&#39;1|b&#39;, function(isTruthy) {
+  // Either a number or boolean can be passed
+});
+
+var wrapped = $(&#39;[s]|a&#39;, function(list) {
+  // Either a string (which will be wrapped) or an array can be passed
+});
+
+var wrapped = $(&#39;[s]|[1]&#39;, function(list) {
+  // Either a string or number can be passed, but in either case, it will be wrapped as an array
+});</code></pre>
+<h2 id="flags">Flags</h2>
+<p>Knowing that <code>options</code> will never be a function is nice, but you might still need to check for definedness before doing something with a parameter:</p>
+<pre><code class="lang-javascript">var wrapped = $(&#39;af&#39;, function(list, cb) {
+  cb(list.concat([&#39;foo&#39;, &#39;bar&#39;]);
+});
+
+wrapped(function(newList) { /* . . . */ }); // Uh, oh. Cannot call method concat of undefined.</code></pre>
+<p>Thus, varity has some flags, indicated with symbols, that tell it to handle awkward conditions, such as the above, gracefully.</p>
+<h3 id="populate-">Populate: +</h3>
+<p>Tells varity to return a default of the given type so that you don&#39;t have to worry about calling type specific methods.</p>
+<pre><code class="lang-javascript">var wrapped = $(&#39;+a&#39;, function(list) {
+  list.push(&#39;something&#39;); // list will ALWAYS be an array
+}</code></pre>
+<p>The built in defaults are as follows (though you can override them - more on that later).</p>
+<ul>
+<li>String</li>
+</ul>
+<pre><code class="lang-javascript">&#39;&#39;</code></pre>
+<ul>
+<li>Function</li>
+</ul>
+<pre><code class="lang-javascript">function(){}</code></pre>
+<ul>
+<li>Object</li>
+</ul>
+<pre><code class="lang-javascript">{}</code></pre>
+<ul>
+<li>Array</li>
+</ul>
+<pre><code class="lang-javascript">[]</code></pre>
+<ul>
+<li>Number</li>
+</ul>
+<pre><code class="lang-javascript">0</code></pre>
+<ul>
+<li>Boolean</li>
+</ul>
+<pre><code class="lang-javascript">false</code></pre>
+<ul>
+<li>RegExp</li>
+</ul>
+<pre><code class="lang-javascript">/.*/</code></pre>
+<ul>
+<li>Date</li>
+</ul>
+<pre><code class="lang-javascript">(function() {
+  return new Date();
+})()</code></pre>
+<ul>
+<li>NaN</li>
+</ul>
+<pre><code class="lang-javascript">NaN</code></pre>
+<ul>
+<li>Null</li>
+</ul>
+<pre><code class="lang-javascript">null</code></pre>
+<ul>
+<li>Undefined</li>
+</ul>
+<pre><code class="lang-javascript">undefined</code></pre>
+<ul>
+<li>Arguments: </li>
+</ul>
+<pre><code class="lang-javascript">(function(){
+  return arguments;
+})(undefined)</code></pre>
+<ul>
+<li>Infinity</li>
+</ul>
+<pre><code class="lang-javascript">2/0 // because I like the number 2</code></pre>
+<ul>
+<li>Error: </li>
+</ul>
+<pre><code class="lang-javascript">(function() {
+  return new Error();
+})()</code></pre>
+<ul>
+<li>Element:</li>
+</ul>
+<pre><code class="lang-javascript">(function() {
+  if (typeof window !== &#39;undefined&#39;) {
+    return window.document;
+  } else {
+    return &#39;&lt;div&gt;&lt;/div&gt;&#39;;
+  }
+})()</code></pre>
+<ul>
+<li>jQuery:</li>
+</ul>
+<pre><code class="lang-javascript">(function() {
+  if (typeof $ !== &#39;undefined&#39;) {
+    return $(document);
+  } else {
+    return [];
+  }
+})()</code></pre>
+<h3 id="optional-">Optional: -</h3>
+<p>Normally, if you pass two of the same type next to each other, Varity will assign the first parameter that matches that type to the first argument and leave the second undefined.</p>
+<pre><code class="lang-javascript">var wrapped = $(&#39;oo&#39;, function(options, data) {
+  // If only one object is passed, it will be passed as &quot;options&quot; and &quot;data&quot; will be undefined
+});</code></pre>
+<p>The <code>optional</code> flag reverses this behavior. (Alternatively, you could just reverse the parameters: <code>function(data, options)</code>.)</p>
+<pre><code class="lang-javascript">var wrapped = $(&#39;-oo&#39;, function(options, data) {
+  // Now if only one object is passed, it&#39;ll be set to &quot;data&quot;, leaving &quot;options&quot; undefined.
+});</code></pre>
+<p>You can also combine <code>populate</code> with <code>optional</code>:</p>
+<pre><code class="lang-javascript">var wrapped = $(&#39;-+oo&#39;, function(obj1, obj2) {
+  // If passed only {foo: &#39;bar&#39;}, arguments will be {}, {foo: &#39;bar&#39;}
+});</code></pre>
+<h3 id="non-empty-_">Non-empty: _</h3>
+<p>The non-empty flag tells varity to treat &quot;empty&quot; parameters as if they were undefined. This isn&#39;t that useful unless you change the defaults (more below). If you tell varity to populate a type with some other default and use the _ flag, varity will replace an empty type (e.g. <code>{}</code>, <code>[]</code>, <code>function() {}</code>, etc.) with the default of that type.</p>
+<pre><code class="lang-javascript">$.populate(&#39;Object&#39;, {
+  dataType: &#39;json&#39;,
+  method: &#39;put&#39;
+});
+
+var wrapped = $(&#39;s_o&#39;, function(url, opts) {
+  // see below for more about populate
+});
+wrapped(&#39;something.com&#39;, {}); // Provides &#39;something.com&#39; and { dataType: &#39;json&#39;, method: &#39;put&#39; }</code></pre>
+<h3 id="required-">Required: *</h3>
+<p>Marks a parameter as required. If that parameter is not passed, Varity will throw an exception.</p>
+<pre><code class="lang-javascript">var wrapped = $(&#39;*so&#39;, function(name, options) {
+  // . . .
+});
+wrapped({ async: true }); // throws</code></pre>
+<h3 id="extend-">Extend: &amp;</h3>
+<p>For matching types, the actual argument will be extended with additional defaults. For objects, this means a deep object extend; for arrays, concat; for strings, joining with &quot; &quot;; and for functions, calling <code>_.compose</code> (with the default function coming first in the composition). This is an excellent way to handle option extension.</p>
+<pre><code class="lang-javascript">$.extend(&#39;Object&#39;, { async: true }); // See &quot;Helpers&quot; below
+var wrapped = $(&#39;&amp;o&#39;, function(options) { });
+wrapped({ path: &#39;/foo/bar&#39; }); // options will equal { async: true, path: &#39;/foo/bar&#39; }
+
+$.extend(&#39;Array&#39;, [ &#39;Chuck&#39; ]);
+var wrapped = $(&#39;&amp;a&#39;, function(ppl) { });
+wrapped([ &#39;Sue&#39;, &#39;Douglas&#39; ]); // ppl will equal [ &#39;Sue&#39;, &#39;Douglas&#39;, &#39;Chuck&#39; ]
+
+$.extend(&#39;String&#39;, &#39;Please try again.&#39;);
+var wrapped = $(&#39;&amp;s&#39;, function(message) { });
+wrapped(&#39;We were unable to update your profile.&#39;); // message will equal &#39;We were unable to update your profile. Please try again.&#39;
+
+$.extend(&#39;Function&#39;, function(name) { return &#39;My name is &#39; + name; });
+var wrapped = $(&#39;&amp;f&#39;, function(fn) { });
+wrapped(function(message) { console.log(message); }); // when &quot;fn&quot; is called with &quot;Tim&quot;, &quot;My name is Tim&quot; will be logged</code></pre>
+<h2 id="helpers">Helpers</h2>
+<p>Varity also a couple helper methods for changing options.</p>
+<h3 id="varity-configure">varity.configure</h3>
+<p>Use <code>varity.configure</code> for one time, initial setup. All calls to <code>varity()</code> after that will use whatever options you pass. You can pass the following options to <code>varity.configure</code>:</p>
+<ul>
+<li>letters - add custom abbreviations or override default ones</li>
+<li>symbols - additional symbols and their corresponding functions</li>
+<li>defaults - override built in defaults or provide defaults for custom types</li>
+<li>populate - turn on <code>populate</code> for all types (with <code>true</code>) or a set of types (with an array) so that you don&#39;t have to use the <code>+</code> flag</li>
+</ul>
+<pre><code class="lang-javascript">var $ = require(&#39;varity&#39;);
+$.configure({
+  letters: {
+    &#39;~&#39;: &#39;Foo&#39;,
+    &#39;a&#39;: &#39;Array&#39;,
+    &#39;g&#39;: &#39;Arguments&#39; // If you don&#39;t like dealing with captials 
+  },
+  symbols: {
+    &#39;!&#39;: function(arg, context) {
+      return !!arg;
+    }
+  },
+  defaults: {
+    &#39;Object&#39;: {
+      jsonp: true,
+      method: &#39;get&#39;,
+      data: {
+        user: localStorage.get(&#39;user&#39;)
+      }
+    },
+    &#39;Foo&#39;: function() {
+      return new Foo(&#39;my foo param&#39;);
+    }
+  },
+  populate: true // Always populate ALL types
+
+  /*
+   * OR
+   *
+   * populate: [&#39;Object&#39;, &#39;Array&#39;, &#39;Foo&#39;]
+   *
+   * to always populate ONLY these types
+   */
+});</code></pre>
+<p>Note that these options will be used for EVERY call to varity. If you need to undo these options, you can call <code>varity.reset()</code>, which will restore the defaults. However, any already wrapped functions will still have the custom options.</p>
+<p>There are also simplified helpers that set one-time options:</p>
+<h3 id="varity-letters">varity.letters</h3>
+<pre><code class="lang-javascript">$.letters(&#39;q&#39;, &#39;Quux&#39;);</code></pre>
+<h3 id="varity-symbols">varity.symbols</h3>
+<pre><code class="lang-javascript">$.symbols(&#39;!&#39;, function(arg, context) {
+  return !!arg;
+});</code></pre>
+<h3 id="varity-defaults">varity.defaults</h3>
+<pre><code class="lang-javascript">$.defaults(&#39;Array&#39;, [1, 2, 3]);</code></pre>
+<h3 id="varity-populate">varity.populate</h3>
+<pre><code class="lang-javascript">$.populate(&#39;Array&#39;, [1, 2, 3]);
+
+// or
+
+$.populate(&#39;Array&#39;);
+
+// or
+
+$.populate(true);</code></pre>
+<p>Unlike the others, which simply set the corresponding option, varity.populate both adds the type to the <code>populate</code> list <em>and</em> calls $.defaults when called with two arguments (since, for a one-time option, it&#39;s essentially implied that the populating thing should be used). When called with only a type, that type is added to the <code>populate</code> list, but no additional default is set. When called with <code>true</code>, all types will be populated by default.</p>
+<h3 id="varity-extend">varity.extend</h3>
+<pre><code class="lang-javascript">$.extend(&#39;Object&#39;, { async: true, path: &#39;/foo/bar&#39; });</code></pre>
+<h2 id="custom-symbols">Custom Symbols</h2>
+<p>Each symbol corresponds to a function that receives the current argument and a context. The context looks like this:</p>
+<pre><code class="lang-javascript">{
+  symbols: [&#39;-&#39;, &#39;+&#39;], // a list of symbols passed with this argument
+  types: [&#39;String&#39;], // a list of types to match against
+  wrapType: &#39;array&#39; // indicates whether [] or | were used in the string
+}</code></pre>
+<p>In addition, the varity object is passed as the <code>this</code> context, so you can access things like <code>this.args</code>, which has the full set of arguments passed to varity. You can create custom functionality by adding symbols and manipulating one or both of these parameters. Use this to whatever destructive ends you see fit. Note that symbol operations are called in the order in which they&#39;re passed, which <em>can</em> make a difference. For instance, if you want to use <code>+</code> and <code>-</code> together, you should always pass <code>-</code> first, since, after <code>+</code> runs, the current argument will <em>never</em> be undefined (well, unless the expected type is <code>undefined</code>). The example in the <code>configure</code> section above coerces results to booleans. You can take a look at the existing symbol operations to get an idea of how to use the context object.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

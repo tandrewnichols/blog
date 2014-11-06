@@ -3,6 +3,6 @@ module.exports = {
   generated: 'generated',
   pages: 'views/pages',
   posts: 'views/posts',
-  modules: 'views/modules',
+  docs: 'views/docs',
   coverage: 'views/coverage'
 };

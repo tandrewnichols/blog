@@ -1,0 +1,143 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/mantacode/file-manifest"><img src="https://travis-ci.org/mantacode/file-manifest.png" alt="Build Status"></a> <a href="https://npmjs.org/package/file-manifest"><img src="http://img.shields.io/npm/dm/file-manifest.svg" alt="downloads"></a> <a href="https://npmjs.org/package/file-manifest"><img src="http://img.shields.io/npm/v/file-manifest.svg" alt="npm"></a> <a href="https://codeclimate.com/github/mantacode/file-manifest"><img src="https://codeclimate.com/github/mantacode/file-manifest/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/mantacode/file-manifest"><img src="https://codeclimate.com/github/mantacode/file-manifest/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://david-dm.org/mantacode/file-manifest"><img src="https://david-dm.org/mantacode/file-manifest.png" alt="dependencies"></a></p>
+<p><a href="https://nodei.co/npm/file-manifest.png?downloads=true"><img src="https://nodei.co/npm/file-manifest.png?downloads=true" alt="NPM info"></a></p>
+<h1 id="file-manifest">File-Manifest</h1>
+<p>Require all the files in a directory into a single object</p>
+<h2 id="installation">Installation</h2>
+<p><code>npm install file-manifest --save</code></p>
+<h2 id="usage">Usage</h2>
+<p>File-manifest recursively requires everything in a given directory (optionally filtered with globstar patterns) and packages it into a single object where the keys are (by default) camel-cased file names. Thus if you had a directory called <code>foo</code>, whose structure looked like this:</p>
+<pre><code>bar
+baz
+  quux
+  some-long-name</code></pre>
+<p>You&#39;d end up with an object that looked like this:</p>
+<pre><code class="lang-javascript">{
+  fooBar: // foo/bar&#39;s exports
+  fooBazQuux: //foo/baz/quux&#39;s exports
+  fooBazSomeLongName: // foo/baz/some-long-name&#39;s exports
+}</code></pre>
+<p>This is useful (for example) in an express app to create a route manifest:</p>
+<pre><code class="lang-javascript">var routes = require(&#39;file-manifest&#39;).generate(&#39;routes&#39;);
+
+app.get(&#39;/&#39;, routes.home);
+app.get(&#39;/users/:id&#39;, routes.profile);
+// etc.</code></pre>
+<p>or a middleware manifest:</p>
+<pre><code class="lang-javascript">var middleware = require(&#39;file-manifest&#39;).generate(&#39;middleware&#39;);
+
+app.use(middleware.setOriginPolicy);
+app.use(middleware.defaultLogger);
+// etc.</code></pre>
+<p>or in a mongoose app to load all models:</p>
+<pre><code class="lang-javascript">var models = require(&#39;file-manifest&#39;).generate(&#39;models&#39;);
+module.exports = function(req, res, next) {
+  req.models = models;
+  next();
+};</code></pre>
+<h3 id="sync">Sync</h3>
+<p>As demonstrated above, just call <code>.generate</code> with a relative or absolute path.</p>
+<pre><code class="lang-javascript">var manifest = require(&#39;file-manifest&#39;).generate(&#39;some/dir&#39;);</code></pre>
+<h3 id="async">Async</h3>
+<p>Just like sync, but accepts a callback. It is important that the first argument to this function start with <code>err</code> (more on this below).</p>
+<pre><code class="lang-javascript">require(&#39;file-manifest&#39;).generate(&#39;some/dir&#39;, function(err, manifest) {
+  // . . .
+});</code></pre>
+<h3 id="with-patterns">With Patterns</h3>
+<p>Both sync and async versions accept a string pattern or list of string patterns to filter (see <a href="https://github.com/isaacs/minimatch">minimatch</a> for more on globstar patterns).</p>
+<pre><code class="lang-javascript">var manifest = require(&#39;file-manifest&#39;).generate(&#39;config&#39;, &#39;**/*.json&#39;);
+
+// or
+
+require(&#39;file-manifest&#39;).generate(&#39;config&#39;, [&#39;**/*.json&#39;, &#39;**/*.yml&#39;], function(err, manifest) {
+  // . . .
+});</code></pre>
+<h3 id="with-a-custom-reduce">With a Custom Reduce</h3>
+<p>File-manifest also gives you the option to provide a custom reduce function. This let&#39;s you alter the behavior of <code>file-manifest</code> if simply requiring the files is insufficient (or you don&#39;t like camel-cased key names). This reduce function (as of v1.0.0) has the following signature - <code>(options, manifest, fileObj, [callback])</code> - where <code>options</code> is an object in the form:</p>
+<pre><code class="lang-javascript">patterns: Array or String // Any matching patterns provided (or empty string if none)
+dir: String // The directory to search
+memo: Any // The starting value for the reduce function (defaults to {})
+reducer: String or Function // The reduce function to call
+require: String or Function // The function to get the current file (defaults to the build in require function)
+namer: String or Function // The function to name the keys in the manifest</code></pre>
+<p><code>manifest</code> is the results of the reduce process so far (often called &quot;memo&quot; for reasons that aren&#39;t really clear to me), <code>fileObj</code> is an object of file parts in the form:</p>
+<pre><code class="lang-javascript">relativePath: String // The path of the file minus the original path (e.g. &quot;foo/bar.js&quot;)
+relativeName: String // Like relativePath but without the extension. This is the part used for naming the keys (e.g. &quot;foo/bar&quot;)
+fullPath: String // The full path of the file (e.g. &quot;/dir/foo/bar.js&quot;)
+basename: String // The result of path.basename(fullPath) (e.g. &quot;bar.js&quot;)
+name: String // Like basename but without the extension (e.g. &quot;bar&quot;)
+ext: String // The file extension (e.g. &quot;.js&quot;)</code></pre>
+<p>The callback will, of course, only be available in async implementations. You should manipulate the manifest and then return it (sync) or call the callback with an optional error and the new manifest (async).</p>
+<pre><code class="lang-javascript">var manifest = require(&#39;file-manifest&#39;).generate(&#39;keywords&#39;, function(options, manifest, file) {
+  var name = file.relativeName.split(&#39;/&#39;).join(&#39;|&#39;);
+  manifest[name] = require(file.fullPath);
+  return manifest;
+});</code></pre>
+<p>The sync implemenation uses <code>_.reduce</code> (<a href="http://underscorejs.org/">underscore</a>), while the async version uses <code>async.reduce</code> (<a href="https://github.com/caolan/async">async</a>), so see those for more information.</p>
+<p>You might have noted that the same <code>generate</code> function can take a reduce function, a callback, or both. The way <code>file-manifest</code> distinguishes is by examining the last function to see if it&#39;s first parameter begins with <code>err</code>. That&#39;s why all async implementations should pass a callback that accepts a variable named <code>err</code> or <code>error</code>.</p>
+<p>If you are still using <code>file-manifest@&lt;1.x</code>, the custom reduce function should accept only <code>manifest</code>, <code>file</code>, and (optionally) <code>callback</code>. The <code>file</code> is the absolute file path. The context of the function (i.e. <code>this</code>) does have properties called <code>dir</code>, which is the originally passed in path, and patterns, which is the original patterns. This just means you need to do some of the manipulation yourself. For example, the above function would be:</p>
+<pre><code class="lang-javascript">var manifest = require(&#39;file-manifest&#39;).generate(&#39;keywords&#39;, function(manifest, file) {
+  var name = file.replace(this.dir + &#39;/&#39;, &#39;&#39;).replace(path.extname(file), &#39;&#39;).split(&#39;/&#39;).join(&#39;|&#39;);
+  manifest[name] = require(file);
+  return manifest;
+});</code></pre>
+<h3 id="with-options">With options</h3>
+<p>As of <code>file-manifest@1.0.0</code>, you can also pass an <code>options</code> object to file-manifest. The options object can have any of the following keys:</p>
+<h4 id="patterns-and-reducer">Patterns and Reducer</h4>
+<p>Same as the parameter counterparts above.</p>
+<p>These can be passed as part of the object OR as separate parameters. If you&#39;re passing an options object, you should just add them to that. The separate parameters were only included to preserve (the appearance of) backward compatibility (v1.0.0 is not <em>really</em> backward compatible, but it takes a lot less to convert an old implementation with these parameters preserved).</p>
+<h4 id="memo">Memo</h4>
+<p><code>memo</code> is the starting value for the reduce function. The default is <code>{}</code>, but it is sometimes useful to use <code>[]</code> or even something more complicated. Note, however, that the default reduce function expects an object, so if you want to do something different, you should supply a custom reducer. E.g.</p>
+<pre><code class="lang-javascript">var manifest = require(&#39;file-manifest&#39;).generate(&#39;client/app/js&#39;, { memo: [], patterns: [&#39;**/*.js&#39;], reducer: function(options, manifest, file) {
+  manifest.push(file.name);
+  return manifest;
+}});</code></pre>
+<h4 id="require-and-namer">Require and Namer</h4>
+<p>If you only want custom functionality for the way keys are generated or the way the file is read, you can also pass either (or both) of <code>namer</code> and <code>require</code>. The <code>namer</code> function should accept the options object and the same file object that <code>reduce</code> accepts and should return the key name. The <code>require</code> function should accept <code>options</code>, <code>fileObj</code>, and optionally <code>callback</code> and should return the corresponding value for the key (usually the exports or file contents) for sync implementations or call the callback with an optional error and the value for async implementations.</p>
+<pre><code class="lang-javascript">var manifest = require(&#39;file-manifest&#39;).generate(&#39;partials&#39;, { namer: function(options, file) { return file.relativeName.split(&#39;/&#39;).join(&#39;-&#39;); }, require: function(options, file, cb) {
+  fs.readFile(file.fullPath, &#39;utf8&#39;, cb);
+}});</code></pre>
+<p>Alternatively, since there are some common patterns, <code>namer</code> can be a string - one of <code>camelCase</code> (the default), <code>dash</code>, <code>slash</code>, <code>pipe</code>, <code>class</code>, <code>lower</code>, <code>upper</code>, <code>underscore</code> or <code>snake</code>, or <code>human</code>. The results for the file &quot;foo/bar.js&quot; for each would be:</p>
+<pre><code>camelCase: &quot;fooBar&quot;,
+dash: &quot;foo-bar&quot;,
+slash: &quot;foo/bar&quot;,
+pipe: &quot;foo|bar&quot;,
+class: &quot;FooBar&quot;,
+lower: &quot;foobar&quot;,
+upper: &quot;FOOBAR&quot;,
+underscore: &quot;foo_bar&quot;,
+snake: &quot;foo_bar&quot;,
+human: &quot;Foo bar&quot;</code></pre>
+<p>Similarly, the <code>require</code> option can be a string with either <code>require</code> or <code>readFile</code>. <code>require</code> will use node&#39;s <code>require</code> function (this is the default, so there&#39;s not much point in specifying this). <code>readFile</code> will use <code>readFileSync</code> (for sync implementations) or <code>readFile</code> (for async implementations).</p>
+<p>So the previous call to <code>file-manifest</code> could be replaced with</p>
+<pre><code class="lang-javascript">var manifest = require(&#39;file-manifest&#39;).generate(&#39;partials&#39;, { namer: &#39;dash&#39;, require: &#39;readFile&#39; });</code></pre>
+<p><br><br><br>
+*Note: This <em>probably</em> goes without saying, but &quot;an optional error&quot; (throughout) means that it may be <code>null</code> or <code>undefined</code>, not that it may be omitted.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

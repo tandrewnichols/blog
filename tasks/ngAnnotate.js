@@ -1,6 +1,6 @@
 module.exports = {
   app: {
-    src: 'generated/app.js',
-    dest: 'generated/app.js'
+    src: '<%= paths.generated %>/app.js',
+    dest: '<%= paths.generated %>/app.js'
   }
 };

@@ -1,0 +1,143 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/mantacode/safe-obj"><img src="https://travis-ci.org/mantacode/safe-obj.png" alt="Build Status"></a> <a href="https://npmjs.org/package/safe-obj"><img src="http://img.shields.io/npm/dm/safe-obj.svg" alt="downloads"></a> <a href="https://npmjs.org/package/safe-obj"><img src="http://img.shields.io/npm/v/safe-obj.svg" alt="npm"></a> <a href="https://codeclimate.com/github/mantacode/safe-obj"><img src="https://codeclimate.com/github/mantacode/safe-obj/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://codeclimate.com/github/mantacode/safe-obj"><img src="https://codeclimate.com/github/mantacode/safe-obj/badges/gpa.svg" alt="Code Climate"></a> <a href="https://david-dm.org/mantacode/safe-obj"><img src="https://david-dm.org/mantacode/safe-obj.png" alt="dependencies"></a></p>
+<p><a href="https://nodei.co/npm/safe-obj.png?downloads=true"><img src="https://nodei.co/npm/safe-obj.png?downloads=true" alt="NPM info"></a></p>
+<h1 id="safe-obj">Safe-obj</h1>
+<p>Underscore helpers to make object accessors safe</p>
+<p>I came (partly) from a Perl background where you could say <code>$obj-&gt;{thing}-&gt;{another_thing}-&gt;{more_things}</code>, and it would not blow up even if $obj was totally empty. Similarly, you could say <code>$obj-&gt;{thing}-&gt;{foo} = &#39;bar&#39;</code>, even if $obj had no property called &#39;thing&#39;. I don&#39;t miss everything about Perl, but I do miss that. In javascript, you&#39;d have to say:</p>
+<pre><code class="lang-javascript">if (obj &amp;&amp; obj.thing &amp;&amp; obj.thing.another_thing &amp;&amp; obj.thing.another_thing.more_things) {
+  // I want to die a little bit
+}</code></pre>
+<p>So this module is basically auto-vivification for javascript.</p>
+<h2 id="install">Install</h2>
+<p><code>npm install safe-obj --save</code></p>
+<h2 id="usage">Usage</h2>
+<h3 id="server">Server</h3>
+<p>As of v1.0.0, this module works with both lodash and underscore, though it requires using <code>_.safe(obj, path)</code> with lodash since <code>_(obj).safe(path)</code> triggers lodash&#39;s chaining.</p>
+<p><code>safe-obj</code> exports an object that can be mixed into underscore/lodash like this:</p>
+<pre><code class="lang-javascript">_.mixin(require(&#39;safe-obj&#39;));</code></pre>
+<p>that let&#39;s you access object properties with wild abandon.</p>
+<h3 id="client">Client</h3>
+<p>Additionally, as of v1.0.0, it works on the client side. If <code>window._</code> is defined (i.e. lodash or underscore has been loaded), <code>_.safe</code> will add an <code>_safe</code> property to it, which you can mix in with <code>_.mixin(_._safe)</code>.</p>
+<p>On the client, just include the script after underscore or lodash:</p>
+<pre><code class="lang-html">&lt;script src=&quot;/underscore.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;path/to/safe-obj/dist/safe.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>and then mix it in:</p>
+<pre><code class="lang-html">&lt;script&gt;
+  (function() {
+    _.mixin(_._safe);
+  })();
+&lt;/script&gt;</code></pre>
+<h2 id="api">API</h2>
+<h3 id="safe">Safe</h3>
+<p>Let&#39;s you access object properties (and array indices too!) regardless of whether they exist. If, at any point, a property returns <code>undefined</code> (where calling another object accessor would blow up), <code>safe</code> immediately just returns <code>undefined</code> (or a default, if you provide one).</p>
+<pre><code class="lang-javascript">var obj = {}
+
+// returns undefined
+var innerProp = _(obj).safe(&#39;foo.bar.baz.0.hello.world&#39;); 
+
+// returns [] - useful if you want to call array methods but don&#39;t want to check the type
+var anotherProp = _(obj).safe(&#39;a.brave.new.world&#39;, []);</code></pre>
+<h3 id="expand">Expand</h3>
+<p>Let&#39;s you assign to any arbitrarily deep and non-existent property on an object. Any non-existent properties are expanded into objects.</p>
+<pre><code class="lang-javascript">var obj = {}
+
+_(obj).expand(&#39;foo.bar.baz&#39;, &#39;hello world&#39;);
+
+// obj now equals: {
+//   foo: {
+//     bar: {
+//       baz: &#39;hello world&#39;
+//     }
+//   }
+// }</code></pre>
+<p>Expand is likely to be finnicky (at the moment) with expanding arrays. It&#39;s untested, and my guess is that it will create object properties with numbers. Something like</p>
+<pre><code class="lang-javascript">property: {
+  0: {
+    // more stuff
+  }
+}</code></pre>
+<p>I&#39;d like to make that work more as expected in a future release, but for now, don&#39;t expect it to work.</p>
+<h3 id="ensure">Ensure</h3>
+<p>Sets a path to a given value unless that path already has a value. Also allows an optional list of &quot;disallowed&quot; values.</p>
+<pre><code class="lang-javascript">var obj = {
+  foo: {
+    bar: &#39;baz&#39;
+  }
+};
+
+// This will have no effect on obj since &#39;foo.bar&#39; already has a value
+_(obj).ensure(&#39;foo.bar&#39;, &#39;a default value&#39;);
+
+obj = {
+  foo: {}
+};
+
+// This will set obj.foo equal to { bar: &#39;a default value&#39; }
+_(obj).ensure(&#39;foo.bar&#39;, &#39;a default value&#39;);
+
+obj = {
+  foo: {
+    bar: &#39;nope&#39;
+  }
+};
+
+// This says don&#39;t allow &#39;nope&#39; as a value of foo.bar, thus it will use the default
+_(obj).ensure(&#39;foo.bar&#39;, [ &#39;nope&#39; ], &#39;a default value&#39;);</code></pre>
+<h3 id="allof">AllOf</h3>
+<p>Uses <code>safe</code> to return <code>true</code> if all the paths exist in the object or <code>false</code> if any is missing.</p>
+<pre><code class="lang-javascript">var obj = {
+  foo: {
+    bar: &#39;baz&#39;
+  }
+};
+
+_(obj).allOf(&#39;foo.bar&#39;, &#39;hello.world&#39;); // returns false
+
+// or
+// _(obj).allOf([&#39;foo.bar&#39;, &#39;hello.world&#39;]);</code></pre>
+<h3 id="anyof">AnyOf</h3>
+<p>Like <code>allOf</code> but returns <code>true</code> if any of the paths exist.</p>
+<pre><code class="lang-javascript">var obj = {
+  foo: {
+    bar: &#39;baz&#39;
+  }
+};
+
+_(obj).anyOf(&#39;foo.bar&#39;, &#39;hello.world&#39;); // returns true</code></pre>
+<h3 id="noneof">NoneOf</h3>
+<p>Like <code>allOf</code> and <code>anyOf</code> but only returns true when none of the paths exist.</p>
+<pre><code class="lang-javascript">var obj = {
+  foo: {
+    bar: &#39;baz&#39;
+  }
+};
+
+_(obj).noneOf(&#39;foo.bar&#39;, &#39;hello.world&#39;); // returns false</code></pre>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

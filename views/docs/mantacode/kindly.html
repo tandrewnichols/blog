@@ -1,0 +1,62 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/mantacode/kindly"><img src="https://travis-ci.org/mantacode/kindly.png" alt="Build Status"></a> <a href="https://npmjs.org/package/kindly"><img src="http://img.shields.io/npm/dm/kindly.svg" alt="downloads"></a> <a href="https://npmjs.org/package/kindly"><img src="http://img.shields.io/npm/v/kindly.svg" alt="npm"></a> <a href="https://codeclimate.com/github/mantacode/kindly"><img src="https://codeclimate.com/github/mantacode/kindly/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/mantacode/kindly"><img src="https://codeclimate.com/github/mantacode/kindly/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://david-dm.org/mantacode/kindly"><img src="https://david-dm.org/mantacode/kindly.png" alt="dependencies"></a></p>
+<p><a href="https://nodei.co/npm/kindly.png?downloads=true"><img src="https://nodei.co/npm/kindly.png?downloads=true" alt="NPM info"></a></p>
+<h1 id="kindly">Kindly</h1>
+<h3 id="purpose">Purpose</h3>
+<p>Kindly is a (very) thin wrapper around fs.readdir that groups files by type. That seems like a small thing, but it&#39;s really useful for requiring all the files in a single directory.</p>
+<h3 id="installation">Installation</h3>
+<p><code>npm install kindly --save</code></p>
+<p><code>var kindly = require(&#39;kindly&#39;);</code></p>
+<h3 id="api">API</h3>
+<p>Kindly has only one method, <code>get</code>, which works synchronously or asynchronously depending on whether you give it a callback.</p>
+<p>Synchronously:</p>
+<pre><code class="lang-javascript">var descriptors = kindly.get(&#39;/dir&#39;);</code></pre>
+<p>Asynchronously:</p>
+<pre><code class="lang-javascript">kindly.get(&#39;/dir&#39;, function(err, descriptors) {
+
+});</code></pre>
+<p>In either case, descriptors will be an object in this form:</p>
+<pre><code class="lang-javascript">{
+  files: [],
+  directories: [],
+  other: []
+}</code></pre>
+<p>All file and directory names are prefaced with the path you pass to kindly. Thus, if you use something like</p>
+<pre><code class="lang-javascript">var kindly = require(&#39;kindly&#39;);
+var path = require(&#39;path&#39;);
+
+kindly.get(path.resolve(&#39;lib&#39;), function(err, descriptors) {
+
+});</code></pre>
+<p>all of your descriptors will be fully qualified paths which can be used from any directory.</p>
+<p>That&#39;s it folks!
+<br><br><br><br><br><br><br><br>
+Seriously, are you still reading this?</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

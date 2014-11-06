@@ -1,0 +1,74 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/mantacode/node-cookie-domain"><img src="https://travis-ci.org/mantacode/node-cookie-domain.svg?branch=master" alt="Build Status"></a>
+<a href="http://badge.fury.io/js/cookie-domain"><img src="https://badge.fury.io/js/cookie-domain.svg" alt="NPM version"></a>
+<a href="https://david-dm.org/mantacode/node-cookie-domain.png"><img src="https://david-dm.org/mantacode/node-cookie-domain.png" alt="David DM"></a></p>
+<p>Express middleware for wrapping res.cookie to use some sane defaults for the cookie config.</p>
+<pre><code class="lang-javascript">// Assuming the host is &#39;foo.bar.com&#39;
+var express = require(&#39;express&#39;);
+var cookieDomain = require(&#39;cookie-domain&#39;);
+var app = express();
+app.use(cookieDomain());
+
+/*
+ *  You can also pass global overrides into cookieDomain
+ *  app.use(cookieDomain({ maxAge: 86400 });
+ */
+
+app.get(&#39;/&#39;, function(req, res, next) {
+  // Set a cookie using some sane defaults: { domain: &#39;.bar.com&#39;, path: &#39;/&#39;, maxAge: 31536000000 })
+  res.cookie(&#39;a&#39;, 1);
+
+  // Or override the defaults
+  res.cookie(&#39;b&#39;, 1, { maxAge: 86400 });
+
+  // Express will use maxAge over expires, but cookie-domain will remove maxAge and pass expires if you tell it to
+  res.cookie(&#39;c&#39;, 1, { expires: false });
+
+  // Pass false to tell cookie-domain not to pass options at all.
+  res.cookie(&#39;d&#39;, 1, false);
+
+  res.send(&#39;hello world&#39;);
+});</code></pre>
+<h1 id="installation-and-environment-setup">Installation and Environment Setup</h1>
+<p>Install node.js (See download and install instructions here: <a href="http://nodejs.org/">http://nodejs.org/</a>).</p>
+<p>Clone this repository</p>
+<pre><code>&gt; git clone git@github.com:mantacode/node-cookie-domain.git</code></pre>
+<p>cd into the directory and install the dependencies</p>
+<pre><code>&gt; cd cookie-domain
+&gt; npm install &amp;&amp; npm shrinkwrap --dev</code></pre>
+<h1 id="running-tests">Running Tests</h1>
+<p>Install coffee-script</p>
+<pre><code>&gt; npm install coffee-script -g</code></pre>
+<p>Tests are run using grunt.  You must first globally install the grunt-cli with npm.</p>
+<pre><code>&gt; sudo npm install -g grunt-cli</code></pre>
+<h2 id="unit-tests">Unit Tests</h2>
+<p>To run the tests, just run grunt</p>
+<pre><code>&gt; grunt spec</code></pre>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

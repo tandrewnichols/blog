@@ -1,4 +1,10 @@
 module.exports = {
+  options: {
+    markddownOptions: {
+      gfm: true,
+      highlight: 'manual'
+    }
+  },
   posts: {
     files: [
       {
@@ -9,11 +15,7 @@ module.exports = {
       }
     ],
     options: {
-      template: 'views/post.html',
-      markdownOptions: {
-        gfm: true,
-        highlight: 'manual'
-      }
+      template: 'views/post.html'
     }
   },
   pages: {
@@ -26,28 +28,20 @@ module.exports = {
       }
     ],
     options: {
-      template: 'views/page.html',
-      markdownOptions: {
-        gfm: true,
-        highlight: 'manual'
-      }
+      template: 'views/page.html'
     }
   },
-  modules: {
+  docs: {
     files: [
       {
         expand: true,
-        src: 'modules/**/*.md',
+        src: 'docs/**/*.md',
         dest: 'views',
         ext: '.html'
       }
     ],
     options: {
-      template: 'views/module.html',
-      markdownOptions: {
-        gfm: true,
-        highlight: 'manual'
-      }
+      template: 'views/doc.html'
     }
   }
 };

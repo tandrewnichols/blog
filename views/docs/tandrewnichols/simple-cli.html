@@ -1,0 +1,130 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/tandrewnichols/simple-cli"><img src="https://travis-ci.org/tandrewnichols/simple-cli.png" alt="Build Status"></a> <a href="https://npmjs.org/package/simple-cli"><img src="http://img.shields.io/npm/dm/simple-cli.svg" alt="downloads"></a> <a href="https://npmjs.org/package/simple-cli"><img src="http://img.shields.io/npm/v/simple-cli.svg" alt="npm"></a> <a href="https://codeclimate.com/github/tandrewnichols/simple-cli"><img src="https://codeclimate.com/github/tandrewnichols/simple-cli/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/tandrewnichols/simple-cli"><img src="https://codeclimate.com/github/tandrewnichols/simple-cli/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://david-dm.org/tandrewnichols/simple-cli"><img src="https://david-dm.org/tandrewnichols/simple-cli.png" alt="dependencies"></a></p>
+<p><a href="https://nodei.co/npm/simple-cli.png?downloads=true"><img src="https://nodei.co/npm/simple-cli.png?downloads=true" alt="NPM info"></a></p>
+<h1 id="simple-cli">simple-cli</h1>
+<p>A simple wrapper for grunt implementations of command line APIs</p>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-bash">npm install --save simple-cli</code></pre>
+<h2 id="usage">Usage</h2>
+<p>This module is simple to use (hence the name). In your grunt task declaration, require this module and invoke it as follows:</p>
+<pre><code class="lang-javascript">var simpleCli = require(&#39;simple-cli&#39;);
+
+module.exports = function(grunt) {
+  // This is essentially the body of the &quot;grunt-simple-git&quot; plugin
+  grunt.registerMultiTask(&#39;git&#39;, &#39;A git wrapper&#39;, function() {
+    simpleCli.spawn(grunt, this, &#39;git&#39;, this.async() /* or some other callback */);
+  });
+};</code></pre>
+<p>This module allows any command on the wrapped cli to be invoked as a target with any options specified under options. Given the above setup:</p>
+<pre><code class="lang-javascript">grunt.initConfig({
+  git: {
+    add: {
+      options: {
+        f: true, // short option as a flag
+        all: true // long option as a flag
+      }
+    },
+    log: {
+      options: {
+        n: 1, // short option with a value
+        &#39;author=&#39;: &#39;anichols&#39;, // equal style option
+        nameOnly: true // long option as a flag - options are camelCased in the config
+      }
+    },
+    push: {
+      cmd: &#39;push origin master&#39; // sub-commands (i.e. options that don&#39;t have &quot;--&quot; in front of them
+    },
+    show: {
+      rawArgs: &#39;-- config/*.json&#39;, // raw args in any format - can also be an array
+      cmd: &#39;show HEAD&#39;
+    },
+    // tasks can have arbitrary names, just use cmd to specify the actual command
+    travis: {
+      cmd: &#39;checkout travis&#39;
+    },
+    // that lets you have more than one task that performs the same command
+    master: {
+      cmd: &#39;checkout master&#39;
+    },
+    diff: &#39;diff master&#39;, // short style
+    pull: {
+      options: {
+        // Additional, non-command specific, options
+        cwd: &#39;../..&#39;, // cwd to pass to child_process.spawn
+        stdio: [null, process.stdout, null], // stdio to pass to child_process.spawn - use false to turn of stdio
+        force: true // Do not fail the grunt task chain if this task fails
+      }
+    },
+    commit: {
+      options: {
+        squash: &#39;some-branch&#39;, // long option with a value
+        message: &#39;{{ message }}&#39; // Prompt for message at time of task run
+      }
+    },
+    branch: {
+      // Listen to stdout (or stderr or stdin) and do something with the result
+      options: {
+        // As an object
+        stdout: {
+          &#39;event&#39;: &#39;data&#39;,
+          fn: function(data) {
+            console.log(data.toString()); // But obviously, do more than this
+          }
+        },
+        // As a function
+        stderr: function(data) {
+          console.log(data.toString()); // Ditto
+        }
+      }
+    }
+  },
+  istanbul: {
+    instrument: {
+      options: {
+        x: [&#39;**/node_modules/**&#39;, &#39;**/bower_components/**&#39;] // Pass multiple options
+      },
+      cmd: &#39;instrument app&#39;
+    }
+  }
+});</code></pre>
+<p>The following commands are run when these tasks are invoked:</p>
+<p><code>grunt git:add</code>: <code>git add -f --add</code></p>
+<p><code>grunt git:log</code>: <code>git log -n 1 --author=anichols --name-only</code></p>
+<p><code>grunt git:push</code>: <code>git push origin master</code></p>
+<p><code>grunt git:show</code>: <code>git show HEAD -- config/*.json</code></p>
+<p><code>grunt git:travis</code>: <code>git checkout travis</code></p>
+<p><code>grunt git:master</code>: <code>git checkout master</code></p>
+<p><code>grunt git:diff</code>: <code>git diff master</code></p>
+<p><code>grunt git:pull</code>: <code>git pull</code> in <code>../../</code> directory with process.stdout as the child&#39;s stdout and ignoring failures</p>
+<p><code>grunt git:commit</code>: <code>git commit --squash some-branch --message &quot;&lt;value entered at run time&gt;&quot;</code></p>
+<p><code>grunt istanbul:instrument</code>: <code>instanbul instrument app -x **/node_modules/** -x **/bower_components**</code></p>
+<p>You can, alternatively, provide interpolation values via <code>grunt.option</code>, so <code>commit</code> could also be run as <code>grunt git:commit --message &quot;Blah blah blah&quot;</code> to achieve the same effect.</p>
+<p>See <a href="https://github.com/tandrewnichols/grunt-simple-git">grunt-simple-git</a> and <a href="https://github.com/tandrewnichols/grunt-simple-npm">grunt-simple-npm</a> for examples and more exhaustive documentation.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

@@ -1,18 +1,19 @@
 {
   "tandrewnichols": [
     {
-      "name": "grunt-simple-istanbul"
+      "name": "indeed",
+      "description": "Boolean helpers for node.js",
+      "version": "v1.0.6"
     },
     {
-      "name": "indeed"
-    },
-    {
-      "name": "varity"
+      "name": "varity",
+      "description": "A simple wrapper to make variable length arities easier to manage",
+      "version": "v1.0.3"
     },
     {
       "name": "grunt-simple-git",
       "description": "A simple API for using git via grunt",
-      "version": "v0.1.0",
+      "version": "v0.0.2",
       "coverage": "100%"
     },
     {
@@ -22,42 +23,46 @@
       "coverage": "100%"
     },
     {
+      "name": "key-list",
+      "description": "Get the list of keys used in a string with interpolation",
+      "version": "v0.0.1",
+      "coverage": "100%"
+    },
+    {
+      "name": "grunt-simple-istanbul",
+      "description": "A grunt wrapper for istanbul",
+      "version": "v0.0.1",
+      "coverage": "100%"
+    },
+    {
       "name": "grunt-travis-matrix",
       "description": "Run matrix-specific scripts during travis builds",
       "version": "v0.0.4",
       "coverage": "100%"
     },
     {
-      "name": "key-list",
-      "description": "Get the list of keys used in a string with interpolation",
-      "version": "v0.1.1",
-      "coverage": "100%"
+      "name": "task-master",
+      "description": "A helper to make Grunt task declaration and organization cleaner.",
+      "version": "v2.2.0",
+      "coverage": "0%"
     },
     {
       "name": "simple-cli",
       "description": "A simple wrapper for grunt implementations of command line APIs",
       "version": "v0.1.1",
       "coverage": "100%"
-    },
-    {
-      "name": "task-master",
-      "description": "A helper to make Grunt task declaration and organization cleaner.",
-      "version": "v2.0.2",
-      "coverage": "100%"
     }
   ],
   "mantacode": [
     {
-      "name": "expressive",
-      "description": "Adds environment-specific hooks to express apps",
-      "version": "v0.0.1",
-      "coverage": "100%"
+      "name": "cookie-domain",
+      "description": "Express middleware for dynamically setting the cookie domain.",
+      "version": "v0.1.0"
     },
     {
-      "name": "file-manifest",
-      "description": "Require all the files in a directory into a single object",
-      "version": "v1.0.3",
-      "coverage": "100%"
+      "name": "mixpanel-event-import",
+      "description": "Import historical events into mixpanel",
+      "version": "v0.0.1"
     },
     {
       "name": "kindly",
@@ -72,13 +77,22 @@
       "coverage": "100%"
     },
     {
-      "name": "mixpanel-event-import"
+      "name": "expressive",
+      "description": "Adds environment-specific hooks to express apps",
+      "version": "v0.0.1",
+      "coverage": "100%"
     },
     {
-      "name": "cookie-domain"
+      "name": "file-manifest",
+      "description": "Require all the files in a directory into a single object",
+      "version": "v1.0.3",
+      "coverage": "100%"
     },
     {
-      "name": "safe-obj"
+      "name": "safe-obj",
+      "description": "Underscore helpers to make object accessors safe",
+      "version": "v1.0.2",
+      "coverage": "100%"
     }
   ]
 }

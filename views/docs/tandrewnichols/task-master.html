@@ -1,0 +1,205 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/tandrewnichols/task-master"><img src="https://travis-ci.org/tandrewnichols/task-master.png" alt="Build Status"></a> <a href="https://npmjs.org/package/task-master"><img src="http://img.shields.io/npm/dm/task-master.svg" alt="downloads"></a> <a href="https://npmjs.org/package/task-master"><img src="http://img.shields.io/npm/v/task-master.svg" alt="npm"></a> <a href="https://codeclimate.com/github/tandrewnichols/task-master"><img src="https://codeclimate.com/github/tandrewnichols/task-master/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/tandrewnichols/task-master"><img src="https://codeclimate.com/github/tandrewnichols/task-master/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://david-dm.org/tandrewnichols/task-master"><img src="https://david-dm.org/tandrewnichols/task-master.png" alt="dependencies"></a></p>
+<p><a href="https://nodei.co/npm/task-master.png?downloads=true"><img src="https://nodei.co/npm/task-master.png?downloads=true" alt="NPM info"></a></p>
+<h1 id="task-master">task-master</h1>
+<p>A helper to make Grunt task declaration and organization cleaner.</p>
+<h2 id="installation">Installation</h2>
+<p><code>npm install task-master --save-dev</code></p>
+<h2 id="summary">Summary</h2>
+<p><code>grunt.loadTasks</code> is a nice way to separate out tasks into separate files and keep your Gruntfile from getting hairy, but there&#39;s no clean way to do the same with configuration. This module is a small wrapper that allows both tasks and configuration to be abstracted out of your Gruntfile into separate modules.</p>
+<p><strong>NOTE: This is different than <code>taskmaster</code> (without the hyphen), which is some sort of task runner written by someone who must not know that grunt exists.</strong></p>
+<h2 id="usage">Usage</h2>
+<p>Step 1: Define your tasks and configuration in separate files where the name of the file corresponds to the name of the task. (Task-master can load <code>.js</code>, <code>.coffee</code>, <code>.json</code>, and <code>.yml</code>, so specify your configuration in whatever format you prefer. Obviously, however, if you need dynamic functionality, you&#39;ll need to use <code>.js</code> or <code>.coffee</code>.)</p>
+<pre><code>tasks
+  jshint.js
+  watch.js
+  myCustomTask.js</code></pre>
+<p>Step 2: Export either a literal configuration object or a function that accepts <code>grunt</code> and <code>context</code> (more on context below)  and returns a configuration object.</p>
+<p>tasks/jshint.js</p>
+<pre><code class="lang-javascript">module.exports = {
+  options: {
+    curly: true,
+    eqeqeq: true
+  },
+  &#39;default&#39;: &#39;**/*.js&#39;
+};</code></pre>
+<p>tasks/watch.js</p>
+<pre><code class="lang-javascript">module.exports = {
+  js: {
+    files: &#39;**/*.js&#39;,
+    tasks: &#39;jshint&#39;
+    options: {
+      cwd: &#39;server&#39;
+    }
+  }
+};</code></pre>
+<p>tasks/myCustomTask.js</p>
+<pre><code class="lang-javascript">module.exports = function(grunt) {
+  // or registerMultiTask
+  grunt.registerTask(&#39;myCustomTask&#39;, &#39;A task that does really neat stuff&#39;, function() {
+    // The neat stuff...
+  });
+  // You probably don&#39;t need to return configuration for tasks you write,
+  // but you could use a function in a plugin&#39;s task configuration to do
+  // different things based on the environment (for example)
+  return {
+    options: {
+      extraNeatness: true
+    }
+  };
+};</code></pre>
+<p>Additionally, as of version 2.2.0, you can even define target-specific configuration files in the form <code>tasks/&lt;task&gt;.&lt;target&gt;.{js,json,coffee,yml}</code>. If, for example, you have a really big <code>copy</code> task, you could break it out into target-specific files like <code>tasks/copy.dev.js</code> and <code>tasks/copy.dist.js</code>, which will result in a configuration object that looks like:</p>
+<pre><code class="lang-javascript">{
+  copy: {
+    dev: {
+      // exports of copy.dev.js
+    },
+    dist: {
+      // exports of copy.dist.js
+    }
+  }
+}</code></pre>
+<p>Incidentally, this will also work with task-level options, if you define (e.g.) a <code>tasks/copy.options.js.</code></p>
+<p>Step 3: Call task-master from your Gruntfile and pass it <code>grunt</code> and an optional options object. No need to call <code>initConfig</code> or <code>loadNpmTasks</code> as task-master does both for you.</p>
+<p>Gruntfile.js</p>
+<pre><code class="lang-javascript">var taskMaster = require(&#39;task-master&#39;);
+
+module.exports = function(grunt) {
+  taskMaster(grunt);
+
+  // register other tasks (like default) etc.
+};</code></pre>
+<p>If you are not passing any options, you can actually shorten this to:</p>
+<pre><code class="lang-javascript">module.exports = require(&#39;task-master&#39;);</code></pre>
+<h2 id="options">Options</h2>
+<p>Task-master is highly configurable. You can pass any of the following options to change the default behavior.</p>
+<h3 id="devdependencies">devDependencies</h3>
+<p>Indicates whether to load tasks from <code>devDependencies</code>. The default is true, and probably 99% of the time, that&#39;s what you want. I can&#39;t actually think of a time when you wouldn&#39;t want this to be true. Even if your grunt plugins are under <code>dependencies</code>, having this property set to true probably won&#39;t make a difference. But for completeness:</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { devDependencies: false });</code></pre>
+<h3 id="dependencies">dependencies</h3>
+<p>Indicates whether to load tasks from <code>dependencies</code>. The default is false. Most of the time you don&#39;t need this, but there are some cases where you do, for instance for running builds on a heroku server (which runs <code>npm install --production</code> and therefore doesn&#39;t have access to <code>devDependencies</code>).</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { dependencies: true });</code></pre>
+<h3 id="peerdependencies">peerDependencies</h3>
+<p>Load tasks from peerDependencies. Probably don&#39;t do this unless you have a really good reason.</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { peerDependencies: true });</code></pre>
+<h3 id="optionaldependencies">optionalDependencies</h3>
+<p>Load tasks from optionalDependencies. Again, this seems like a bad idea in general. But it&#39;s there . . . because if it&#39;s not, someone will undoubtedly want it and ask about it.</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { optionalDependencies: true });</code></pre>
+<h3 id="pattern">pattern</h3>
+<p>String or regex pattern for matching grunt plugins. Default is <code>/^grunt-/</code>.</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { pattern: /^grunt-contrib-`/ }); // or &#39;grunt-contrib-&#39;</code></pre>
+<h3 id="include">include</h3>
+<p>Tasks to include that don&#39;t match the pattern. If you have one or two plugins to load that don&#39;t start with &quot;grunt-&quot; (do such plugins exist?), it&#39;s probably better to specify them here, rather than try to write a custom pattern that will match everything you need. This can be a string plugin name or an array of string plugin names.</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { include: [&#39;not-grunt-foo&#39;, &#39;and-not-grunt-bar&#39;] }); // or for one: { include: &#39;blah-blah&#39; }</code></pre>
+<h3 id="exclude">exclude</h3>
+<p>Tasks to exclude that <em>do</em> match the pattern. If you want to load all &quot;grunt-&quot; plugins, <em>except</em> grunt-foo-bar, you can do that here. Again, this can be a string plugin name or an array of string plugin names.</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { exclude: [&#39;grunt-foo-bar&#39;] }); // or: { exclude: &#39;grunt-foo-bar&#39; }</code></pre>
+<h3 id="ignore">ignore</h3>
+<p>Files in the directories from which tasks are loaded that should be ignored. Files that start with <code>_</code> are ignored by default, but you can specify other filenames (relative to the directory tasks are in) to leave out of the config. Again, this can be a string or an array.</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { ignore: &#39;configuration.json&#39; });</code></pre>
+<h3 id="tasks">tasks</h3>
+<p>Directory or directories to load plugins from. Defaults to \<project_root\>/tasks. This can be a string or list of strings.</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { tasks: &#39;plugins&#39; });</code></pre>
+<h3 id="context">context</h3>
+<p>Context is an object of additional properties that can be passed, which is used in a few places. It&#39;s passed to files in task directories that export functions. So if you want to use some configuration in <code>tasks/foo.js</code>, you can accept it as the second parameter:</p>
+<pre><code class="lang-javascript">module.exports = function(grunt, context) {
+  // Do stuff with context
+};</code></pre>
+<p>More importantly, keys under context are added to your grunt config at the top level. So if you, for instance, like having access to your package.json contents in your config, you can pass it under context:</p>
+<pre><code class="lang-javascript">taskMaster(grunt, { context: { pkg: require(&#39;./package&#39;) } });</code></pre>
+<p>Then you can use it in your interpolation as normal:</p>
+<pre><code class="lang-javascript">{
+  files: {
+    &#39;dist/&lt;%= pkg.name %&gt;.min.js&#39;: &#39;./src/main.js&#39;
+  }
+}</code></pre>
+<p>This is also useful if you reuse file patterns all over the place. Just add a <code>files</code> key under context and access them with:</p>
+<p><code>&lt;%= files.js.vendor %&gt;</code></p>
+<h3 id="alias">alias</h3>
+<p>An object of aliases to add to grunt, where the key is the alias name and the value is the tasks to run.</p>
+<pre><code class="lang-javascript">taskMaster(grunt, {
+  alias: {
+    default: [&#39;jshint&#39;, &#39;mocha:all&#39;],
+    build: [&#39;clean:dist&#39;, &#39;concat:dist&#39;, &#39;uglify:dist&#39;]
+  }
+});</code></pre>
+<h3 id="jit">jit</h3>
+<p>As of version 2.2.0, <code>task-master</code> will delegate to <code>jit-grunt</code> for loading npm grunt plugins (which incidentally makes the &quot;dependency&quot; options above unnecessary, since <code>jit-grunt</code> loads from <code>node_modules</code> regardless of where in the package a dependency is defined), which can significantly speed up your build time. If you don&#39;t want to use <code>jit-grunt</code>, you can pass <code>jit: false</code>, and <code>task-master</code> will load in the way it did prior to 2.2.0. But there&#39;s basically no reason you should want to do this. Alternatively, you can pass jit as an object, and that object will be passed into <code>jit-grunt</code> as the <a href="https://github.com/shootaroo/jit-grunt#static-mappings">static-mappings</a>. So you can do something like this:</p>
+<pre><code class="lang-javascript">taskMaster(grunt, {
+  jit: {
+    ngtemplates: &#39;grunt-angular-templates&#39;,
+    spec: &#39;grunt-jasmine-bundle&#39;
+  }
+});</code></pre>
+<h2 id="loading-from-files">Loading from files</h2>
+<p>But the really cool thing about task-master is that you can load some of these options from files by passing a string file path (or a list of string file paths) instead of a literal object. You can even pass globstar patterns. You can load the entire options object, the context, or the aliases from a file. The following examples assume you are using the default tasks directory:</p>
+<pre><code class="lang-javascript">// loads the options object from \&lt;project_root\&gt;/tasks/_opts.json
+taskMaster(grunt, &#39;_opts.json&#39;);</code></pre>
+<pre><code class="lang-javascript">// loads aliases from \&lt;project_root\&gt;/tasks/_aliases.json AND \&lt;project_root\&gt;/tasks/_alias.js
+taskMaster(grunt, { aliases: [&#39;_aliases.json&#39;, &#39;_alias.json&#39;] });</code></pre>
+<pre><code class="lang-javascript">// loads a context object from \&lt;project_root\&gt;/tasks/_context.json
+// and any files in \&lt;project_root\&gt;/tasks that start with &quot;_context.&quot;
+// and end with &quot;.json&quot;
+taskMaster(grunt, { context: [&#39;_context.json&#39;, &#39;_context.*.json&#39;] });</code></pre>
+<p>These files can be <code>.js</code>, <code>.coffee</code>, <code>.json</code>, or <code>.yaml</code> files. If they export a function, it will be invoked, which let&#39;s you programmatically determine the results. E.g.:</p>
+<pre><code class="lang-javascript">// In an alias file
+module.exports = function() {
+  // Except . . . do something dynamic here
+  return {
+    default: [&#39;jshint&#39;, &#39;mocha:all&#39;],
+    build: [&#39;clean:dist&#39;, &#39;concat:dist&#39;, &#39;uglify:dist&#39;]
+  };
+};</code></pre>
+<p>The results of these files will be merged into a single object.</p>
+<p>But it gets even better. Because I think you shouldn&#39;t have to pass a huge messy configuration object (that&#39;s exactly what this library is trying to <em>undo</em>) you can load content from files automatically if they have specific, canonical names. Just add a <code>&quot;_taskmaster.opts*.{js,coffee,json,yml}&quot;</code> to your tasks directory (or wherever you load plugins from), and it will automatically be loaded as your options. Add a <code>&quot;_taskmaster.context*.{js,coffee,json,yml}&quot;</code> for your context and a <code>&quot;_taskmaster.alias*.{js,coffee,json,yml}&quot;</code> for your aliases. And see that star hiding in the middle there? That means you can even create multiple canonical files as long as they match that pattern.</p>
+<p>Why would you want to load configuration from multiple files you ask? I&#39;m envisioning a team scenario where some members of the team might want to (for example) define their own task aliases that aren&#39;t part of the normal aliases. So you have a <code>_taskmaster.alias.json</code> file for all the common aliases, and then pop this in your <code>.gitignore</code>:</p>
+<p><code>tasks/_aliases.json</code></p>
+<p>Now each member can add their own aliases without interfering with other members. Don&#39;t like typing <code>grunt mochaTest</code>, which is the task name in the main aliases file? Just add a <code>tasks/_aliases.json</code> that looks like this:</p>
+<pre><code class="lang-javascript">var grunt = require(&#39;grunt&#39;);
+
+module.exports = function() {
+  grunt.renameTask(&#39;mochaTest&#39;, &#39;mocha&#39;);
+  return {
+    test: [&#39;mocha&#39;],
+    w: [&#39;build&#39;, &#39;doStuff&#39;, &#39;mocha&#39;, &#39;watch&#39;]
+  };
+};</code></pre>
+<p>You can add your own short hand aliases or combinations of tasks for testing purposes.</p>
+<h2 id="overrides">Overrides</h2>
+<p>As an extension of the alias overriding above, you can override task configuration by create <code>_taskmaster.override.&lt;task&gt;.{js,json,coffee,yml}</code> files. For instance, if you have a <code>tasks/copy.js</code>, you can add a <code>_taskmaster.override.copy.js</code> and the override exports will be merged into the regular configuration, with the overrides taking precedence. This feature is primarily for teams, so that you can add <code>tasks/_taskmaster.override.*</code> to your <code>.gitignore</code> and then setup developer-specific configuration that doesn&#39;t have to be shared by the team.</p>
+<h2 id="a-note-on-context">A Note on Context</h2>
+<p>The canonical context file path is included for completeness and uniformity, but astute readers will note that it is not actually necessary, since <code>task-master</code> merges files in with the filename as a property at the top level of the grunt config. This means that creating a <code>tasks/files.js</code> will have the same effect as creating a <code>_taskmaster.context.js</code> file that exports a <code>files</code> object. Which you choose will mostly depend on taste and whether you like breaking things up into smaller files or keeping everything of the same type together.</p>
+<h2 id="running-tests">Running tests</h2>
+<pre><code class="lang-bash">git clone git@github.com:tandrewnichols/task-master.git
+cd task-master
+npm install
+npm install grunt-cli mocha -g
+grunt or npm test</code></pre>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

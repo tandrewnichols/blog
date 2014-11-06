@@ -1,0 +1,284 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="mlm plm col-xs-2">
+          <div class="list-group fixed-sidebar-top" data-spy="affix" data-offset-top="1">
+            <a id="github-{{= moduleName }}" ng-init="mixpanel.track_links('#github-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'view' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item"><span class="fa fa-github"></span><span class="mls">View it on Github</span></a>
+            <a id="fork-{{= moduleName }}" ng-init="mixpanel.track_links('#fork-{{= moduleName }}', 'Click', { target: 'github', module: '{{= moduleName }}', action: 'fork' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item"><span class="fa fa-code-fork"></span><span class="mls">Fork it</span></a>
+            <a id="npm-{{= moduleName }}" ng-init="mixpanel.track_links('#npm-{{= moduleName }}', 'Click', { target: 'npm', module: '{{= moduleName }}', action: 'view' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item"><span class="ta ta-npm"></span><span class="mls">View it on npm</span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item"><span class="fa fa-twitter"></span><span class="mls">Tweet it</span></a>
+            <a href="/coverage/{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', module: '{{= moduleName }}', action: 'view' })" class="list-group-item"><span class="fa fa-code"></span><span class="mls">View test coverage</span></a>
+          </div>
+          <div class="list-group text-center fixed-sidebar" data-spy="affix" data-offset-top="1" style="font-size: 20pt;">
+            <a id="btn-github-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-github-{{= moduleName }}', 'Click', { target: 'github', page: '{{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on Github"><span class="fa fa-github"></span></a>
+            <a id="btn-fork-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-fork-{{= moduleName }}', 'Click', { target: 'github', page: 'fork {{= moduleName }}' })" href="https://github.com/{{= author }}/{{= moduleName }}/fork" target="_blank" class="list-group-item" title="Fork it"><span class="fa fa-code-fork"></span></a>
+            <a id="btn-npm-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-npm-{{= moduleName }}', 'Click', { target: 'npm', page: '{{= moduleName }}' })" href="https://www.npmjs.org/package/{{= moduleName }}" target="_blank" class="list-group-item" title="View it on npm"><span class="ta ta-npm"></span></a>
+            <a href="http://twitter.com/share" tweet='Check out "{{= moduleName }}" at' tweet-tags="nodejs" tweet-topic="{{= moduleName }}" class="list-group-item" title="Tweet it"><span class="fa fa-twitter"></span></a>
+            <a id="btn-coverage-{{= moduleName }}" ng-init="mixpanel.track_links('#btn-coverage-{{= moduleName }}', 'Click', { target: 'coverage', page: '{{= moduleName }}' })" href="/coverage/{{= moduleName }}" class="list-group-item" title="View test coverage"><span class="fa fa-code"></span></a>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <p><a href="https://travis-ci.org/tandrewnichols/indeed"><img src="https://travis-ci.org/tandrewnichols/indeed.png" alt="Build Status"></a> <a href="https://npmjs.org/package/indeed"><img src="http://img.shields.io/npm/dm/indeed.svg" alt="downloads"></a> <a href="https://npmjs.org/package/indeed"><img src="http://img.shields.io/npm/v/indeed.svg" alt="npm"></a> <a href="https://codeclimate.com/github/tandrewnichols/indeed"><img src="https://codeclimate.com/github/tandrewnichols/indeed/badges/gpa.svg" alt="Code Climate"></a></p>
+<h1 id="indeed">Indeed</h1>
+<p>Boolean helpers for node.js</p>
+<h2 id="why-bother-">Why Bother?</h2>
+<p>Simple booleans are efficient and not that hard to use in javascript, so what&#39;s the value of a DDL for booleans? Mainly, I just find booleans one of those things that, if I think too hard about them, then I get lost. The project was born when I had</p>
+<pre><code class="lang-javascript">if (!oneThing &amp;&amp; anotherThing) {
+  // . . .
+}</code></pre>
+<p>but then realized I actually needed the negative of <code>anotherThing</code>. So I changed it to</p>
+<pre><code class="lang-javascript">if (!oneThing &amp;&amp; !anotherThing) {
+  // . . .
+}</code></pre>
+<p>at which point, I started wondering if that was the same as</p>
+<pre><code class="lang-javascript">if (!(oneThing &amp;&amp; anotherThing)) {
+  // . . .
+}</code></pre>
+<p>And then I thought, what I really want is to say</p>
+<pre><code class="lang-javascript">if (neither(oneThing).nor(anotherThing)) {
+  // do something
+}</code></pre>
+<p>and thus the module &quot;neither&quot; was born. And then I later changed it to &quot;indeed&quot;, which was more globally usable as a boolean helper. A bit of an anti-climatic ending, really. At any rate, this library is just a set of boolean helpers to put <code>if</code> statements into English-like syntax. Note that I used to be an English teacher and thus, that syntax is extremely opinionated and grammatically correct. Grammar is your friend.</p>
+<p><img src="http://50gooddeeds.files.wordpress.com/2012/06/howcangooglesearch.jpg" alt="Grammar Matters"></p>
+<p>Ahem . . . now on with the API.</p>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-bash">npm install indeed --save</code></pre>
+<p>then</p>
+<pre><code class="lang-javascript">var helpers = require(&#39;indeed&#39;);</code></pre>
+<p>or</p>
+<pre><code class="lang-javascript">// Set up global methods.
+// Mainly useful because I don&#39;t like having to say &quot;if (helpers.indeed(a)...&quot;
+require(&#39;indeed&#39;)();</code></pre>
+<h2 id="usage">Usage</h2>
+<p>When you <code>require(&#39;indeed&#39;)</code>, you&#39;ll get an object with methods that begin boolean chains: <code>indeed</code>, <code>either</code>, <code>neither</code>, <code>both</code>, <code>allOf</code>, <code>oneOf</code>, <code>noneOf</code>, <code>anyOf</code>, <code>nOf</code>, and <code>expect</code>. These function are roughly the same - they allow you to assess conditions using natural language. These conditions are processed first in first out, so they can behave slightly differently than normal boolean logic. For example: <code>if (a &amp;&amp; b || c)</code> becomes <code>if (indeed(a).and(b).or(c))</code> as you might expect. However, <code>if (indeed(a).or(b).and(c))</code> actually means <code>if( (a || b) &amp;&amp; c)</code> because of how order of operations works. See <a href="#grouping">Grouping</a> below for more information.</p>
+<h4 id="indeed">Indeed</h4>
+<p>Begins a generic chain.</p>
+<p>Chainable methods: <code>and</code>, <code>andNot</code>, <code>or</code>, <code>orNot</code>, <code>butNot</code>, and <code>xor</code><br>
+Chain limit: none</p>
+<pre><code class="lang-javascript">if (indeed(a).and(b).butNot(c).or(d).test())</code></pre>
+<p>Chaining is off by default with <code>indeed</code>, so that you can make simple comparisons:</p>
+<pre><code class="lang-javascript">// returns &#39;true&#39;
+indeed(a).is.true()
+
+// returns &#39;indeed&#39; so that you can assert more conditions
+indeed.chain(a).is.true() // .and(b).is.false().test()</code></pre>
+<p>When chaining, use <code>.test()</code>, <code>.val()</code>, or <code>.eval()</code> to terminate the chain and evaluate the total result of the expression. Non-chaining is optimized for <a href="#matching">comparisons</a>, so <code>indeed(a).is.defined()</code> will return <code>true</code> or <code>false</code> whereas <code>indeed(a)</code> by itself, will not. To assert on the definedness of a single thing, 1) chain: <code>if (indeed.chain(a).test())</code>, 2) use <code>defined()</code>: <code>if (indeed(a).is.defined())</code>, 3) use regular booleans: <code>if (a)</code>. Calling one of the chain methods without calling a comparison will automatically turn on chaining, so that you can say <code>if (indeed(a).and(b).and(c).test())</code> rather than <code>if (indeed.chain(a).and(b).and(c).test())</code>.</p>
+<p><code>indeed</code> is also equipped with some negation tools: <code>not</code> and <code>Not</code>. <code>not</code> simply negates the first condition:</p>
+<pre><code class="lang-javascript">if (indeed.not(a).and(b).test())</code></pre>
+<p>is equivalent to</p>
+<pre><code class="lang-javascript">if (!a &amp;&amp; b)</code></pre>
+<p><code>Not</code> negates the result of the chain, so</p>
+<pre><code class="lang-javascript">if (indeed.Not(a).and(b).test())</code></pre>
+<p>is equivalent to</p>
+<pre><code class="lang-javascript">if (!(a &amp;&amp; b))</code></pre>
+<p>These too can be chained:</p>
+<pre><code class="lang-javascript">if (indeed.not.chain(a).and(b).test())
+if (indeed.Not.chain(a).or(b).test())</code></pre>
+<h4 id="either">Either</h4>
+<p>Begins a chain where one of two conditions (or both) should be true.</p>
+<p>Chainable methods: <code>or</code><br>
+Chain limit: 1<br>
+Optimized for: existence checks</p>
+<pre><code class="lang-javascript">if (either(a).or(b))
+if (either.chain(a).is.null().or(b).is.defined().test())</code></pre>
+<h4 id="neither">Neither</h4>
+<p>Begins a chain where both conditions should be false. </p>
+<p>Chainable methods: <code>nor</code><br>
+Chain limit: 1<br>
+Optimized for: existence checks</p>
+<pre><code class="lang-javascript">if (neither(a).nor(b))
+if (neither.chain(a).equals(&#39;foo&#39;).nor(b).is.a(&#39;date&#39;).test())</code></pre>
+<h4 id="both">Both</h4>
+<p>Begins a chain where both conditions should be true.</p>
+<p>Chainable methods: <code>and</code><br>
+Chain limit: 1<br>
+Optimized for: existence checks</p>
+<pre><code class="lang-javascript">if (both(a).and(b))
+if (both.chain(a).is.false().and(b).contains(&#39;bar&#39;).test())</code></pre>
+<h4 id="allof">AllOf</h4>
+<p>Begins a chain where all conditions should be true. Incidentally, it only makes sense to use this with more than two conditions. With two conditions only, use <code>both</code>.</p>
+<p>Chainable methods: <code>and</code><br>
+Chain limit: none<br>
+Chaining is on by default and cannot be turned off since any number of <code>and</code>&#39;s can be used</p>
+<pre><code class="lang-javascript">if (allOf(a).and(b).and(c).test())</code></pre>
+<h4 id="anyof">AnyOf</h4>
+<p>Begins a chain where at least one condition should be true.</p>
+<p>Chainable methods: <code>and</code><br>
+Chain limit: none<br>
+Chaining is on by default and cannot be turned off since any number of <code>and</code>&#39;s can be used</p>
+<pre><code class="lang-javascript">if (anyOf(a).and(b).and(c).test())</code></pre>
+<h4 id="oneof">OneOf</h4>
+<p>Begins a chain where exactly one condition should be true.</p>
+<p>Chainable methods: <code>and</code><br>
+Chain limit: none<br>
+Chaining is on by default and cannot be turned off since any number of <code>and</code>&#39;s can be used</p>
+<pre><code class="lang-javascript">if (oneOf(a).and(b).and(c).test())</code></pre>
+<h4 id="noneof">NoneOf</h4>
+<p>Begins a chain where all of the conditions should be false. With only two conditions, use <code>neither</code> instead.</p>
+<p>Chainable methods: <code>and</code><br>
+Chain limit: none<br>
+Chaining is on by default and cannot be turned off since any number of <code>and</code>&#39;s can be used</p>
+<pre><code class="lang-javascript">if (noneOf(a).and(b).and(c).test())</code></pre>
+<h4 id="nof">NOf</h4>
+<p><code>nOf</code> is the only helper that deviates from the standard structure. It accepts a number, and then any number of conditions, of which <em>exactly</em> that number must be true.</p>
+<p>Chainable methods: <code>and</code><br>
+Chain limit: none<br>
+Chaining is on by default and cannot be turned off since any number of <code>and</code>&#39;s can be used</p>
+<pre><code class="lang-javascript">if (n(2).of(a).and(b).and(c).test())</code></pre>
+<h4 id="expect">Expect</h4>
+<p>Expect is identical to indeed and has all it&#39;s additional properties. It adds only a couple things: a <code>throws</code> comparison function (detailed below) for asserting that a function throws an exception, a <code>with</code> function for passing args to a function that should throw, and <code>assert</code>, which is the same as <code>test</code> but sounds more test-ish.</p>
+<h2 id="grouping">Grouping</h2>
+<p>You can create groups of chains, which are also evaluated left to right, using the properties <code>And</code>, <code>But</code>, <code>Or</code>, and <code>Xor</code>. They do what you would expect:</p>
+<pre><code class="lang-javascript">if (indeed(a).or(b).And.indeed(c).test())
+
+if (indeed(a).and(b).Or.indeed(c).test())
+
+if (indeed(a).and(b).Xor.indeed(c).test())
+
+if (indeed(a).and(b).But.not.also(c).test())</code></pre>
+<p>The first example evaluates <code>a || b</code> first and then the result of that with <code>&amp;&amp; c</code>. <code>But</code> is an alias to <code>And</code> because sometimes it feels more natural to say &quot;but&quot; than &quot;and.&quot; <code>indeed</code> also has several aliases that can be used after joins depending on what you want to say next:</p>
+<pre><code class="lang-javascript">// just like indeed
+if (indeed(a).or(b).And.also(c).test())
+
+// also just like indeed
+if (indeed(a).and(b).Or.else(c).test())
+
+// just like indeed, but negated
+if (indeed(a).and(b).But.not.also(c).test())
+
+// just like indeed, but negates the entire next group
+if (indeed(a).and(b).But.Not.also(c).or(d).test())</code></pre>
+<p>Additionally, all of the entry points are chainable after a Grouping property:</p>
+<pre><code class="lang-javascript">if (indeed(a).or(b).But.neither(c).nor(d).test())</code></pre>
+<h2 id="matching">Matching</h2>
+<p>All the examples so far have been simple checks for definedness (for simplicity), but <code>indeed</code> has a wide variety of comparison functions as well. All of the chain starters also have the chainable properties <code>does</code>, <code>should</code>, <code>has</code>, <code>have</code>, <code>is</code>, <code>to</code>, <code>be</code>, <code>been</code>, <code>deep</code>, <code>deeply</code>, <code>not</code>, <code>Not</code>, <code>noCase</code>, and <code>caseless</code>. In addition, <code>indeed</code> and <code>expect</code> have <code>andDoes</code>, <code>andShould</code>, <code>andHas</code>, <code>andHave</code>, <code>andIs</code>, <code>andTo</code>, and <code>andBe</code> which let you use multiple comparisons on the same object (chaining must be turned on). Most of these simply allow chaining with natural language. However, <code>deep</code> and <code>deeply</code> turn on deep object comparison when using <code>equal</code> (below), <code>not</code> and <code>Not</code> negate the comparison, and <code>caseless</code> and <code>noCase</code> turn on case insensitivity (for <code>equal</code>, <code>contains</code>, <code>key</code>, <code>keys</code>, <code>value</code>, and <code>values</code>).</p>
+<h4 id="equals">Equals</h4>
+<p>Compares objects using <code>_.isEqual</code> when <code>deep</code> is applied and using <code>===</code> when it&#39;s not.</p>
+<pre><code class="lang-javascript">if (indeed(1).equals(1))
+if (indeed({foo: { bar: &#39;baz&#39;}}).deeply.equals({foo: { bar: &#39;baz&#39;}})</code></pre>
+<p>Aliases: <code>equal</code>, <code>eql</code></p>
+<h4 id="matches">Matches</h4>
+<p>Checks whether a string matches the given regular expression. If given a string, it will convert it to a RegExp object.</p>
+<pre><code class="lang-javascript">if (indeed(&#39;foobar&#39;).matches(/oba/)) // or .matches(&#39;oba&#39;)</code></pre>
+<p>Aliases: <code>match</code></p>
+<h4 id="a">A</h4>
+<p>For type comparisons. This is more strict that <code>typeof</code> however. It checks for constructor.name (allowing custom types) and, failing that, uses typeof. It is worth noting that both the type and comparison are lower cased, so &#39;string&#39;, &#39;String&#39;, &#39;strIng&#39;, etc. are all equivalent.</p>
+<pre><code class="lang-javascript">if (indeed(&#39;hello&#39;).is.a(&#39;string&#39;))</code></pre>
+<h4 id="an">An</h4>
+<p>Just like isA but preferable (for me anyway) for types beginning with vowels.</p>
+<pre><code class="lang-javascript">if (indeed([1, 2, 3]).is.an(&#39;array&#39;))</code></pre>
+<h4 id="contains">Contains</h4>
+<p>Indicates if the string or array contains the given value.</p>
+<pre><code class="lang-javascript">if (indeed(&#39;foo bar&#39;).contains(&#39;foo&#39;))
+if (indeed([1,2,3]).contains(1))</code></pre>
+<p>Aliases: <code>contain</code>, <code>indexOf</code></p>
+<h4 id="key">Key</h4>
+<p>Indicates if the object (or array, though somewhat by accident) contains the given key.</p>
+<pre><code class="lang-javascript">if (indeed({foo: &#39;bar&#39;}).has.key(&#39;foo&#39;))</code></pre>
+<p>Aliases: <code>containsKey</code>, <code>containKey</code>, <code>property</code></p>
+<h4 id="keys">Keys</h4>
+<p>Like <code>.key</code> but for multiple keys. Keys can be passed as an array or multiple strings.</p>
+<pre><code class="lang-javascript">if (indeed({foo: &#39;bar&#39;, baz: &#39;quux&#39;}).keys(&#39;foo&#39;, &#39;baz&#39;)
+if (indeed({foo: &#39;bar&#39;, baz: &#39;quux&#39;}).keys([&#39;foo&#39;, &#39;baz&#39;]))</code></pre>
+<p>Aliases: <code>containKeys</code>, <code>keys</code>, <code>properties</code></p>
+<h4 id="value">Value</h4>
+<p>Indicates if the object (or array) contains the given value.</p>
+<pre><code class="lang-javascript">if (indeed({foo: &#39;bar&#39;}).has.value(&#39;bar&#39;))</code></pre>
+<p>Aliases: <code>containsValue</code>, <code>containValue</code></p>
+<h4 id="values">Values</h4>
+<p>Like <code>.value</code> but for multiple values. Values can be passed as an array or multiple strings.</p>
+<pre><code class="lang-javascript">if (indeed({foo: &#39;bar&#39;, baz: &#39;quux&#39;}).has.values(&#39;bar&#39;, &#39;quux&#39;))
+if (indeed({foo: &#39;bar&#39;, baz: &#39;quux&#39;}).has.values([&#39;bar&#39;, &#39;quux&#39;]))</code></pre>
+<p>Aliases: <code>containsValues</code>, <code>containValues</code></p>
+<h4 id="defined">Defined</h4>
+<p>Returns true for everthing except undefined. A little cleaner looking than <code>if (typeof thing !== &#39;undefined&#39;)</code>, though that&#39;s exactly what it does under the hood.</p>
+<pre><code class="lang-javascript">if (indeed(&#39;string&#39;).is.defined())
+if (indeed(undefined).is.not.defined())</code></pre>
+<h4 id="null">Null</h4>
+<p>Returns true for null and false for everything else.</p>
+<pre><code class="lang-javascript">if (indeed(null).is.null())
+if (indeed(&#39;string&#39;).is.not.null())</code></pre>
+<h4 id="true">True</h4>
+<p>Not to be confused with truthiness, this checks for the literal value <code>true</code>.</p>
+<pre><code class="lang-javascript">if (indeed(true).is.true())</code></pre>
+<h4 id="false">False</h4>
+<p>Checks for the literal value <code>false</code>.</p>
+<pre><code class="lang-javascript">if (indeed(false).is.false())</code></pre>
+<h4 id="truthy">Truthy</h4>
+<p>Checks for truthiness.</p>
+<pre><code class="lang-javascript">if (indeed(1).is.truthy())</code></pre>
+<h4 id="falsy">Falsy</h4>
+<p>Checks for falsiness.</p>
+<pre><code class="lang-javascript">if (indeed(0).is.falsy())</code></pre>
+<h4 id="greaterthan">GreaterThan</h4>
+<p>Compares two numbers</p>
+<pre><code class="lang-javascript">if (indeed(1).is.greaterThan(0))</code></pre>
+<p>Aliases: <code>gt</code>, <code>above</code></p>
+<h4 id="lessthan">LessThan</h4>
+<pre><code class="lang-javascript">if (indeed(1).is.lessThan(2))</code></pre>
+<p>Aliases: <code>lt</code>, <code>below</code></p>
+<h4 id="greaterthanorequalto">GreaterThanOrEqualTo</h4>
+<pre><code class="lang-javascript">if (indeed(1).is.greaterThanOrEqualTo(1))</code></pre>
+<p>Aliases: <code>gte</code></p>
+<h4 id="lessthanorequalto">LessThanOrEqualTo</h4>
+<pre><code class="lang-javascript">if (indeed(1).is.lessThanOrEqualTo(1))</code></pre>
+<p>Aliases: <code>lte</code></p>
+<h2 id="mixin">Mixin</h2>
+<p>Additionally, <code>indeed</code> has a mixin method for extending these comparison methods. It takes an object of function names with corresponding functions.</p>
+<pre><code class="lang-javascript">indeed.mixin({
+  can: function(condition) {
+    return function(val) {
+      return typeof val[condition] === &#39;function&#39;;
+    }
+  },
+  beginsWith: function(condition) {
+    return function(val) {
+      return val.charAt(0).toLowerCase() === condition.toLowerCase();
+    }
+  }
+});</code></pre>
+<p>The custom functions should be in this form, where <code>condition</code> is the thing to match against and <code>val</code> is the original object (which seems a little backwards, since val is &quot;inside&quot;). These methods, for example, would be called like this:</p>
+<pre><code class="lang-javascript">if (indeed({ foo: function() {} }).can(&#39;foo&#39;).test())
+if (indeed(&#39;hello&#39;).beginsWith(&#39;h&#39;).test())</code></pre>
+<h4 id="tap">Tap</h4>
+<p>Executes a provided function, passing it <code>this</code>.</p>
+<pre><code class="lang-javascript">if (indeed(a).and(b).tap(console.log).or(c))</code></pre>
+<h2 id="as-an-assertion-library">As an Assertion Library</h2>
+<p>I didn&#39;t write <code>indeed</code> to be an assertion library, but when I discovered that most assertion libraries don&#39;t return true/false values from their assertion methods, thereby making them unusable with mocha-given (which I use), I realized that <code>indeed</code> already had everything it needed (under the hood) to be that kind of assertion library. It just needed a few semantic changes to make it <em>sound</em> like an assertion library.</p>
+<h4 id="expect">Expect</h4>
+<p><code>expect</code> is an alias to <code>indeed</code>. It does all the same stuff but sounds more test-ish.</p>
+<pre><code class="lang-coffee">Given -&gt; @thing = &#39;foo&#39;
+When -&gt; @subject.doSomethingNeat(@thing)
+Then -&gt; expect(@thing).to.equal(&#39;foo bar&#39;)</code></pre>
+<h4 id="assert">Assert</h4>
+<p><code>assert</code> is an alias to <code>eval</code>, <code>val</code>, and <code>test</code>. Once again, it&#39;s only purpose is to convey testing semantics. This only needs to be called when chaining multiple conditions.</p>
+<pre><code class="lang-coffee">Then -&gt; expect.chain(&#39;foo&#39;).to.be.a(&#39;string&#39;).and.to.match(/o$/).and([&#39;bar&#39;]).to.contain(&#39;bar&#39;).assert()</code></pre>
+<h4 id="throw">Throw</h4>
+<p>Returns true if the passed function throws an error. An optional string, regex, error, or function can be passed for more refined assertions:</p>
+<pre><code class="lang-javascript">expect(fn).to.throw();
+expect(fn).to.throw(&#39;Inconceivable!&#39;);
+expect(fn).to.throw(new Error(&#39;Mischief is afoot&#39;));
+expect(fn).to.throw(/timeout/);
+expect(fn).to.throw(function(e) {
+  return ~e.message.indexOf(&#39;!&#39;);
+});</code></pre>
+<p>Aliases: <code>throws</code></p>
+<h4 id="with">With</h4>
+<p>Assign parameters to pass to the invocation of a method to assert with throw:</p>
+<pre><code class="lang-javascript">expect(fn).with(&#39;foo&#39;, &#39;bar&#39;).to.throw(&#39;FOO BAR&#39;); // Passes &#39;foo&#39; and &#39;bar&#39; to fn when it&#39;s called</code></pre>
+<h4 id="spies">Spies</h4>
+<p><code>expect</code> also checks it&#39;s parameter to see if it&#39;s a sinon spy or stub, and if it is, it extends itself with the spy, letting you call sinon methods (which are sometimes awkward) in more natural English. For example:</p>
+<pre><code class="lang-javascript">var spy = sinon.spy()
+// ... test things with the spy
+expect(spy).to.have.been.called // Doesn&#39;t this feel more natural than &#39;spy.called&#39;</code></pre>
+<h4 id="when-to-use-indeed-for-asserting">When to use indeed for asserting</h4>
+<p>Indeed will work well with <a href="https://github.com/rendro/mocha-given">mocha-given</a> or <a href="https://github.com/searls/jasmine-given">jasmine-given</a>, but it isn&#39;t a <em>full</em> assertion library to be used in every project since it doesn&#39;t throw AssertionErrors or accept or generate messages (at least for now - perhaps in the next version I will get more abmitious). But because <code>Then -&gt; true</code> is a passing test in Given style testing, it works well in that limited capacity.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{%= endblock %}

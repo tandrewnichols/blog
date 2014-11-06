@@ -4,7 +4,7 @@ var me = path.resolve(root, '..');
 
 module.exports = {
   tandrewnichols: me,
-  manta: me + '/manta',
+  mantacode: me + '/manta',
   root: root,
   bower: root + '/bower_components',
   coverage: root + '/coverage',
@@ -16,5 +16,6 @@ module.exports = {
   tasks: root + '/tasks',
   vendor: root + '/vendor',
   modules: root + '/modules',
-  node: root + '/node_modules'
+  node: root + '/node_modules',
+  app: root + '/app'
 };

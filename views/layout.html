@@ -22,6 +22,21 @@
       }
     </style>
     <link rel="stylesheet" type="text/css" href="/assets/app.css" media="all" />
+    {%= if dev %}
+      <style>
+        body {
+          height: 100%;
+          width: 100%;
+          background-image: url('/assets/img/backgrounds/cosmos.jpg');
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+        }
+      </style>
+    {%= endif %}
     {%= block styles %}{%= endblock %}
     {%= block analytics %}
       <script type="text/javascript">

@@ -30,92 +30,92 @@
 <h1 id="grunt-travis-matrix">grunt-travis-matrix</h1>
 <p>Run matrix-specific grunt tasks on travis</p>
 <h2 id="getting-started">Getting Started</h2>
-<p>If you haven&#39;t used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you&#39;re familiar with that process, you may install this plugin with this command:</p>
-<pre><code class="lang-bash">npm install grunt-travis-matrix --save-dev</code></pre>
+<p>If you haven&apos;t used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you&apos;re familiar with that process, you may install this plugin with this command:</p>
+<pre><code class="lang-bash" ng-non-bindable="">npm install grunt-travis-matrix --save-dev</code></pre>
 <p>Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:</p>
-<pre><code class="lang-javascript">grunt.loadNpmTasks(&#39;grunt-travis-matrix&#39;);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.loadNpmTasks(&apos;grunt-travis-matrix&apos;);</code></pre>
 <p>Alternatively, install <a href="http://github.com/tandrewnichols/task-master">task-master</a> and let it manage this for you.</p>
 <h2 id="the-travis-task">The &quot;travis&quot; task</h2>
-<p>Travis-ci is awesome, and you should use it if you&#39;re not already (seriously, it&#39;s very easy to set up and the benefits are instant). One problem I&#39;ve run into using travis is that there is currently no way to tell it to run certain scripts only for certain matrix combinations (e.g. only on node v0.10). This task is designed to do that for you. It examines the matrix and compares it to your requirements, enqueueing additional tasks if it finds a match.</p>
+<p>Travis-ci is awesome, and you should use it if you&apos;re not already (seriously, it&apos;s very easy to set up and the benefits are instant). One problem I&apos;ve run into using travis is that there is currently no way to tell it to run certain scripts only for certain matrix combinations (e.g. only on node v0.10). This task is designed to do that for you. It examines the matrix and compares it to your requirements, enqueueing additional tasks if it finds a match.</p>
 <h3 id="overview">Overview</h3>
-<p>In your project&#39;s Gruntfile, add a section named <code>travis</code> to the data object passed into <code>grunt.initConfig()</code>. Again, I recommend <a href="https://github.com/tandrewnichols/task-master">task-master</a> as it makes grunt configuration much cleaner. Add a key called <code>targets</code> to the options for that task. This option can take many forms, but the most explicit is an array of objects:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>In your project&apos;s Gruntfile, add a section named <code ng-non-bindable="">travis</code> to the data object passed into <code ng-non-bindable="">grunt.initConfig()</code>. Again, I recommend <a href="https://github.com/tandrewnichols/task-master">task-master</a> as it makes grunt configuration much cleaner. Add a key called <code ng-non-bindable="">targets</code> to the options for that task. This option can take many forms, but the most explicit is an array of objects:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   travis: {
     options: {
       targets: [
         {
-          test: &#39;{{ FOO }}&#39;,
-          when: &#39;bar&#39;,
-          tasks: &#39;mocha:test&#39;
+          test: &apos;{{ FOO }}&apos;,
+          when: &apos;bar&apos;,
+          tasks: &apos;mocha:test&apos;
         },
         {
-          test: &#39;{{ version }}&#39;,
-          when: &#39;v0.10&#39;,
-          tasks: &#39;mochacov:lcov&#39;
+          test: &apos;{{ version }}&apos;,
+          when: &apos;v0.10&apos;,
+          tasks: &apos;mochacov:lcov&apos;
         }
       ]
     }
   },
 });</code></pre>
-<p>The <code>travis</code> task will use underscore interpolation with <code>process.env</code> combined with <code>process.version</code> as the context (note that <code>process.version</code> <em>does</em> start with &quot;v&quot; - this took me some time to get right for some reason). The interpolation pattern is different than Grunt&#39;s built-in style because Grunt tries to be helpful by interpolating the strings before they even reach the task. :(</p>
-<p>If you have only one &quot;target&quot;, you can specify <code>targets</code> as an object literal:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>The <code ng-non-bindable="">travis</code> task will use underscore interpolation with <code ng-non-bindable="">process.env</code> combined with <code ng-non-bindable="">process.version</code> as the context (note that <code ng-non-bindable="">process.version</code> <em>does</em> start with &quot;v&quot; - this took me some time to get right for some reason). The interpolation pattern is different than Grunt&apos;s built-in style because Grunt tries to be helpful by interpolating the strings before they even reach the task. :(</p>
+<p>If you have only one &quot;target&quot;, you can specify <code ng-non-bindable="">targets</code> as an object literal:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   travis: {
     options: {
       targets: {
-        test: &#39;{{ FOO }}&#39;,
-        when: &#39;bar&#39;,
-        tasks: &#39;mocha:test&#39;
+        test: &apos;{{ FOO }}&apos;,
+        when: &apos;bar&apos;,
+        tasks: &apos;mocha:test&apos;
       }
     }
   },
 });</code></pre>
-<p><code>tasks</code> can also be an array:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p><code ng-non-bindable="">tasks</code> can also be an array:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   travis: {
     options: {
       targets: {
-        test: &#39;{{ FOO }}&#39;,
-        when: &#39;bar&#39;,
-        tasks: [&#39;jshint:all&#39;, &#39;mocha:test&#39;]
+        test: &apos;{{ FOO }}&apos;,
+        when: &apos;bar&apos;,
+        tasks: [&apos;jshint:all&apos;, &apos;mocha:test&apos;]
       }
     }
   },
 });</code></pre>
 <p>There is also a short form you can use for very simple comparisons. This can be a string or an array of strings:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   travis: {
     options: {
-      targets: &#39;{{ FOO == &quot;bar&quot; }}&#39;
+      targets: &apos;{{ FOO == &quot;bar&quot; }}&apos;
     }
   }
 });</code></pre>
 <p>or</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   travis: {
     options: {
-      targets: [&#39;{{ FOO == &quot;bar&quot; }}&#39;, &#39;{{ version == &quot;v0.10&quot; }}&#39;]
+      targets: [&apos;{{ FOO == &quot;bar&quot; }}&apos;, &apos;{{ version == &quot;v0.10&quot; }}&apos;]
     }
   }
 });</code></pre>
-<p>In this case the default task will be <code>matrix</code> (see below), and the target will be whatever the value of that property on the context is (so in the example above, the value of process.env.FOO and process.version).</p>
+<p>In this case the default task will be <code ng-non-bindable="">matrix</code> (see below), and the target will be whatever the value of that property on the context is (so in the example above, the value of process.env.FOO and process.version).</p>
 <h2 id="the-matrix-task">The &quot;matrix&quot; task</h2>
-<p>Tasks you specify in the <code>travis</code> task do not have to be targets on the <code>matrix</code> task, but they can be. The <code>matrix</code> task is a way to run arbitrary bash commands as part of your build process (but only for certain matrix combinations). You specify a <code>cmd</code> option as either a string, array, or function, or more simply, make the entire task target a string, array, or function. If you pass a string, the matrix task will run <code>child_process.exec</code>; if you pass an array, it will use <code>child_process.spawn</code>; if you pass a function, it will invoke the function with the grunt instance, options, and async callback as arguments. Keep in mind that exec has an output buffer restriction of 128KB, but also works &quot;better&quot; (read easier) for complicated bash expressions.</p>
-<pre><code class="lang-javascript">var aFunction = require(&#39;./some/lib&#39;).someFunc;
+<p>Tasks you specify in the <code ng-non-bindable="">travis</code> task do not have to be targets on the <code ng-non-bindable="">matrix</code> task, but they can be. The <code ng-non-bindable="">matrix</code> task is a way to run arbitrary bash commands as part of your build process (but only for certain matrix combinations). You specify a <code ng-non-bindable="">cmd</code> option as either a string, array, or function, or more simply, make the entire task target a string, array, or function. If you pass a string, the matrix task will run <code ng-non-bindable="">child_process.exec</code>; if you pass an array, it will use <code ng-non-bindable="">child_process.spawn</code>; if you pass a function, it will invoke the function with the grunt instance, options, and async callback as arguments. Keep in mind that exec has an output buffer restriction of 128KB, but also works &quot;better&quot; (read easier) for complicated bash expressions.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">var aFunction = require(&apos;./some/lib&apos;).someFunc;
 
 grunt.initConfig({
   matrix: {
     bar: {
       options: {
-        cmd: [&#39;npm&#39;, &#39;config&#39;, &#39;set&#39;, &#39;author&#39;, &#39;Big Bird&#39;]
+        cmd: [&apos;npm&apos;, &apos;config&apos;, &apos;set&apos;, &apos;author&apos;, &apos;Big Bird&apos;]
       }
     },
-    &#39;v0.10&#39;: {
+    &apos;v0.10&apos;: {
       options: {
-        cmd: &#39;codeclimate &lt; coverage/coverage.lcov&#39;
+        cmd: &apos;codeclimate &lt; coverage/coverage.lcov&apos;
       }
     },
-    &#39;v0.8&#39;: {
+    &apos;v0.8&apos;: {
       options: {
         cmd: aFunction
       }
@@ -123,23 +123,23 @@ grunt.initConfig({
   }
 });</code></pre>
 <p>or the simplified version:</p>
-<pre><code class="lang-javascript">var aFunction = require(&#39;./some/lib&#39;).someFunc;
+<pre><code class="lang-javascript" ng-non-bindable="">var aFunction = require(&apos;./some/lib&apos;).someFunc;
 
 grunt.initConfig({
   matrix: {
-    bar: [&#39;npm&#39;, &#39;config&#39;, &#39;set&#39;, &#39;author&#39;, &#39;Big Bird&#39;],
-    &#39;v0.10&#39;: &#39;codeclimate &lt; coverage/coverage.lcov&#39;,
-    &#39;v0.8&#39;: aFunction
+    bar: [&apos;npm&apos;, &apos;config&apos;, &apos;set&apos;, &apos;author&apos;, &apos;Big Bird&apos;],
+    &apos;v0.10&apos;: &apos;codeclimate &lt; coverage/coverage.lcov&apos;,
+    &apos;v0.8&apos;: aFunction
   }
 });</code></pre>
 <p>The codeclimate example is the reason I wrote this in the first place. I want to send test coverage reports, but why do it for every build in the matrix, when you only need it once?</p>
-<p>Besides these options, you can also pass <code>force</code> and <code>cwd</code> for either version and <code>stdio</code> for the spawn version (<code>exec</code> does not support <code>stdio</code>). The defaults are <code>false</code>, <code>&#39;.&#39;</code> and <code>&#39;inherit&#39;</code> respectively. If you want to simple turn <code>stdio</code> off (which you probably shouldn&#39;t want to do), you can pass <code>stdio: false</code>. Setting <code>force: true</code> is like passing <code>--force</code> to a grunt invocation, but on a per target basis, if you have tasks that shouldn&#39;t halt the grunt chain.</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>Besides these options, you can also pass <code ng-non-bindable="">force</code> and <code ng-non-bindable="">cwd</code> for either version and <code ng-non-bindable="">stdio</code> for the spawn version (<code ng-non-bindable="">exec</code> does not support <code ng-non-bindable="">stdio</code>). The defaults are <code ng-non-bindable="">false</code>, <code ng-non-bindable="">&apos;.&apos;</code> and <code ng-non-bindable="">&apos;inherit&apos;</code> respectively. If you want to simple turn <code ng-non-bindable="">stdio</code> off (which you probably shouldn&apos;t want to do), you can pass <code ng-non-bindable="">stdio: false</code>. Setting <code ng-non-bindable="">force: true</code> is like passing <code ng-non-bindable="">--force</code> to a grunt invocation, but on a per target basis, if you have tasks that shouldn&apos;t halt the grunt chain.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   matrix: {
     bar: {
       options: {
-        cmd: [&#39;npm&#39;, &#39;config&#39;, &#39;set&#39;, &#39;author&#39;, &#39;Big Bird&#39;],
-        cwd: &#39;../../sesame-street&#39;,
+        cmd: [&apos;npm&apos;, &apos;config&apos;, &apos;set&apos;, &apos;author&apos;, &apos;Big Bird&apos;],
+        cwd: &apos;../../sesame-street&apos;,
         stdio: [null, process.stdout, null]
       }
     }

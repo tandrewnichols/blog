@@ -30,43 +30,43 @@
 <h1 id="task-master">task-master</h1>
 <p>A helper to make Grunt task declaration and organization cleaner.</p>
 <h2 id="installation">Installation</h2>
-<p><code>npm install task-master --save-dev</code></p>
+<p><code ng-non-bindable="">npm install task-master --save-dev</code></p>
 <h2 id="summary">Summary</h2>
-<p><code>grunt.loadTasks</code> is a nice way to separate out tasks into separate files and keep your Gruntfile from getting hairy, but there&#39;s no clean way to do the same with configuration. This module is a small wrapper that allows both tasks and configuration to be abstracted out of your Gruntfile into separate modules.</p>
-<p><strong>NOTE: This is different than <code>taskmaster</code> (without the hyphen), which is some sort of task runner written by someone who must not know that grunt exists.</strong></p>
+<p><code ng-non-bindable="">grunt.loadTasks</code> is a nice way to separate out tasks into separate files and keep your Gruntfile from getting hairy, but there&apos;s no clean way to do the same with configuration. This module is a small wrapper that allows both tasks and configuration to be abstracted out of your Gruntfile into separate modules.</p>
+<p><strong>NOTE: This is different than <code ng-non-bindable="">taskmaster</code> (without the hyphen), which is some sort of task runner written by someone who must not know that grunt exists.</strong></p>
 <h2 id="usage">Usage</h2>
-<p>Step 1: Define your tasks and configuration in separate files where the name of the file corresponds to the name of the task. (Task-master can load <code>.js</code>, <code>.coffee</code>, <code>.json</code>, and <code>.yml</code>, so specify your configuration in whatever format you prefer. Obviously, however, if you need dynamic functionality, you&#39;ll need to use <code>.js</code> or <code>.coffee</code>.)</p>
-<pre><code>tasks
+<p>Step 1: Define your tasks and configuration in separate files where the name of the file corresponds to the name of the task. (Task-master can load <code ng-non-bindable="">.js</code>, <code ng-non-bindable="">.coffee</code>, <code ng-non-bindable="">.json</code>, and <code ng-non-bindable="">.yml</code>, so specify your configuration in whatever format you prefer. Obviously, however, if you need dynamic functionality, you&apos;ll need to use <code ng-non-bindable="">.js</code> or <code ng-non-bindable="">.coffee</code>.)</p>
+<pre><code ng-non-bindable="">tasks
   jshint.js
   watch.js
   myCustomTask.js</code></pre>
-<p>Step 2: Export either a literal configuration object or a function that accepts <code>grunt</code> and <code>context</code> (more on context below)  and returns a configuration object.</p>
+<p>Step 2: Export either a literal configuration object or a function that accepts <code ng-non-bindable="">grunt</code> and <code ng-non-bindable="">context</code> (more on context below)  and returns a configuration object.</p>
 <p>tasks/jshint.js</p>
-<pre><code class="lang-javascript">module.exports = {
+<pre><code class="lang-javascript" ng-non-bindable="">module.exports = {
   options: {
     curly: true,
     eqeqeq: true
   },
-  &#39;default&#39;: &#39;**/*.js&#39;
+  &apos;default&apos;: &apos;**/*.js&apos;
 };</code></pre>
 <p>tasks/watch.js</p>
-<pre><code class="lang-javascript">module.exports = {
+<pre><code class="lang-javascript" ng-non-bindable="">module.exports = {
   js: {
-    files: &#39;**/*.js&#39;,
-    tasks: &#39;jshint&#39;
+    files: &apos;**/*.js&apos;,
+    tasks: &apos;jshint&apos;
     options: {
-      cwd: &#39;server&#39;
+      cwd: &apos;server&apos;
     }
   }
 };</code></pre>
 <p>tasks/myCustomTask.js</p>
-<pre><code class="lang-javascript">module.exports = function(grunt) {
+<pre><code class="lang-javascript" ng-non-bindable="">module.exports = function(grunt) {
   // or registerMultiTask
-  grunt.registerTask(&#39;myCustomTask&#39;, &#39;A task that does really neat stuff&#39;, function() {
+  grunt.registerTask(&apos;myCustomTask&apos;, &apos;A task that does really neat stuff&apos;, function() {
     // The neat stuff...
   });
-  // You probably don&#39;t need to return configuration for tasks you write,
-  // but you could use a function in a plugin&#39;s task configuration to do
+  // You probably don&apos;t need to return configuration for tasks you write,
+  // but you could use a function in a plugin&apos;s task configuration to do
   // different things based on the environment (for example)
   return {
     options: {
@@ -74,8 +74,8 @@
     }
   };
 };</code></pre>
-<p>Additionally, as of version 2.2.0, you can even define target-specific configuration files in the form <code>tasks/&lt;task&gt;.&lt;target&gt;.{js,json,coffee,yml}</code>. If, for example, you have a really big <code>copy</code> task, you could break it out into target-specific files like <code>tasks/copy.dev.js</code> and <code>tasks/copy.dist.js</code>, which will result in a configuration object that looks like:</p>
-<pre><code class="lang-javascript">{
+<p>Additionally, as of version 2.2.0, you can even define target-specific configuration files in the form <code ng-non-bindable="">tasks/&lt;task&gt;.&lt;target&gt;.{js,json,coffee,yml}</code>. If, for example, you have a really big <code ng-non-bindable="">copy</code> task, you could break it out into target-specific files like <code ng-non-bindable="">tasks/copy.dev.js</code> and <code ng-non-bindable="">tasks/copy.dist.js</code>, which will result in a configuration object that looks like:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">{
   copy: {
     dev: {
       // exports of copy.dev.js
@@ -85,10 +85,10 @@
     }
   }
 }</code></pre>
-<p>Incidentally, this will also work with task-level options, if you define (e.g.) a <code>tasks/copy.options.js.</code></p>
-<p>Step 3: Call task-master from your Gruntfile and pass it <code>grunt</code> and an optional options object. No need to call <code>initConfig</code> or <code>loadNpmTasks</code> as task-master does both for you.</p>
+<p>Incidentally, this will also work with task-level options, if you define (e.g.) a <code ng-non-bindable="">tasks/copy.options.js.</code></p>
+<p>Step 3: Call task-master from your Gruntfile and pass it <code ng-non-bindable="">grunt</code> and an optional options object. No need to call <code ng-non-bindable="">initConfig</code> or <code ng-non-bindable="">loadNpmTasks</code> as task-master does both for you.</p>
 <p>Gruntfile.js</p>
-<pre><code class="lang-javascript">var taskMaster = require(&#39;task-master&#39;);
+<pre><code class="lang-javascript" ng-non-bindable="">var taskMaster = require(&apos;task-master&apos;);
 
 module.exports = function(grunt) {
   taskMaster(grunt);
@@ -96,107 +96,107 @@ module.exports = function(grunt) {
   // register other tasks (like default) etc.
 };</code></pre>
 <p>If you are not passing any options, you can actually shorten this to:</p>
-<pre><code class="lang-javascript">module.exports = require(&#39;task-master&#39;);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">module.exports = require(&apos;task-master&apos;);</code></pre>
 <h2 id="options">Options</h2>
 <p>Task-master is highly configurable. You can pass any of the following options to change the default behavior.</p>
 <h3 id="devdependencies">devDependencies</h3>
-<p>Indicates whether to load tasks from <code>devDependencies</code>. The default is true, and probably 99% of the time, that&#39;s what you want. I can&#39;t actually think of a time when you wouldn&#39;t want this to be true. Even if your grunt plugins are under <code>dependencies</code>, having this property set to true probably won&#39;t make a difference. But for completeness:</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { devDependencies: false });</code></pre>
+<p>Indicates whether to load tasks from <code ng-non-bindable="">devDependencies</code>. The default is true, and probably 99% of the time, that&apos;s what you want. I can&apos;t actually think of a time when you wouldn&apos;t want this to be true. Even if your grunt plugins are under <code ng-non-bindable="">dependencies</code>, having this property set to true probably won&apos;t make a difference. But for completeness:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { devDependencies: false });</code></pre>
 <h3 id="dependencies">dependencies</h3>
-<p>Indicates whether to load tasks from <code>dependencies</code>. The default is false. Most of the time you don&#39;t need this, but there are some cases where you do, for instance for running builds on a heroku server (which runs <code>npm install --production</code> and therefore doesn&#39;t have access to <code>devDependencies</code>).</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { dependencies: true });</code></pre>
+<p>Indicates whether to load tasks from <code ng-non-bindable="">dependencies</code>. The default is false. Most of the time you don&apos;t need this, but there are some cases where you do, for instance for running builds on a heroku server (which runs <code ng-non-bindable="">npm install --production</code> and therefore doesn&apos;t have access to <code ng-non-bindable="">devDependencies</code>).</p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { dependencies: true });</code></pre>
 <h3 id="peerdependencies">peerDependencies</h3>
-<p>Load tasks from peerDependencies. Probably don&#39;t do this unless you have a really good reason.</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { peerDependencies: true });</code></pre>
+<p>Load tasks from peerDependencies. Probably don&apos;t do this unless you have a really good reason.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { peerDependencies: true });</code></pre>
 <h3 id="optionaldependencies">optionalDependencies</h3>
-<p>Load tasks from optionalDependencies. Again, this seems like a bad idea in general. But it&#39;s there . . . because if it&#39;s not, someone will undoubtedly want it and ask about it.</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { optionalDependencies: true });</code></pre>
+<p>Load tasks from optionalDependencies. Again, this seems like a bad idea in general. But it&apos;s there . . . because if it&apos;s not, someone will undoubtedly want it and ask about it.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { optionalDependencies: true });</code></pre>
 <h3 id="pattern">pattern</h3>
-<p>String or regex pattern for matching grunt plugins. Default is <code>/^grunt-/</code>.</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { pattern: /^grunt-contrib-`/ }); // or &#39;grunt-contrib-&#39;</code></pre>
+<p>String or regex pattern for matching grunt plugins. Default is <code ng-non-bindable="">/^grunt-/</code>.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { pattern: /^grunt-contrib-`/ }); // or &apos;grunt-contrib-&apos;</code></pre>
 <h3 id="include">include</h3>
-<p>Tasks to include that don&#39;t match the pattern. If you have one or two plugins to load that don&#39;t start with &quot;grunt-&quot; (do such plugins exist?), it&#39;s probably better to specify them here, rather than try to write a custom pattern that will match everything you need. This can be a string plugin name or an array of string plugin names.</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { include: [&#39;not-grunt-foo&#39;, &#39;and-not-grunt-bar&#39;] }); // or for one: { include: &#39;blah-blah&#39; }</code></pre>
+<p>Tasks to include that don&apos;t match the pattern. If you have one or two plugins to load that don&apos;t start with &quot;grunt-&quot; (do such plugins exist?), it&apos;s probably better to specify them here, rather than try to write a custom pattern that will match everything you need. This can be a string plugin name or an array of string plugin names.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { include: [&apos;not-grunt-foo&apos;, &apos;and-not-grunt-bar&apos;] }); // or for one: { include: &apos;blah-blah&apos; }</code></pre>
 <h3 id="exclude">exclude</h3>
 <p>Tasks to exclude that <em>do</em> match the pattern. If you want to load all &quot;grunt-&quot; plugins, <em>except</em> grunt-foo-bar, you can do that here. Again, this can be a string plugin name or an array of string plugin names.</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { exclude: [&#39;grunt-foo-bar&#39;] }); // or: { exclude: &#39;grunt-foo-bar&#39; }</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { exclude: [&apos;grunt-foo-bar&apos;] }); // or: { exclude: &apos;grunt-foo-bar&apos; }</code></pre>
 <h3 id="ignore">ignore</h3>
-<p>Files in the directories from which tasks are loaded that should be ignored. Files that start with <code>_</code> are ignored by default, but you can specify other filenames (relative to the directory tasks are in) to leave out of the config. Again, this can be a string or an array.</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { ignore: &#39;configuration.json&#39; });</code></pre>
+<p>Files in the directories from which tasks are loaded that should be ignored. Files that start with <code ng-non-bindable="">_</code> are ignored by default, but you can specify other filenames (relative to the directory tasks are in) to leave out of the config. Again, this can be a string or an array.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { ignore: &apos;configuration.json&apos; });</code></pre>
 <h3 id="tasks">tasks</h3>
-<p>Directory or directories to load plugins from. Defaults to \<project_root\>/tasks. This can be a string or list of strings.</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { tasks: &#39;plugins&#39; });</code></pre>
+<p>Directory or directories to load plugins from. Defaults to \<project_root\>/tasks. This can be a string or list of strings.</project_root\></p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { tasks: &apos;plugins&apos; });</code></pre>
 <h3 id="context">context</h3>
-<p>Context is an object of additional properties that can be passed, which is used in a few places. It&#39;s passed to files in task directories that export functions. So if you want to use some configuration in <code>tasks/foo.js</code>, you can accept it as the second parameter:</p>
-<pre><code class="lang-javascript">module.exports = function(grunt, context) {
+<p>Context is an object of additional properties that can be passed, which is used in a few places. It&apos;s passed to files in task directories that export functions. So if you want to use some configuration in <code ng-non-bindable="">tasks/foo.js</code>, you can accept it as the second parameter:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">module.exports = function(grunt, context) {
   // Do stuff with context
 };</code></pre>
 <p>More importantly, keys under context are added to your grunt config at the top level. So if you, for instance, like having access to your package.json contents in your config, you can pass it under context:</p>
-<pre><code class="lang-javascript">taskMaster(grunt, { context: { pkg: require(&#39;./package&#39;) } });</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, { context: { pkg: require(&apos;./package&apos;) } });</code></pre>
 <p>Then you can use it in your interpolation as normal:</p>
-<pre><code class="lang-javascript">{
+<pre><code class="lang-javascript" ng-non-bindable="">{
   files: {
-    &#39;dist/&lt;%= pkg.name %&gt;.min.js&#39;: &#39;./src/main.js&#39;
+    &apos;dist/&lt;%= pkg.name %&gt;.min.js&apos;: &apos;./src/main.js&apos;
   }
 }</code></pre>
-<p>This is also useful if you reuse file patterns all over the place. Just add a <code>files</code> key under context and access them with:</p>
-<p><code>&lt;%= files.js.vendor %&gt;</code></p>
+<p>This is also useful if you reuse file patterns all over the place. Just add a <code ng-non-bindable="">files</code> key under context and access them with:</p>
+<p><code ng-non-bindable="">&lt;%= files.js.vendor %&gt;</code></p>
 <h3 id="alias">alias</h3>
 <p>An object of aliases to add to grunt, where the key is the alias name and the value is the tasks to run.</p>
-<pre><code class="lang-javascript">taskMaster(grunt, {
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, {
   alias: {
-    default: [&#39;jshint&#39;, &#39;mocha:all&#39;],
-    build: [&#39;clean:dist&#39;, &#39;concat:dist&#39;, &#39;uglify:dist&#39;]
+    default: [&apos;jshint&apos;, &apos;mocha:all&apos;],
+    build: [&apos;clean:dist&apos;, &apos;concat:dist&apos;, &apos;uglify:dist&apos;]
   }
 });</code></pre>
 <h3 id="jit">jit</h3>
-<p>As of version 2.2.0, <code>task-master</code> will delegate to <code>jit-grunt</code> for loading npm grunt plugins (which incidentally makes the &quot;dependency&quot; options above unnecessary, since <code>jit-grunt</code> loads from <code>node_modules</code> regardless of where in the package a dependency is defined), which can significantly speed up your build time. If you don&#39;t want to use <code>jit-grunt</code>, you can pass <code>jit: false</code>, and <code>task-master</code> will load in the way it did prior to 2.2.0. But there&#39;s basically no reason you should want to do this. Alternatively, you can pass jit as an object, and that object will be passed into <code>jit-grunt</code> as the <a href="https://github.com/shootaroo/jit-grunt#static-mappings">static-mappings</a>. So you can do something like this:</p>
-<pre><code class="lang-javascript">taskMaster(grunt, {
+<p>As of version 2.2.0, <code ng-non-bindable="">task-master</code> will delegate to <code ng-non-bindable="">jit-grunt</code> for loading npm grunt plugins (which incidentally makes the &quot;dependency&quot; options above unnecessary, since <code ng-non-bindable="">jit-grunt</code> loads from <code ng-non-bindable="">node_modules</code> regardless of where in the package a dependency is defined), which can significantly speed up your build time. If you don&apos;t want to use <code ng-non-bindable="">jit-grunt</code>, you can pass <code ng-non-bindable="">jit: false</code>, and <code ng-non-bindable="">task-master</code> will load in the way it did prior to 2.2.0. But there&apos;s basically no reason you should want to do this. Alternatively, you can pass jit as an object, and that object will be passed into <code ng-non-bindable="">jit-grunt</code> as the <a href="https://github.com/shootaroo/jit-grunt#static-mappings">static-mappings</a>. So you can do something like this:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">taskMaster(grunt, {
   jit: {
-    ngtemplates: &#39;grunt-angular-templates&#39;,
-    spec: &#39;grunt-jasmine-bundle&#39;
+    ngtemplates: &apos;grunt-angular-templates&apos;,
+    spec: &apos;grunt-jasmine-bundle&apos;
   }
 });</code></pre>
 <h2 id="loading-from-files">Loading from files</h2>
 <p>But the really cool thing about task-master is that you can load some of these options from files by passing a string file path (or a list of string file paths) instead of a literal object. You can even pass globstar patterns. You can load the entire options object, the context, or the aliases from a file. The following examples assume you are using the default tasks directory:</p>
-<pre><code class="lang-javascript">// loads the options object from \&lt;project_root\&gt;/tasks/_opts.json
-taskMaster(grunt, &#39;_opts.json&#39;);</code></pre>
-<pre><code class="lang-javascript">// loads aliases from \&lt;project_root\&gt;/tasks/_aliases.json AND \&lt;project_root\&gt;/tasks/_alias.js
-taskMaster(grunt, { aliases: [&#39;_aliases.json&#39;, &#39;_alias.json&#39;] });</code></pre>
-<pre><code class="lang-javascript">// loads a context object from \&lt;project_root\&gt;/tasks/_context.json
+<pre><code class="lang-javascript" ng-non-bindable="">// loads the options object from \&lt;project_root\&gt;/tasks/_opts.json
+taskMaster(grunt, &apos;_opts.json&apos;);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">// loads aliases from \&lt;project_root\&gt;/tasks/_aliases.json AND \&lt;project_root\&gt;/tasks/_alias.js
+taskMaster(grunt, { aliases: [&apos;_aliases.json&apos;, &apos;_alias.json&apos;] });</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">// loads a context object from \&lt;project_root\&gt;/tasks/_context.json
 // and any files in \&lt;project_root\&gt;/tasks that start with &quot;_context.&quot;
 // and end with &quot;.json&quot;
-taskMaster(grunt, { context: [&#39;_context.json&#39;, &#39;_context.*.json&#39;] });</code></pre>
-<p>These files can be <code>.js</code>, <code>.coffee</code>, <code>.json</code>, or <code>.yaml</code> files. If they export a function, it will be invoked, which let&#39;s you programmatically determine the results. E.g.:</p>
-<pre><code class="lang-javascript">// In an alias file
+taskMaster(grunt, { context: [&apos;_context.json&apos;, &apos;_context.*.json&apos;] });</code></pre>
+<p>These files can be <code ng-non-bindable="">.js</code>, <code ng-non-bindable="">.coffee</code>, <code ng-non-bindable="">.json</code>, or <code ng-non-bindable="">.yaml</code> files. If they export a function, it will be invoked, which let&apos;s you programmatically determine the results. E.g.:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">// In an alias file
 module.exports = function() {
   // Except . . . do something dynamic here
   return {
-    default: [&#39;jshint&#39;, &#39;mocha:all&#39;],
-    build: [&#39;clean:dist&#39;, &#39;concat:dist&#39;, &#39;uglify:dist&#39;]
+    default: [&apos;jshint&apos;, &apos;mocha:all&apos;],
+    build: [&apos;clean:dist&apos;, &apos;concat:dist&apos;, &apos;uglify:dist&apos;]
   };
 };</code></pre>
 <p>The results of these files will be merged into a single object.</p>
-<p>But it gets even better. Because I think you shouldn&#39;t have to pass a huge messy configuration object (that&#39;s exactly what this library is trying to <em>undo</em>) you can load content from files automatically if they have specific, canonical names. Just add a <code>&quot;_taskmaster.opts*.{js,coffee,json,yml}&quot;</code> to your tasks directory (or wherever you load plugins from), and it will automatically be loaded as your options. Add a <code>&quot;_taskmaster.context*.{js,coffee,json,yml}&quot;</code> for your context and a <code>&quot;_taskmaster.alias*.{js,coffee,json,yml}&quot;</code> for your aliases. And see that star hiding in the middle there? That means you can even create multiple canonical files as long as they match that pattern.</p>
-<p>Why would you want to load configuration from multiple files you ask? I&#39;m envisioning a team scenario where some members of the team might want to (for example) define their own task aliases that aren&#39;t part of the normal aliases. So you have a <code>_taskmaster.alias.json</code> file for all the common aliases, and then pop this in your <code>.gitignore</code>:</p>
-<p><code>tasks/_aliases.json</code></p>
-<p>Now each member can add their own aliases without interfering with other members. Don&#39;t like typing <code>grunt mochaTest</code>, which is the task name in the main aliases file? Just add a <code>tasks/_aliases.json</code> that looks like this:</p>
-<pre><code class="lang-javascript">var grunt = require(&#39;grunt&#39;);
+<p>But it gets even better. Because I think you shouldn&apos;t have to pass a huge messy configuration object (that&apos;s exactly what this library is trying to <em>undo</em>) you can load content from files automatically if they have specific, canonical names. Just add a <code ng-non-bindable="">&quot;_taskmaster.opts*.{js,coffee,json,yml}&quot;</code> to your tasks directory (or wherever you load plugins from), and it will automatically be loaded as your options. Add a <code ng-non-bindable="">&quot;_taskmaster.context*.{js,coffee,json,yml}&quot;</code> for your context and a <code ng-non-bindable="">&quot;_taskmaster.alias*.{js,coffee,json,yml}&quot;</code> for your aliases. And see that star hiding in the middle there? That means you can even create multiple canonical files as long as they match that pattern.</p>
+<p>Why would you want to load configuration from multiple files you ask? I&apos;m envisioning a team scenario where some members of the team might want to (for example) define their own task aliases that aren&apos;t part of the normal aliases. So you have a <code ng-non-bindable="">_taskmaster.alias.json</code> file for all the common aliases, and then pop this in your <code ng-non-bindable="">.gitignore</code>:</p>
+<p><code ng-non-bindable="">tasks/_aliases.json</code></p>
+<p>Now each member can add their own aliases without interfering with other members. Don&apos;t like typing <code ng-non-bindable="">grunt mochaTest</code>, which is the task name in the main aliases file? Just add a <code ng-non-bindable="">tasks/_aliases.json</code> that looks like this:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">var grunt = require(&apos;grunt&apos;);
 
 module.exports = function() {
-  grunt.renameTask(&#39;mochaTest&#39;, &#39;mocha&#39;);
+  grunt.renameTask(&apos;mochaTest&apos;, &apos;mocha&apos;);
   return {
-    test: [&#39;mocha&#39;],
-    w: [&#39;build&#39;, &#39;doStuff&#39;, &#39;mocha&#39;, &#39;watch&#39;]
+    test: [&apos;mocha&apos;],
+    w: [&apos;build&apos;, &apos;doStuff&apos;, &apos;mocha&apos;, &apos;watch&apos;]
   };
 };</code></pre>
 <p>You can add your own short hand aliases or combinations of tasks for testing purposes.</p>
 <h2 id="overrides">Overrides</h2>
-<p>As an extension of the alias overriding above, you can override task configuration by create <code>_taskmaster.override.&lt;task&gt;.{js,json,coffee,yml}</code> files. For instance, if you have a <code>tasks/copy.js</code>, you can add a <code>_taskmaster.override.copy.js</code> and the override exports will be merged into the regular configuration, with the overrides taking precedence. This feature is primarily for teams, so that you can add <code>tasks/_taskmaster.override.*</code> to your <code>.gitignore</code> and then setup developer-specific configuration that doesn&#39;t have to be shared by the team.</p>
+<p>As an extension of the alias overriding above, you can override task configuration by create <code ng-non-bindable="">_taskmaster.override.&lt;task&gt;.{js,json,coffee,yml}</code> files. For instance, if you have a <code ng-non-bindable="">tasks/copy.js</code>, you can add a <code ng-non-bindable="">_taskmaster.override.copy.js</code> and the override exports will be merged into the regular configuration, with the overrides taking precedence. This feature is primarily for teams, so that you can add <code ng-non-bindable="">tasks/_taskmaster.override.*</code> to your <code ng-non-bindable="">.gitignore</code> and then setup developer-specific configuration that doesn&apos;t have to be shared by the team.</p>
 <h2 id="a-note-on-context">A Note on Context</h2>
-<p>The canonical context file path is included for completeness and uniformity, but astute readers will note that it is not actually necessary, since <code>task-master</code> merges files in with the filename as a property at the top level of the grunt config. This means that creating a <code>tasks/files.js</code> will have the same effect as creating a <code>_taskmaster.context.js</code> file that exports a <code>files</code> object. Which you choose will mostly depend on taste and whether you like breaking things up into smaller files or keeping everything of the same type together.</p>
+<p>The canonical context file path is included for completeness and uniformity, but astute readers will note that it is not actually necessary, since <code ng-non-bindable="">task-master</code> merges files in with the filename as a property at the top level of the grunt config. This means that creating a <code ng-non-bindable="">tasks/files.js</code> will have the same effect as creating a <code ng-non-bindable="">_taskmaster.context.js</code> file that exports a <code ng-non-bindable="">files</code> object. Which you choose will mostly depend on taste and whether you like breaking things up into smaller files or keeping everything of the same type together.</p>
 <h2 id="running-tests">Running tests</h2>
-<pre><code class="lang-bash">git clone git@github.com:tandrewnichols/task-master.git
+<pre><code class="lang-bash" ng-non-bindable="">git clone git@github.com:tandrewnichols/task-master.git
 cd task-master
 npm install
 npm install grunt-cli mocha -g

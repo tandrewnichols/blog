@@ -30,16 +30,16 @@
 <h1 id="grunt-simple-git">grunt-simple-git</h1>
 <p>A simple API for using git via grunt</p>
 <h2 id="getting-started">Getting Started</h2>
-<p>If you haven&#39;t used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you&#39;re familiar with that process, you may install this plugin with this command:</p>
-<pre><code class="lang-bash">npm install grunt-simple-git --save-dev</code></pre>
+<p>If you haven&apos;t used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you&apos;re familiar with that process, you may install this plugin with this command:</p>
+<pre><code class="lang-bash" ng-non-bindable="">npm install grunt-simple-git --save-dev</code></pre>
 <p>Once the plugin has been installed, it may be enabled inside your Gruntfile with:</p>
-<pre><code class="lang-javascript">grunt.loadNpmTasks(&#39;grunt-simple-git&#39;);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.loadNpmTasks(&apos;grunt-simple-git&apos;);</code></pre>
 <p>Alternatively, install and use <a href="https://github.com/tandrewnichols/task-master">task-master</a>, and it will handle this for you.</p>
 <h2 id="the-git-task">The &quot;git&quot; task</h2>
-<p>There are lots of other git plugins for grunt out there. In the past, I&#39;ve always looked at them and thought, &quot;Why??? What&#39;s the value in wrapping git commands in grunt tasks?&quot; Then I started working on my website, which is hosted on heroku, but includes dynamic content from the modules I&#39;ve published, and I realized that I would like a way to easily grab updated READMEs and coverage files, copy them into my website, then stage, commit, and push them with git. The first part of that is easy: <code>grunt-contrib-copy</code> works perfectly for that, but then I wanted a simple interface for automating my git commands, and I wasn&#39;t satisfied with the grunt-git plugins out there. It seems like they all make it more difficult than it should be. I wanted to be able to specify any git command as a task and pass any existing git option to it in an easy way. So that&#39;s what this plugin does.</p>
+<p>There are lots of other git plugins for grunt out there. In the past, I&apos;ve always looked at them and thought, &quot;Why??? What&apos;s the value in wrapping git commands in grunt tasks?&quot; Then I started working on my website, which is hosted on heroku, but includes dynamic content from the modules I&apos;ve published, and I realized that I would like a way to easily grab updated READMEs and coverage files, copy them into my website, then stage, commit, and push them with git. The first part of that is easy: <code ng-non-bindable="">grunt-contrib-copy</code> works perfectly for that, but then I wanted a simple interface for automating my git commands, and I wasn&apos;t satisfied with the grunt-git plugins out there. It seems like they all make it more difficult than it should be. I wanted to be able to specify any git command as a task and pass any existing git option to it in an easy way. So that&apos;s what this plugin does.</p>
 <h3 id="overview">Overview</h3>
-<p>The <code>git</code> task is a multiTask, where the target is (usually) the git command to run. You can configure as many git commands as are useful to you either in your <code>grunt.initConfig</code> call or, as mentioned above, by using <a href="https://github.com/tandrewnichols/task-master">task-master</a>. I strongly recommend using task-master . . . not just because I wrote it. I wrote it because grunt configuration is messy and annoying and sometimes, at least with <code>loadNpmTasks</code>, redundant (I was shocked to learn that you can&#39;t pass more than one string to <code>loadNpmTasks</code> - it&#39;s plural . . . doesn&#39;t that mean I should be able to do <code>grunt.loadNpmTasks(&#39;grunt-foo&#39;, &#39;grunt-bar&#39;, &#39;grunt-baz&#39;)</code>? . . . apparently not). I&#39;ve been using task-master for everything I write now for a few months, and it just makes grunt more pleasurable to use. Things are nicely separated . . . but I digress. Here&#39;s a sample configuration:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>The <code ng-non-bindable="">git</code> task is a multiTask, where the target is (usually) the git command to run. You can configure as many git commands as are useful to you either in your <code ng-non-bindable="">grunt.initConfig</code> call or, as mentioned above, by using <a href="https://github.com/tandrewnichols/task-master">task-master</a>. I strongly recommend using task-master . . . not just because I wrote it. I wrote it because grunt configuration is messy and annoying and sometimes, at least with <code ng-non-bindable="">loadNpmTasks</code>, redundant (I was shocked to learn that you can&apos;t pass more than one string to <code ng-non-bindable="">loadNpmTasks</code> - it&apos;s plural . . . doesn&apos;t that mean I should be able to do <code ng-non-bindable="">grunt.loadNpmTasks(&apos;grunt-foo&apos;, &apos;grunt-bar&apos;, &apos;grunt-baz&apos;)</code>? . . . apparently not). I&apos;ve been using task-master for everything I write now for a few months, and it just makes grunt more pleasurable to use. Things are nicely separated . . . but I digress. Here&apos;s a sample configuration:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
     status: {
       options: {
@@ -53,105 +53,105 @@
     },
     commit: {
       options: {
-        message: &#39;Automated commit&#39;
+        message: &apos;Automated commit&apos;
       }
     },
     pushToOrigin: {
-      cmd: &#39;push origin master&#39;
+      cmd: &apos;push origin master&apos;
     },
     pushToHeroku: {
-      cmd: &#39;push heroku master&#39;
+      cmd: &apos;push heroku master&apos;
     }
   },
 });</code></pre>
 <p>Then add an alias task to bundle them into one thing. I use something like this:</p>
-<pre><code class="lang-javascript">grunt.registerTask(&#39;deploy&#39;, [&#39;copy&#39;, &#39;git:add&#39;, &#39;git:commit&#39;, &#39;git:pushToOrigin&#39;, &#39;git:pushToHeroku&#39;]);</code></pre>
-<p>Now I simply run <code>grunt deploy</code> from the command line and all my readmes and coverage files are copied, staged, committed, and pushed automatically.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.registerTask(&apos;deploy&apos;, [&apos;copy&apos;, &apos;git:add&apos;, &apos;git:commit&apos;, &apos;git:pushToOrigin&apos;, &apos;git:pushToHeroku&apos;]);</code></pre>
+<p>Now I simply run <code ng-non-bindable="">grunt deploy</code> from the command line and all my readmes and coverage files are copied, staged, committed, and pushed automatically.</p>
 <h3 id="options">Options</h3>
 <p>Any git option can be specified, though there are some variations. Any long or short option can be specified using camelCase notation (it will be converted to dash notation):</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
     log: {
-      // Short option - Runs &#39;git log -n 2&#39;
+      // Short option - Runs &apos;git log -n 2&apos;
       n: 2
     },
     commit: {
-      // Long option - Runs &#39;git commit --message &quot;A message&quot;&#39;
-      message: &#39;A message&#39;
+      // Long option - Runs &apos;git commit --message &quot;A message&quot;&apos;
+      message: &apos;A message&apos;
     }
   }
 });</code></pre>
-<p>Options that are just flags (i.e. they have no value after them) are specified with <code>true</code>:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>Options that are just flags (i.e. they have no value after them) are specified with <code ng-non-bindable="">true</code>:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
-    // &#39;git log --name-only&#39;
+    // &apos;git log --name-only&apos;
     log: {
       nameOnly: true
     },
-    // &#39;git commit -na -m &quot;A message&quot;&#39;
+    // &apos;git commit -na -m &quot;A message&quot;&apos;
     commit: {
-      m: &#39;A message&#39;,
+      m: &apos;A message&apos;,
       n: true,
       a: true
     }
   }
 });</code></pre>
-<p>You can also specify <code>=</code> style options. Just add <code>=</code> to the end of the arg:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>You can also specify <code ng-non-bindable="">=</code> style options. Just add <code ng-non-bindable="">=</code> to the end of the arg:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
-    // &#39;git show --summary --format=%s&#39;
+    // &apos;git show --summary --format=%s&apos;
     show: {
       summary: true,
-      &#39;format=&#39;: &#39;%s&#39;
+      &apos;format=&apos;: &apos;%s&apos;
     }
   }
 });</code></pre>
-<p>Sub-commands that aren&#39;t options (e.g. &quot;git push origin master&quot;, &quot;git checkout foo&quot;, &quot;git show HEAD~&quot;, etc.) can be specified using the <code>cmd</code> key.</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>Sub-commands that aren&apos;t options (e.g. &quot;git push origin master&quot;, &quot;git checkout foo&quot;, &quot;git show HEAD~&quot;, etc.) can be specified using the <code ng-non-bindable="">cmd</code> key.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
-    // &#39;git push origin master --dry-run&#39;
+    // &apos;git push origin master --dry-run&apos;
     push: {
       options: {
         dryRun: true
       },
-      cmd: &#39;push origin master&#39;
+      cmd: &apos;push origin master&apos;
     }
   }
 });</code></pre>
-<p>It might seem redundant specifying <code>push</code> as part of the <code>cmd</code> when it&#39;s the name of the target, but that&#39;s because the <code>cmd</code> option doubles as a way to run the same git command with different arguments:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>It might seem redundant specifying <code ng-non-bindable="">push</code> as part of the <code ng-non-bindable="">cmd</code> when it&apos;s the name of the target, but that&apos;s because the <code ng-non-bindable="">cmd</code> option doubles as a way to run the same git command with different arguments:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
-    // &#39;git push origin master&#39;
+    // &apos;git push origin master&apos;
     origin: {
-      cmd: &#39;push origin master&#39;
+      cmd: &apos;push origin master&apos;
     },
-    // &#39;git push heroku master&#39;
+    // &apos;git push heroku master&apos;
     heroku: {
-      cmd: &#39;push heroku master&#39;
+      cmd: &apos;push heroku master&apos;
     }
   }
 });</code></pre>
-<p>Additionally, if <code>cmd</code> is the configuration you need, you can pass that as the entirety of the task body:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>Additionally, if <code ng-non-bindable="">cmd</code> is the configuration you need, you can pass that as the entirety of the task body:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
-    push: &#39;push origin master&#39;
+    push: &apos;push origin master&apos;
   }
 });</code></pre>
-<p>Finally, if your usage doesn&#39;t fit these formats, you can specify raw arguments to pass to git using the <code>rawArgs</code> option:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>Finally, if your usage doesn&apos;t fit these formats, you can specify raw arguments to pass to git using the <code ng-non-bindable="">rawArgs</code> option:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
-    // &#39;git checkout master -- config/*.json&#39;
+    // &apos;git checkout master -- config/*.json&apos;
     checkout: {
-      cmd: &#39;checkout master&#39;,
-      rawArgs: &#39;-- config/*.json&#39;
+      cmd: &apos;checkout master&apos;,
+      rawArgs: &apos;-- config/*.json&apos;
     }
   }
 });</code></pre>
-<p>There are also a few non-git related options: <code>stdio</code> and <code>cwd</code> which are passed as is to <code>child_process.spawn</code> (defaults are <code>inherit</code> and <code>process.cwd()</code> respectivly) and <code>force</code>, which you can use for non-critical git commands that should not halt the grunt task chain (like <code>--force</code> but on a per task basis). These are under <code>options</code> so that they can be specified for all tasks if desired. If you want to turn off <code>stdio</code> altogether (which you probably shouldn&#39;t do), you can pass <code>stdio: false</code>.</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>There are also a few non-git related options: <code ng-non-bindable="">stdio</code> and <code ng-non-bindable="">cwd</code> which are passed as is to <code ng-non-bindable="">child_process.spawn</code> (defaults are <code ng-non-bindable="">inherit</code> and <code ng-non-bindable="">process.cwd()</code> respectivly) and <code ng-non-bindable="">force</code>, which you can use for non-critical git commands that should not halt the grunt task chain (like <code ng-non-bindable="">--force</code> but on a per task basis). These are under <code ng-non-bindable="">options</code> so that they can be specified for all tasks if desired. If you want to turn off <code ng-non-bindable="">stdio</code> altogether (which you probably shouldn&apos;t do), you can pass <code ng-non-bindable="">stdio: false</code>.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   git: {
     options: {
-      cwd: &#39;..&#39;,
+      cwd: &apos;..&apos;,
       stdio: false
     },
     add: {
@@ -162,8 +162,8 @@
   }
 });</code></pre>
 <h2 id="coming-soon">Coming soon</h2>
-<p>Filling in options after the fact via prompt (perfect for <code>git commit --message</code> for example).</p>
-<p>Ideally, you wouldn&#39;t have to do <code>cmd: &#39;push origin master&#39;</code> if the name of the target was <code>push</code>. There&#39;s no easy way to handle this immediately, but I&#39;d like to improve that eventually.</p>
+<p>Filling in options after the fact via prompt (perfect for <code ng-non-bindable="">git commit --message</code> for example).</p>
+<p>Ideally, you wouldn&apos;t have to do <code ng-non-bindable="">cmd: &apos;push origin master&apos;</code> if the name of the target was <code ng-non-bindable="">push</code>. There&apos;s no easy way to handle this immediately, but I&apos;d like to improve that eventually.</p>
 
         </div>
       </div>

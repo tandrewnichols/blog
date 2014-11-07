@@ -29,116 +29,116 @@
 <p><a href="https://nodei.co/npm/safe-obj.png?downloads=true"><img src="https://nodei.co/npm/safe-obj.png?downloads=true" alt="NPM info"></a></p>
 <h1 id="safe-obj">Safe-obj</h1>
 <p>Underscore helpers to make object accessors safe</p>
-<p>I came (partly) from a Perl background where you could say <code>$obj-&gt;{thing}-&gt;{another_thing}-&gt;{more_things}</code>, and it would not blow up even if $obj was totally empty. Similarly, you could say <code>$obj-&gt;{thing}-&gt;{foo} = &#39;bar&#39;</code>, even if $obj had no property called &#39;thing&#39;. I don&#39;t miss everything about Perl, but I do miss that. In javascript, you&#39;d have to say:</p>
-<pre><code class="lang-javascript">if (obj &amp;&amp; obj.thing &amp;&amp; obj.thing.another_thing &amp;&amp; obj.thing.another_thing.more_things) {
+<p>I came (partly) from a Perl background where you could say <code ng-non-bindable="">$obj-&gt;{thing}-&gt;{another_thing}-&gt;{more_things}</code>, and it would not blow up even if $obj was totally empty. Similarly, you could say <code ng-non-bindable="">$obj-&gt;{thing}-&gt;{foo} = &apos;bar&apos;</code>, even if $obj had no property called &apos;thing&apos;. I don&apos;t miss everything about Perl, but I do miss that. In javascript, you&apos;d have to say:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">if (obj &amp;&amp; obj.thing &amp;&amp; obj.thing.another_thing &amp;&amp; obj.thing.another_thing.more_things) {
   // I want to die a little bit
 }</code></pre>
 <p>So this module is basically auto-vivification for javascript.</p>
 <h2 id="install">Install</h2>
-<p><code>npm install safe-obj --save</code></p>
+<p><code ng-non-bindable="">npm install safe-obj --save</code></p>
 <h2 id="usage">Usage</h2>
 <h3 id="server">Server</h3>
-<p>As of v1.0.0, this module works with both lodash and underscore, though it requires using <code>_.safe(obj, path)</code> with lodash since <code>_(obj).safe(path)</code> triggers lodash&#39;s chaining.</p>
-<p><code>safe-obj</code> exports an object that can be mixed into underscore/lodash like this:</p>
-<pre><code class="lang-javascript">_.mixin(require(&#39;safe-obj&#39;));</code></pre>
-<p>that let&#39;s you access object properties with wild abandon.</p>
+<p>As of v1.0.0, this module works with both lodash and underscore, though it requires using <code ng-non-bindable="">_.safe(obj, path)</code> with lodash since <code ng-non-bindable="">_(obj).safe(path)</code> triggers lodash&apos;s chaining.</p>
+<p><code ng-non-bindable="">safe-obj</code> exports an object that can be mixed into underscore/lodash like this:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">_.mixin(require(&apos;safe-obj&apos;));</code></pre>
+<p>that let&apos;s you access object properties with wild abandon.</p>
 <h3 id="client">Client</h3>
-<p>Additionally, as of v1.0.0, it works on the client side. If <code>window._</code> is defined (i.e. lodash or underscore has been loaded), <code>_.safe</code> will add an <code>_safe</code> property to it, which you can mix in with <code>_.mixin(_._safe)</code>.</p>
+<p>Additionally, as of v1.0.0, it works on the client side. If <code ng-non-bindable="">window._</code> is defined (i.e. lodash or underscore has been loaded), <code ng-non-bindable="">_.safe</code> will add an <code ng-non-bindable="">_safe</code> property to it, which you can mix in with <code ng-non-bindable="">_.mixin(_._safe)</code>.</p>
 <p>On the client, just include the script after underscore or lodash:</p>
-<pre><code class="lang-html">&lt;script src=&quot;/underscore.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html" ng-non-bindable="">&lt;script src=&quot;/underscore.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;path/to/safe-obj/dist/safe.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 <p>and then mix it in:</p>
-<pre><code class="lang-html">&lt;script&gt;
+<pre><code class="lang-html" ng-non-bindable="">&lt;script&gt;
   (function() {
     _.mixin(_._safe);
   })();
 &lt;/script&gt;</code></pre>
 <h2 id="api">API</h2>
 <h3 id="safe">Safe</h3>
-<p>Let&#39;s you access object properties (and array indices too!) regardless of whether they exist. If, at any point, a property returns <code>undefined</code> (where calling another object accessor would blow up), <code>safe</code> immediately just returns <code>undefined</code> (or a default, if you provide one).</p>
-<pre><code class="lang-javascript">var obj = {}
+<p>Let&apos;s you access object properties (and array indices too!) regardless of whether they exist. If, at any point, a property returns <code ng-non-bindable="">undefined</code> (where calling another object accessor would blow up), <code ng-non-bindable="">safe</code> immediately just returns <code ng-non-bindable="">undefined</code> (or a default, if you provide one).</p>
+<pre><code class="lang-javascript" ng-non-bindable="">var obj = {}
 
 // returns undefined
-var innerProp = _(obj).safe(&#39;foo.bar.baz.0.hello.world&#39;); 
+var innerProp = _(obj).safe(&apos;foo.bar.baz.0.hello.world&apos;); 
 
-// returns [] - useful if you want to call array methods but don&#39;t want to check the type
-var anotherProp = _(obj).safe(&#39;a.brave.new.world&#39;, []);</code></pre>
+// returns [] - useful if you want to call array methods but don&apos;t want to check the type
+var anotherProp = _(obj).safe(&apos;a.brave.new.world&apos;, []);</code></pre>
 <h3 id="expand">Expand</h3>
-<p>Let&#39;s you assign to any arbitrarily deep and non-existent property on an object. Any non-existent properties are expanded into objects.</p>
-<pre><code class="lang-javascript">var obj = {}
+<p>Let&apos;s you assign to any arbitrarily deep and non-existent property on an object. Any non-existent properties are expanded into objects.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">var obj = {}
 
-_(obj).expand(&#39;foo.bar.baz&#39;, &#39;hello world&#39;);
+_(obj).expand(&apos;foo.bar.baz&apos;, &apos;hello world&apos;);
 
 // obj now equals: {
 //   foo: {
 //     bar: {
-//       baz: &#39;hello world&#39;
+//       baz: &apos;hello world&apos;
 //     }
 //   }
 // }</code></pre>
-<p>Expand is likely to be finnicky (at the moment) with expanding arrays. It&#39;s untested, and my guess is that it will create object properties with numbers. Something like</p>
-<pre><code class="lang-javascript">property: {
+<p>Expand is likely to be finnicky (at the moment) with expanding arrays. It&apos;s untested, and my guess is that it will create object properties with numbers. Something like</p>
+<pre><code class="lang-javascript" ng-non-bindable="">property: {
   0: {
     // more stuff
   }
 }</code></pre>
-<p>I&#39;d like to make that work more as expected in a future release, but for now, don&#39;t expect it to work.</p>
+<p>I&apos;d like to make that work more as expected in a future release, but for now, don&apos;t expect it to work.</p>
 <h3 id="ensure">Ensure</h3>
 <p>Sets a path to a given value unless that path already has a value. Also allows an optional list of &quot;disallowed&quot; values.</p>
-<pre><code class="lang-javascript">var obj = {
+<pre><code class="lang-javascript" ng-non-bindable="">var obj = {
   foo: {
-    bar: &#39;baz&#39;
+    bar: &apos;baz&apos;
   }
 };
 
-// This will have no effect on obj since &#39;foo.bar&#39; already has a value
-_(obj).ensure(&#39;foo.bar&#39;, &#39;a default value&#39;);
+// This will have no effect on obj since &apos;foo.bar&apos; already has a value
+_(obj).ensure(&apos;foo.bar&apos;, &apos;a default value&apos;);
 
 obj = {
   foo: {}
 };
 
-// This will set obj.foo equal to { bar: &#39;a default value&#39; }
-_(obj).ensure(&#39;foo.bar&#39;, &#39;a default value&#39;);
+// This will set obj.foo equal to { bar: &apos;a default value&apos; }
+_(obj).ensure(&apos;foo.bar&apos;, &apos;a default value&apos;);
 
 obj = {
   foo: {
-    bar: &#39;nope&#39;
+    bar: &apos;nope&apos;
   }
 };
 
-// This says don&#39;t allow &#39;nope&#39; as a value of foo.bar, thus it will use the default
-_(obj).ensure(&#39;foo.bar&#39;, [ &#39;nope&#39; ], &#39;a default value&#39;);</code></pre>
+// This says don&apos;t allow &apos;nope&apos; as a value of foo.bar, thus it will use the default
+_(obj).ensure(&apos;foo.bar&apos;, [ &apos;nope&apos; ], &apos;a default value&apos;);</code></pre>
 <h3 id="allof">AllOf</h3>
-<p>Uses <code>safe</code> to return <code>true</code> if all the paths exist in the object or <code>false</code> if any is missing.</p>
-<pre><code class="lang-javascript">var obj = {
+<p>Uses <code ng-non-bindable="">safe</code> to return <code ng-non-bindable="">true</code> if all the paths exist in the object or <code ng-non-bindable="">false</code> if any is missing.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">var obj = {
   foo: {
-    bar: &#39;baz&#39;
+    bar: &apos;baz&apos;
   }
 };
 
-_(obj).allOf(&#39;foo.bar&#39;, &#39;hello.world&#39;); // returns false
+_(obj).allOf(&apos;foo.bar&apos;, &apos;hello.world&apos;); // returns false
 
 // or
-// _(obj).allOf([&#39;foo.bar&#39;, &#39;hello.world&#39;]);</code></pre>
+// _(obj).allOf([&apos;foo.bar&apos;, &apos;hello.world&apos;]);</code></pre>
 <h3 id="anyof">AnyOf</h3>
-<p>Like <code>allOf</code> but returns <code>true</code> if any of the paths exist.</p>
-<pre><code class="lang-javascript">var obj = {
+<p>Like <code ng-non-bindable="">allOf</code> but returns <code ng-non-bindable="">true</code> if any of the paths exist.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">var obj = {
   foo: {
-    bar: &#39;baz&#39;
+    bar: &apos;baz&apos;
   }
 };
 
-_(obj).anyOf(&#39;foo.bar&#39;, &#39;hello.world&#39;); // returns true</code></pre>
+_(obj).anyOf(&apos;foo.bar&apos;, &apos;hello.world&apos;); // returns true</code></pre>
 <h3 id="noneof">NoneOf</h3>
-<p>Like <code>allOf</code> and <code>anyOf</code> but only returns true when none of the paths exist.</p>
-<pre><code class="lang-javascript">var obj = {
+<p>Like <code ng-non-bindable="">allOf</code> and <code ng-non-bindable="">anyOf</code> but only returns true when none of the paths exist.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">var obj = {
   foo: {
-    bar: &#39;baz&#39;
+    bar: &apos;baz&apos;
   }
 };
 
-_(obj).noneOf(&#39;foo.bar&#39;, &#39;hello.world&#39;); // returns false</code></pre>
+_(obj).noneOf(&apos;foo.bar&apos;, &apos;hello.world&apos;); // returns false</code></pre>
 
         </div>
       </div>

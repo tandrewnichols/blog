@@ -1,5 +1,13 @@
+var cheerio = require('cheerio');
+var postCompile = function(src, context) {
+  var $ = cheerio.load(src);
+  $('code').attr('ng-non-bindable', '');
+  return $.html();
+};
+
 module.exports = {
   options: {
+    postCompile: postCompile,
     markddownOptions: {
       gfm: true,
       highlight: 'manual'
@@ -15,7 +23,7 @@ module.exports = {
       }
     ],
     options: {
-      template: 'views/post.html'
+      template: 'views/post.html',
     }
   },
   pages: {

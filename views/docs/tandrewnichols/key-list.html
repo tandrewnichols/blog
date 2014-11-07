@@ -28,51 +28,51 @@
           <p><a href="https://travis-ci.org/tandrewnichols/key-list"><img src="https://travis-ci.org/tandrewnichols/key-list.png" alt="Build Status"></a> <a href="https://npmjs.org/package/key-list"><img src="http://img.shields.io/npm/dm/key-list.svg" alt="downloads"></a> <a href="https://npmjs.org/package/key-list"><img src="http://img.shields.io/npm/v/key-list.svg" alt="npm"></a> <a href="https://codeclimate.com/github/tandrewnichols/key-list"><img src="https://codeclimate.com/github/tandrewnichols/key-list/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/tandrewnichols/key-list"><img src="https://codeclimate.com/github/tandrewnichols/key-list/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://david-dm.org/tandrewnichols/key-list"><img src="https://david-dm.org/tandrewnichols/key-list.png" alt="dependencies"></a></p>
 <p><a href="https://nodei.co/npm/key-list.png?downloads=true"><img src="https://nodei.co/npm/key-list.png?downloads=true" alt="NPM info"></a></p>
 <h1 id="key-list">key-list</h1>
-<p>Returns a list of the interpolation keys in a string. That is, if you have a string that you&#39;re using interpolation on, like</p>
-<pre><code>Hello, {{ member.name }}</code></pre>
-<p>and you call key-list with this string, you&#39;ll get back</p>
-<pre><code>[ &#39;member.name&#39; ]</code></pre>
+<p>Returns a list of the interpolation keys in a string. That is, if you have a string that you&apos;re using interpolation on, like</p>
+<pre><code ng-non-bindable="">Hello, {{ member.name }}</code></pre>
+<p>and you call key-list with this string, you&apos;ll get back</p>
+<pre><code ng-non-bindable="">[ &apos;member.name&apos; ]</code></pre>
 <h2 id="installation">Installation</h2>
-<p><code>npm install key-list --save</code></p>
+<p><code ng-non-bindable="">npm install key-list --save</code></p>
 <h2 id="usage">Usage</h2>
-<p>The default interpolation is the mustache pattern (<code>{{ someKey }}</code>), so if you&#39;re using mustache, getting a list of keys is as easy as</p>
-<pre><code class="lang-javascript">var keyList = require(&#39;key-list&#39;);
-var str = &#39;Hello, {{ member.name }}&#39;;
-var keys = keyList.getKeys(str); // [ &#39;member.name&#39; ]</code></pre>
-<p>But even if you have a different pattern, I&#39;ve made it easy to use this library. If you&#39;re using a well-known interpolation pattern, there&#39;s a good chance I&#39;ve already got it in this library, and you just need to call it with the correct name. And incidentally, if you&#39;re using a well-known interpolation pattern that <em>isnt&#39;</em> in this library, please open an issue so I can add it. (Also, if any of the names have more canonical names, let me know. I just guessed on some.)</p>
+<p>The default interpolation is the mustache pattern (<code ng-non-bindable="">{{ someKey }}</code>), so if you&apos;re using mustache, getting a list of keys is as easy as</p>
+<pre><code class="lang-javascript" ng-non-bindable="">var keyList = require(&apos;key-list&apos;);
+var str = &apos;Hello, {{ member.name }}&apos;;
+var keys = keyList.getKeys(str); // [ &apos;member.name&apos; ]</code></pre>
+<p>But even if you have a different pattern, I&apos;ve made it easy to use this library. If you&apos;re using a well-known interpolation pattern, there&apos;s a good chance I&apos;ve already got it in this library, and you just need to call it with the correct name. And incidentally, if you&apos;re using a well-known interpolation pattern that <em>isnt&apos;</em> in this library, please open an issue so I can add it. (Also, if any of the names have more canonical names, let me know. I just guessed on some.)</p>
 <p>Here are the currently recognized pattern names:</p>
-<pre><code class="lang-javascript">keyList.getKeys(&#39;{{ member.name }}&#39;, &#39;mustache&#39;);
-keyList.getKeys(&#39;{ member.name }&#39;, &#39;thin-mustache&#39;);
-keyList.getKeys(&#39;{% member.name %}&#39;, &#39;glasses&#39;);
-keyList.getKeys(&#39;&lt;%= member.name %&gt;&#39;, &#39;ejs&#39;);
-keyList.getKeys(&#39;#{ member.name }&#39;, &#39;coffee&#39;);
+<pre><code class="lang-javascript" ng-non-bindable="">keyList.getKeys(&apos;{{ member.name }}&apos;, &apos;mustache&apos;);
+keyList.getKeys(&apos;{ member.name }&apos;, &apos;thin-mustache&apos;);
+keyList.getKeys(&apos;{% member.name %}&apos;, &apos;glasses&apos;);
+keyList.getKeys(&apos;&lt;%= member.name %&gt;&apos;, &apos;ejs&apos;);
+keyList.getKeys(&apos;#{ member.name }&apos;, &apos;coffee&apos;);
 
-// I know, you probably wouldn&#39;t use these in javascript, but hey . . . they&#39;re there if you do
-keyList.getKeys(&#39;@member.name&#39;, &#39;razor&#39;); 
-keyList.getKeys(&#39;[% member.name %]&#39;, &#39;perl&#39;);</code></pre>
-<p>Additionally, if you&#39;re using some bizarre non-standard interpolation pattern, you can pass it yourself as either a string or a regex:</p>
-<pre><code class="lang-javascript">// Note that double slashes are necessary for converting strings
+// I know, you probably wouldn&apos;t use these in javascript, but hey . . . they&apos;re there if you do
+keyList.getKeys(&apos;@member.name&apos;, &apos;razor&apos;); 
+keyList.getKeys(&apos;[% member.name %]&apos;, &apos;perl&apos;);</code></pre>
+<p>Additionally, if you&apos;re using some bizarre non-standard interpolation pattern, you can pass it yourself as either a string or a regex:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">// Note that double slashes are necessary for converting strings
 // to regular expressions and preserving the escape
-keyList.getKeys(&#39;@|foo.bar|&#39;, &#39;@\\|\\s*([a-zA-Z0-9_\\.\\$)+]\\s*\\|&#39;);
+keyList.getKeys(&apos;@|foo.bar|&apos;, &apos;@\\|\\s*([a-zA-Z0-9_\\.\\$)+]\\s*\\|&apos;);
 
 // or
 
-keyList.getKeys(&#39;@|foo.bar|&#39;, /@\|\s*([a-zA-Z0-9_\.\$)+]\s*\|/g);</code></pre>
-<p>Alternatively, if that looks a bit complicated, you can provide only the open and close portions (including any optional spacing) and <code>key-list</code> will provide the capture portion for you...</p>
-<pre><code class="lang-javascript">// Note that open and close MUST be strings, not regular expressions
-keyList.open = &#39;\\&gt;%\\s*&#39;;
-keyList.close = &#39;\\s*%\\&lt;&#39;;
-keyList.getKeys(&#39;&gt;% foo.bar %&lt;&#39;);</code></pre>
-<p><code>key-list</code> stores it&#39;s patterns on exports, so you could also just do:</p>
-<pre><code class="lang-javascript">keyList.open = &#39;\\&gt;%&#39; + keyList.space;
-keyList.close = keyList.space + &#39;*%\\&lt;&#39;;
-keyList.getKeys(&#39;&gt;% foo.bar %&lt;&#39;);</code></pre>
+keyList.getKeys(&apos;@|foo.bar|&apos;, /@\|\s*([a-zA-Z0-9_\.\$)+]\s*\|/g);</code></pre>
+<p>Alternatively, if that looks a bit complicated, you can provide only the open and close portions (including any optional spacing) and <code ng-non-bindable="">key-list</code> will provide the capture portion for you...</p>
+<pre><code class="lang-javascript" ng-non-bindable="">// Note that open and close MUST be strings, not regular expressions
+keyList.open = &apos;\\&gt;%\\s*&apos;;
+keyList.close = &apos;\\s*%\\&lt;&apos;;
+keyList.getKeys(&apos;&gt;% foo.bar %&lt;&apos;);</code></pre>
+<p><code ng-non-bindable="">key-list</code> stores it&apos;s patterns on exports, so you could also just do:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">keyList.open = &apos;\\&gt;%&apos; + keyList.space;
+keyList.close = keyList.space + &apos;*%\\&lt;&apos;;
+keyList.getKeys(&apos;&gt;% foo.bar %&lt;&apos;);</code></pre>
 <h2 id="not-usage">NOT usage</h2>
-<p>This is not an interpolating library, lexer, or parser. You can&#39;t pass a context object and get a filled in string back. You can&#39;t include arbitrary javascript. And you will never be able to. There are plenty of existing libraries that do that. The sole purpose of this library is to show you what keys an interpolation string uses.</p>
+<p>This is not an interpolating library, lexer, or parser. You can&apos;t pass a context object and get a filled in string back. You can&apos;t include arbitrary javascript. And you will never be able to. There are plenty of existing libraries that do that. The sole purpose of this library is to show you what keys an interpolation string uses.</p>
 <h2 id="so-what-are-the-use-cases-">So . . . what ARE the use cases?</h2>
-<p>I wrote this because I could think of at least three places in other libraries I&#39;ve written where it would come in handy. In two of those, it was to prompt a user for missing values (for CLI tools). In the third (incomplete), it was to determine the order that a series of interpolations should occur in (e.g. if foo.a uses bar.b via interpolation, but bar.b itself has interpolation, foo.a needs to be evaluated <em>after</em> bar.b). A third possible use case would be to prevent errors in <code>_.template</code> when keys don&#39;t exist.</p>
+<p>I wrote this because I could think of at least three places in other libraries I&apos;ve written where it would come in handy. In two of those, it was to prompt a user for missing values (for CLI tools). In the third (incomplete), it was to determine the order that a series of interpolations should occur in (e.g. if foo.a uses bar.b via interpolation, but bar.b itself has interpolation, foo.a needs to be evaluated <em>after</em> bar.b). A third possible use case would be to prevent errors in <code ng-non-bindable="">_.template</code> when keys don&apos;t exist.</p>
 <h2 id="_-safe">_.safe</h2>
-<p>On a side note, if you find yourself writing a recursive loop to try to deal with nested keys (like &quot;member.name&quot;), consider using <a href="https://github.com/mantacode/safe-obj">safe-obj</a>, which provides the <code>_.safe</code> method specifically for accessing nested keys safely.</p>
+<p>On a side note, if you find yourself writing a recursive loop to try to deal with nested keys (like &quot;member.name&quot;), consider using <a href="https://github.com/mantacode/safe-obj">safe-obj</a>, which provides the <code ng-non-bindable="">_.safe</code> method specifically for accessing nested keys safely.</p>
 
         </div>
       </div>

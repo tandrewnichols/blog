@@ -29,42 +29,42 @@
 <p><a href="https://nodei.co/npm/expressive.png?downloads=true"><img src="https://nodei.co/npm/expressive.png?downloads=true" alt="NPM info"></a></p>
 <h1 id="expressive">Expressive</h1>
 <h2 id="installation">Installation</h2>
-<p><code>npm install --save expressive</code></p>
+<p><code ng-non-bindable="">npm install --save expressive</code></p>
 <h2 id="usage">Usage</h2>
-<pre><code class="lang-javascript">var expressive = require(&#39;expressive&#39;);
-var express = require(&#39;express&#39;);
+<pre><code class="lang-javascript" ng-non-bindable="">var expressive = require(&apos;expressive&apos;);
+var express = require(&apos;express&apos;);
 var app = express();
 expressive(app);
 
-app.use(&#39;/normal-route&#39;, function(req, res, next) {
+app.use(&apos;/normal-route&apos;, function(req, res, next) {
   next();
 });
 
-app.development.get(&#39;/dev-only-route&#39;, function(req, res, next) {
+app.development.get(&apos;/dev-only-route&apos;, function(req, res, next) {
   next();
 });</code></pre>
-<p>When you call <code>expressive</code> and pass in an express app, it will add environment specific hooks that you can use for specific environments only. By default, it will use <code>[&#39;development&#39;]</code> as the environment list, but you can pass an array of environments as a second argument (or a single string if you only setting up one environment), or an options object (outlined below).</p>
-<p>This is similar to wrapping <code>app</code> calls in checks against the environment, but I&#39;ve found that this method makes an app easier to read because all the route definitions are parallel.</p>
+<p>When you call <code ng-non-bindable="">expressive</code> and pass in an express app, it will add environment specific hooks that you can use for specific environments only. By default, it will use <code ng-non-bindable="">[&apos;development&apos;]</code> as the environment list, but you can pass an array of environments as a second argument (or a single string if you only setting up one environment), or an options object (outlined below).</p>
+<p>This is similar to wrapping <code ng-non-bindable="">app</code> calls in checks against the environment, but I&apos;ve found that this method makes an app easier to read because all the route definitions are parallel.</p>
 <h3 id="with-an-array">With an array</h3>
-<pre><code class="lang-javascript">expressive(app, [&#39;development&#39;, &#39;test&#39;]);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">expressive(app, [&apos;development&apos;, &apos;test&apos;]);</code></pre>
 <h3 id="with-a-string">With a string</h3>
-<pre><code class="lang-javascript">expressive(app, &#39;development&#39;);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">expressive(app, &apos;development&apos;);</code></pre>
 <h3 id="with-options">With Options</h3>
 <p>You can specify the following options to change the default behavior:</p>
 <h4 id="envs">Envs</h4>
 <p>The aforementioned list of environments</p>
-<pre><code class="lang-javascript">// &quot;envs&quot; can also be a string here
-expressive(app, { envs: [&#39;development&#39;, &#39;test&#39;] });</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">// &quot;envs&quot; can also be a string here
+expressive(app, { envs: [&apos;development&apos;, &apos;test&apos;] });</code></pre>
 <h4 id="env">Env</h4>
-<p>The current environment. Defaults to <code>process.env.NODE_ENV</code>.</p>
-<pre><code class="lang-javascript">expressive(app, { env: nconf.get(&#39;NODE_ENV&#39;) });</code></pre>
+<p>The current environment. Defaults to <code ng-non-bindable="">process.env.NODE_ENV</code>.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">expressive(app, { env: nconf.get(&apos;NODE_ENV&apos;) });</code></pre>
 <p>Additionally, you can pass this env as a third parameter, which can help keep the syntax short.</p>
-<pre><code class="lang-javascript">expressive(app, &#39;development&#39;, nconf.get(&#39;NODE_ENV&#39;));</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">expressive(app, &apos;development&apos;, nconf.get(&apos;NODE_ENV&apos;));</code></pre>
 <h4 id="alias">Alias</h4>
-<p>If <code>app.development.use</code> seems long, you can provide environment aliases to shorten it.</p>
-<pre><code class="lang-javascript">expressive(app, { alias: { development: &#39;dev&#39; } });</code></pre>
+<p>If <code ng-non-bindable="">app.development.use</code> seems long, you can provide environment aliases to shorten it.</p>
+<pre><code class="lang-javascript" ng-non-bindable="">expressive(app, { alias: { development: &apos;dev&apos; } });</code></pre>
 <p>Then you can just use</p>
-<pre><code class="lang-javascript">app.dev.use(/*args*/);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">app.dev.use(/*args*/);</code></pre>
 
         </div>
       </div>

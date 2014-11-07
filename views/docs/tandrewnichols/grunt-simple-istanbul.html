@@ -30,24 +30,24 @@
 <h1 id="grunt-simple-istanbul">grunt-simple-istanbul</h1>
 <p>A grunt wrapper for istanbul</p>
 <h2 id="getting-started">Getting Started</h2>
-<p>If you haven&#39;t used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you&#39;re familiar with that process, you may install this plugin with this command:</p>
-<pre><code class="lang-bash">npm install grunt-simple-istanbul --save-dev</code></pre>
+<p>If you haven&apos;t used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you&apos;re familiar with that process, you may install this plugin with this command:</p>
+<pre><code class="lang-bash" ng-non-bindable="">npm install grunt-simple-istanbul --save-dev</code></pre>
 <p>Once the plugin has been installed, it may be enabled inside your Gruntfile with:</p>
-<pre><code class="lang-javascript">grunt.loadNpmTasks(&#39;grunt-simple-istanbul&#39;);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.loadNpmTasks(&apos;grunt-simple-istanbul&apos;);</code></pre>
 <p>Alternatively, install and use <a href="https://github.com/tandrewnichols/task-master">task-master</a>, and it will handle this (and a lot more!) for you.</p>
 <h2 id="the-istanbul-task">The &quot;istanbul&quot; task</h2>
 <p>This module uses the <a href="https://github.com/tandrewnichols/simple-cli">simple-cli</a> library to create a simple wrapper around <a href="https://github.com/gotwarlost/istanbul">istanbul</a>.</p>
 <h3 id="overview">Overview</h3>
-<p>The <code>istanbul</code> task is a multiTask, where the target is (usually) the istanbul command to run. You can configure as many istanbul commands as are useful to you either in your <code>grunt.initConfig</code> call or, as mentioned above, by using <a href="https://github.com/tandrewnichols/task-master">task-master</a>. I strongly recommend using task-master . . . not just because I wrote it. I wrote it because grunt configuration is messy and annoying and sometimes, at least with <code>loadNpmTasks</code>, redundant (I was shocked to learn that you can&#39;t pass more than one string to <code>loadNpmTasks</code> - it&#39;s plural . . . doesn&#39;t that mean I should be able to do <code>grunt.loadNpmTasks(&#39;grunt-foo&#39;, &#39;grunt-bar&#39;, &#39;grunt-baz&#39;)</code>? . . . apparently not). I&#39;ve been using task-master for everything I write now for a few months, and it just makes grunt more pleasurable to use. Things are nicely separated . . . but I digress. Here&#39;s a sample configuration:</p>
-<pre><code class="lang-javascript">grunt.initConfig({
+<p>The <code ng-non-bindable="">istanbul</code> task is a multiTask, where the target is (usually) the istanbul command to run. You can configure as many istanbul commands as are useful to you either in your <code ng-non-bindable="">grunt.initConfig</code> call or, as mentioned above, by using <a href="https://github.com/tandrewnichols/task-master">task-master</a>. I strongly recommend using task-master . . . not just because I wrote it. I wrote it because grunt configuration is messy and annoying and sometimes, at least with <code ng-non-bindable="">loadNpmTasks</code>, redundant (I was shocked to learn that you can&apos;t pass more than one string to <code ng-non-bindable="">loadNpmTasks</code> - it&apos;s plural . . . doesn&apos;t that mean I should be able to do <code ng-non-bindable="">grunt.loadNpmTasks(&apos;grunt-foo&apos;, &apos;grunt-bar&apos;, &apos;grunt-baz&apos;)</code>? . . . apparently not). I&apos;ve been using task-master for everything I write now for a few months, and it just makes grunt more pleasurable to use. Things are nicely separated . . . but I digress. Here&apos;s a sample configuration:</p>
+<pre><code class="lang-javascript" ng-non-bindable="">grunt.initConfig({
   istanbul: {
     instrument: {
       options: {
-        output: &#39;instrumented&#39;,
-        x: [&#39;**/node_modules/**&#39;, &#39;**/coverage/**&#39;, &#39;**/instrumented/**&#39;],
+        output: &apos;instrumented&apos;,
+        x: [&apos;**/node_modules/**&apos;, &apos;**/coverage/**&apos;, &apos;**/instrumented/**&apos;],
         noCompact: true
       },
-      cmd: &#39;instrument app&#39;
+      cmd: &apos;instrument app&apos;
     }
   }
 });</code></pre>

@@ -29,33 +29,33 @@
 <p><a href="https://nodei.co/npm/kindly.png?downloads=true"><img src="https://nodei.co/npm/kindly.png?downloads=true" alt="NPM info"></a></p>
 <h1 id="kindly">Kindly</h1>
 <h3 id="purpose">Purpose</h3>
-<p>Kindly is a (very) thin wrapper around fs.readdir that groups files by type. That seems like a small thing, but it&#39;s really useful for requiring all the files in a single directory.</p>
+<p>Kindly is a (very) thin wrapper around fs.readdir that groups files by type. That seems like a small thing, but it&apos;s really useful for requiring all the files in a single directory.</p>
 <h3 id="installation">Installation</h3>
-<p><code>npm install kindly --save</code></p>
-<p><code>var kindly = require(&#39;kindly&#39;);</code></p>
+<p><code ng-non-bindable="">npm install kindly --save</code></p>
+<p><code ng-non-bindable="">var kindly = require(&apos;kindly&apos;);</code></p>
 <h3 id="api">API</h3>
-<p>Kindly has only one method, <code>get</code>, which works synchronously or asynchronously depending on whether you give it a callback.</p>
+<p>Kindly has only one method, <code ng-non-bindable="">get</code>, which works synchronously or asynchronously depending on whether you give it a callback.</p>
 <p>Synchronously:</p>
-<pre><code class="lang-javascript">var descriptors = kindly.get(&#39;/dir&#39;);</code></pre>
+<pre><code class="lang-javascript" ng-non-bindable="">var descriptors = kindly.get(&apos;/dir&apos;);</code></pre>
 <p>Asynchronously:</p>
-<pre><code class="lang-javascript">kindly.get(&#39;/dir&#39;, function(err, descriptors) {
+<pre><code class="lang-javascript" ng-non-bindable="">kindly.get(&apos;/dir&apos;, function(err, descriptors) {
 
 });</code></pre>
 <p>In either case, descriptors will be an object in this form:</p>
-<pre><code class="lang-javascript">{
+<pre><code class="lang-javascript" ng-non-bindable="">{
   files: [],
   directories: [],
   other: []
 }</code></pre>
 <p>All file and directory names are prefaced with the path you pass to kindly. Thus, if you use something like</p>
-<pre><code class="lang-javascript">var kindly = require(&#39;kindly&#39;);
-var path = require(&#39;path&#39;);
+<pre><code class="lang-javascript" ng-non-bindable="">var kindly = require(&apos;kindly&apos;);
+var path = require(&apos;path&apos;);
 
-kindly.get(path.resolve(&#39;lib&#39;), function(err, descriptors) {
+kindly.get(path.resolve(&apos;lib&apos;), function(err, descriptors) {
 
 });</code></pre>
 <p>all of your descriptors will be fully qualified paths which can be used from any directory.</p>
-<p>That&#39;s it folks!
+<p>That&apos;s it folks!
 <br><br><br><br><br><br><br><br>
 Seriously, are you still reading this?</p>
 

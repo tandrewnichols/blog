@@ -13,19 +13,6 @@ module.exports = {
       highlight: 'manual'
     }
   },
-  posts: {
-    files: [
-      {
-        expand: true,
-        src: 'posts/**/*.md',
-        dest: 'views',
-        ext: '.html'
-      }
-    ],
-    options: {
-      template: 'views/post.html',
-    }
-  },
   pages: {
     files: [
       {

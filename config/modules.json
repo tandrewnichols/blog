@@ -11,6 +11,12 @@
       "version": "v1.0.3"
     },
     {
+      "name": "key-list",
+      "description": "Get the list of keys used in a string with interpolation",
+      "version": "v0.1.1",
+      "coverage": "100%"
+    },
+    {
       "name": "grunt-simple-git",
       "description": "A simple API for using git via grunt",
       "version": "v0.0.2",
@@ -20,12 +26,6 @@
       "name": "grunt-simple-npm",
       "description": "A simple API for using npm via grunt",
       "version": "v0.1.0",
-      "coverage": "100%"
-    },
-    {
-      "name": "key-list",
-      "description": "Get the list of keys used in a string with interpolation",
-      "version": "v0.0.1",
       "coverage": "100%"
     },
     {
@@ -77,15 +77,15 @@
       "coverage": "100%"
     },
     {
-      "name": "expressive",
-      "description": "Adds environment-specific hooks to express apps",
-      "version": "v0.0.1",
-      "coverage": "100%"
-    },
-    {
       "name": "file-manifest",
       "description": "Require all the files in a directory into a single object",
       "version": "v1.0.3",
+      "coverage": "100%"
+    },
+    {
+      "name": "expressive",
+      "description": "Adds environment-specific hooks to express apps",
+      "version": "v0.0.1",
       "coverage": "100%"
     },
     {

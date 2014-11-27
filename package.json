@@ -40,6 +40,7 @@
     "grunt-markdown": "^0.6.1",
     "grunt-ng-annotate": "^0.3.2",
     "lodash": "^2.4.1",
+    "marky-mark": "^1.0.0",
     "nconf": "^0.6.9",
     "swig": "^1.4.2",
     "task-master": "^2.0.1",

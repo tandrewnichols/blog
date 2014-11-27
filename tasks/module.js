@@ -65,7 +65,7 @@ module.exports = function(grunt, context) {
         console.log();
         console.log(chalk.red(err));
       }
-      fs.writeFile(context.paths.root + '/modules.json', JSON.stringify(manifest, null, 2), function(err) {
+      fs.writeFile(context.paths.root + '/config/modules.json', JSON.stringify(manifest, null, 2), function(err) {
         console.log();
         if (err) {
           console.log(chalk.red(err));

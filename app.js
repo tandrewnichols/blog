@@ -1,16 +1,11 @@
+var nconf = require('./lib/nconf').init();
 var http = require('http');
-var path = require('path');
 var express = require('express');
 var app = express();
 var swig = require('swig');
-var fs = require('fs');
-var _ = require('lodash');
-var extend = require('config-extend');
-var env = process.env.NODE_ENV || 'development';
-var nconf = require('nconf').argv().env().file({ file: './config/' + env + '.json' });
-nconf.set('env', env);
-var modules = require('./modules.json');
-var recentPosts = require('./feed');
+var fm = require('file-manifest');
+var routes = fm.generate('./routes');
+var middleware = fm.generate('./lib/middleware');
 
 app.set('port', nconf.get('PORT'));
 app.engine('html', require('swig').renderFile);
@@ -25,34 +20,12 @@ swig.setDefaults({
 });
 
 app.use('/assets', express.static(__dirname + nconf.get('staticFilePath')));
-app.use(function(req, res, next) {
-  extend(res.locals, {
-    modules: modules,
-    page: req.path,
-    url: req.originalUrl.split('?')[0],
-    dev: nconf.get('env') === 'development',
-    recent: recentPosts
-  });
-  next();
-});
+app.use(middleware.locals);
 
-app.get('/', function(req, res) {
-  res.render('home', { hideNav: nconf.get('env') === 'development' });
-});
-
-app.get('/docs/:module', function(req, res, next) {
-  var author = _(modules.tandrewnichols).pluck('name').contains(req.params.module) ? 'tandrewnichols' : 'mantacode';
-
-  res.render('docs/' + author + '/' + req.params.module, {
-    module: _.find(modules[author], { name: req.params.module }),
-    author: author,
-    title: req.params.module
-  });
-});
-
-app.get('/coverage/:module', function(req, res, next) {
-  res.sendFile(__dirname + '/views/coverage/' + req.params.module + '.html');
-});
+app.use('/', routes.home);
+app.use('/docs', routes.docs);
+app.use('/coverage', routes.coverage);
+app.use('/blog', routes.blog);
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function() {

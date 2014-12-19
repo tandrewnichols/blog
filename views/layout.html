@@ -13,9 +13,9 @@
       <meta property="og:url" content="{{= url }}">
       <link rel="icon" href="https://secure.gravatar.com/avatar/89e046d45bc6aa524a2164a952ba9860?s=40" type="image/png" />
     {%= endblock %}
-    <title>{%= block title %}{%= endblock %}</title>
-    <meta name="description" content="{%= block description %}{%= endblock %}" />
-    <meta name="keywords" content="{%= block keywords %}{%= endblock %}" />
+    <title>{%= block title %}{{= title }}{%= endblock %}</title>
+    <meta name="description" content="{%= block description %}{{= description }}{%= endblock %}" />
+    <meta name="keywords" content="{%= block keywords %}{{= keywords }}{%= endblock %}" />
     <style>
       body {
         padding-top: 85px;

@@ -1,0 +1,31 @@
+{%= extends 'layout.html' %}
+
+{%= block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="h2 text-gray">On the Web</h1>
+      <p>Most of the time, I use the social alias "tandrewnichols" (pronounced "T Andrew Nichols"). My name is, in fact, Thomas Andrew Nichols, but I go by my middle name. It's not that I'm attached to that "T" (like J. Edgar Hoover, F. Scott Fitzgerald, or M. Night Shyamalan). It just turns out that the handle "tandrewnichols" is almost never taken, whereas other moniker-based handles (e.g. anichols) are. If you ever see a tandrewnichols somewhere online, there's a good chance it's me. Some of the coding-relevant places you can find me are:</p>
+    </div>
+  </div>
+  <div class="row mtl">
+    <div class="col-xs-12" style="font-size: 16pt;">
+      <div class="list-group">
+        <a class="list-group-item" id="github-main" ng-init="mixpanel.track_links('#github-main', 'Click Social', { target: 'github', page: 'profile' })" href="https://github.com/tandrewnichols"><span class="fa fa-github"></span>&nbsp;&nbsp;Github Profile</a>
+      </div>
+      <div class="list-group">
+        <a class="list-group-item" id="npm-main" ng-init="mixpanel.track_links('#npm-main', 'Click Social', { target: 'npm', page: 'profile' })" href="https://www.npmjs.org/~tandrewnichols"><span class="ta ta-npm-short"></span>&nbsp;&nbsp;Npm Profile</a>
+      </div>
+      <div class="list-group">
+        <a class="list-group-item" id="twitter-main" ng-init="mixpanel.track_links('#twitter-main', 'Click Social', { target: 'twitter', page: 'profile', action: 'view' })" href="https://twitter.com/tandrewnichols"><span class="fa fa-twitter"></span>&nbsp;&nbsp;Twitter Profile</a>
+      </div>
+      <div class="list-group">
+        <a class="list-group-item" id="twitter-main" ng-init="mixpanel.track_links('#twitter-main', 'Click Social', { target: 'twitter', page: 'profile', action: 'follow' })" href="https://twitter.com/intent/user?user_id=903887658"><span class="fa fa-twitter"></span>&nbsp;&nbsp;Follow Me on Twitter</a>
+      </div>
+      <div class="list-group">
+        <a class="list-group-item" id="stack-overflow-main" ng-init="mixpanel.track_links('#stack-overflow-main', 'Click Social', { target: 'stack overflow', page: 'profile' })" href="http://stackoverflow.com/users/1437845/tandrewnichols"><span class="fa fa-stack-overflow"></span>&nbsp;&nbsp;Stack Overflow Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+{%= endblock %}

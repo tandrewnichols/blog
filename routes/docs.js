@@ -8,8 +8,8 @@ router.get('/:module', function(req, res) {
   res.render('docs/' + author + '/' + req.params.module, {
     module: module,
     author: author,
-    title: req.params.module + ' - npm module | tandrewnichols',
+    title: 'Readme - ' + req.params.module + ' | tandrewnichols',
     description: module.description.replace(/\.$/, '') + '. ' + module.version,
-    keywords: req.params.module + ', node.js, npm, git'
+    keywords: req.params.module + ',node.js,npm,git'
   });
 });

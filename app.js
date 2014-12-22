@@ -26,6 +26,7 @@ app.use('/', routes.home);
 app.use('/docs', routes.docs);
 app.use('/coverage', routes.coverage);
 app.use('/blog', routes.blog);
+app.use('/social', routes.social);
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function() {

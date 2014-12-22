@@ -69,22 +69,22 @@
                 <span class="icon-bar"></span>
               </button>
               <span class="circular pull-left" style="margin-top: 11px; background-image: url(https://secure.gravatar.com/avatar/89e046d45bc6aa524a2164a952ba9860?s=40)"></span>
-              <a id="brand" href="/" class="navbar-brand" ng-init="mixpanel.track_links('#brand', 'Click', { target: 'home' })">Andrew Nichols</a>
+              <a id="brand" href="/" class="navbar-brand" ng-init="mixpanel.track_links('#brand', 'Click Brand', { page: '{{= url }}' })">Andrew Nichols</a>
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/blog">Stubborn Child Process</a></li>
+                <li><a href="/blog"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Stubborn Child Process</a></li>
                 <li class="dropdown">
-                  <a href="#" dropdown-show="mixpanel.track('Open', { target: 'module dropdown' })" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
+                  <a href="#" dropdown-show="mixpanel.track('Open Dropdown', { page: '{{= url }}' })" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li class="dropdown-header">tandrewnichols</li>
                     {%= for module in modules.tandrewnichols %}
-                      <li><a id="nav-{{= module.name }}" href="/docs/{{= module.name }}" ng-init="mixpanel.track_links('#nav-{{= module.name }}', 'Click', { target: '{{= module.name }}' })">{{= module.name }}</a></li>
+                      <li><a id="nav-{{= module.name }}" href="/docs/{{= module.name }}" ng-init="mixpanel.track_links('#nav-{{= module.name }}', 'Click Module Dropdown', { target: '{{= module.name }}', page: '{{= url }}' })">{{= module.name }}</a></li>
                     {%= endfor %}
                     <li class="divider"></li>
                     <li class="dropdown-header">mantacode</li>
                     {%= for module in modules.mantacode %}
-                      <li><a id="nav-{{= module.name }}" href="/docs/{{= module.name }}" ng-init="mixpanel.track_links('#nav-{{= module.name }}', 'Click', { target: '{{= module.name }}' })">{{= module.name }}</a></li>
+                      <li><a id="nav-{{= module.name }}" href="/docs/{{= module.name }}" ng-init="mixpanel.track_links('#nav-{{= module.name }}', 'Click Module', { target: '{{= module.name }}', page: '{{= url }}' })">{{= module.name }}</a></li>
                     {%= endfor %}
                   </ul>
                 </li>

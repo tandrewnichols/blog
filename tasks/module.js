@@ -80,8 +80,8 @@ module.exports = function(grunt, context) {
   return {
     tandrewnichols: {
       options: {
-        modules: ['grunt-simple-git', 'grunt-simple-istanbul', 'grunt-simple-npm', 'grunt-travis-matrix', 'indeed', 'key-list', 'simple-cli', 'task-master', 'varity'],
-        uncovered: ['varity']
+        modules: ['grunt-simple-git', 'grunt-simple-istanbul', 'grunt-simple-npm', 'grunt-travis-matrix', 'indeed', 'key-list', 'simple-cli', 'task-master', 'varity', 'grunt-md'],
+        uncovered: ['varity', 'grunt-md']
       }
     },
     mantacode: {

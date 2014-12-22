@@ -1,6 +1,11 @@
 {
   "tandrewnichols": [
     {
+      "name": "grunt-md",
+      "description": "Compile markdown files with yml view context into html",
+      "version": "v0.0.2"
+    },
+    {
       "name": "indeed",
       "description": "Boolean helpers for node.js",
       "version": "v1.0.6"

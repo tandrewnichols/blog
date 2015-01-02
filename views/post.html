@@ -4,9 +4,10 @@
 <div>
   <%= content %>
 </div>
+<div id="disqus_thread"></div>
 {%= endblock %}
 
-<div id="disqus_thread"></div>
+{%= block scripts %}
 <script type="text/javascript">
   var disqus_shortname='tandrewnichols',disqus_identifier='<%= disqus.id %>',disqus_title='<%= disqus.title %>',disqus_url='http://www.tandrewnichols.me/blog/<%= disqus.slug %>',disqus_categorgy_id='<%= disqus.category %>';
   (function() {
@@ -16,3 +17,4 @@
   })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{%= endblock %}

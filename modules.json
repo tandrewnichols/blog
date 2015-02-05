@@ -1,0 +1,10 @@
+{
+  "tandrewnichols": [
+    {
+      "name": "simple-cli",
+      "description": "A simple wrapper for grunt implementations of command line APIs",
+      "version": "v1.0.0",
+      "coverage": "100%"
+    }
+  ]
+}
